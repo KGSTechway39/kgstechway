@@ -1,0 +1,178 @@
+/* Header Styles */
+.modern-navbar {
+  padding: 1rem 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+}
+
+.modern-navbar.scrolled {
+  padding: 0.5rem 0;
+  box-shadow: 0 8px 32px rgba(0, 102, 204, 0.1);
+}
+
+.brand-logo {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.brand-text {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.brand-name {
+  display: block;
+  letter-spacing: -0.02em;
+}
+
+.brand-tagline {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.nav-items {
+  gap: 2rem;
+}
+
+.nav-item {
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #333;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  color: #0066cc;
+  background-color: rgba(0, 102, 204, 0.05);
+}
+
+.nav-item.active {
+  color: #0066cc;
+  background-color: rgba(0, 102, 204, 0.1);
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: linear-gradient(90deg, #0066cc, #003d7a);
+  border-radius: 2px;
+}
+
+.cta-btn {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: 2px solid;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 102, 204, 0.2);
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+}
+
+.mobile-menu-toggle {
+  margin-left: auto;
+}
+
+.menu-toggle-btn {
+  border: none;
+  background: none;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle-btn:hover {
+  background-color: rgba(0, 102, 204, 0.1);
+}
+
+/* Dark Mode Styles */
+.modern-navbar.dark {
+  background-color: rgba(30, 30, 30, 0.95) !important;
+}
+
+.modern-navbar.dark .nav-item {
+  color: #e0e0e0;
+}
+
+.modern-navbar.dark .nav-item:hover {
+  color: #4da6ff;
+  background-color: rgba(77, 166, 255, 0.1);
+}
+
+.modern-navbar.dark .nav-item.active {
+  color: #4da6ff;
+  background-color: rgba(77, 166, 255, 0.15);
+}
+
+/* Mobile Styles */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin-top: 0.5rem;
+    padding: 1rem 0;
+  }
+
+  .nav-items {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .nav-item {
+    text-align: center;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+  }
+
+  .brand-text {
+    font-size: 1.5rem;
+  }
+
+  .modern-navbar.dark .navbar-collapse {
+    background: rgba(30, 30, 30, 0.98);
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
