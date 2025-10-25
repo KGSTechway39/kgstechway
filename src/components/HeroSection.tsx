@@ -78,7 +78,12 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="home" className={`hero-section ${isDarkMode ? 'dark' : 'light'}`}>
+    <section 
+      id="home" 
+      className={`hero-section ${isDarkMode ? 'dark' : 'light'}`}
+      aria-label="Hero section - KGSTechway Services introduction"
+      role="main"
+    >
       {/* Animated Background Elements */}
       <div className="hero-background">
         <div className="floating-elements">
@@ -165,9 +170,11 @@ const HeroSection = () => {
                 <span 
                   className="typed-text" 
                   style={{ color: primaryColor }}
+                  aria-live="polite"
+                  aria-label={`Specializing in ${typedText || 'technology solutions'}`}
                 >
                   {typedText}
-                  <span className="cursor">|</span>
+                  <span className="cursor" aria-hidden="true">|</span>
                 </span>
               </p>
             </motion.div>
@@ -193,13 +200,14 @@ const HeroSection = () => {
                 size="lg"
                 className="primary-cta-btn"
                 onClick={() => scrollToSection('contact')}
+                aria-label="Start your project with KGSTechway - Contact us"
                 style={{ 
                   backgroundColor: primaryColor,
                   borderColor: primaryColor 
                 }}
               >
                 Start Your Project
-                <FaArrowRight className="ms-2" />
+                <FaArrowRight className="ms-2" aria-hidden="true" />
               </Button>
               
               <Button
@@ -207,12 +215,13 @@ const HeroSection = () => {
                 size="lg"
                 className="secondary-cta-btn"
                 onClick={() => scrollToSection('services')}
+                aria-label="Learn about our services and solutions"
                 style={{ 
                   borderColor: primaryColor,
                   color: primaryColor 
                 }}
               >
-                <FaPlay className="me-2" />
+                <FaPlay className="me-2" aria-hidden="true" />
                 View Services
               </Button>
             </motion.div>

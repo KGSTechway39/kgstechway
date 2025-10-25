@@ -216,8 +216,9 @@ const ContactSection = () => {
                     <Row>
                       <Col md={6}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Full Name *</Form.Label>
+                          <Form.Label htmlFor="contact-name">Full Name *</Form.Label>
                           <Form.Control
+                            id="contact-name"
                             type="text"
                             name="name"
                             value={formData.name}
@@ -225,7 +226,11 @@ const ContactSection = () => {
                             placeholder="Your full name"
                             required
                             className="custom-input"
+                            aria-describedby="name-help"
                           />
+                          <Form.Text id="name-help" className="visually-hidden">
+                            Enter your full name for contact purposes
+                          </Form.Text>
                         </Form.Group>
                       </Col>
                       <Col md={6}>

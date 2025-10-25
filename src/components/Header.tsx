@@ -51,10 +51,11 @@ const Header = memo(() => {
   }, [dispatch]);
 
   return (
-    <motion.div
+    <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
+      role="banner"
     >
       <Navbar
         expand="lg"
@@ -65,12 +66,15 @@ const Header = memo(() => {
           backdropFilter: isScrolled ? 'blur(20px)' : 'none',
           borderBottom: isScrolled ? '1px solid rgba(0, 102, 204, 0.1)' : 'none'
         }}
+        role="navigation"
+        aria-label="Main navigation"
       >
         <Container>
           <Navbar.Brand 
             href="#home" 
             className="brand-logo"
             onClick={() => handleNavClick('home')}
+            aria-label="KGSTechway Service - Go to homepage"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -89,13 +93,16 @@ const Header = memo(() => {
               onClick={() => dispatch(toggleMenu())}
               className="menu-toggle-btn"
               style={{ color: primaryColor }}
+              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMenuOpen}
+              aria-controls="main-navigation"
             >
-              {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              {isMenuOpen ? <FaTimes size={24} aria-hidden="true" /> : <FaBars size={24} aria-hidden="true" />}
             </Button>
           </div>
 
-          <Navbar.Collapse in={isMenuOpen} className="justify-content-center">
-            <Nav className="mx-auto nav-items">
+          <Navbar.Collapse in={isMenuOpen} className="justify-content-center" id="main-navigation">
+            <Nav className="mx-auto nav-items" role="menubar">
               {navItems.map((item) => (
                 <motion.div
                   key={item.id}
@@ -106,6 +113,9 @@ const Header = memo(() => {
                     href={`#${item.id}`}
                     onClick={() => handleNavClick(item.id)}
                     className={`nav-item ${activeSection === item.id ? 'active' : ''}`}
+                    role="menuitem"
+                    aria-current={activeSection === item.id ? 'page' : undefined}
+                    tabIndex={0}
                   >
                     {item.label}
                   </Nav.Link>
@@ -124,6 +134,7 @@ const Header = memo(() => {
                 size="lg"
                 className="cta-btn"
                 onClick={() => handleNavClick('contact')}
+                aria-label="Get started with KGSTechway services"
                 style={{ 
                   backgroundColor: primaryColor,
                   borderColor: primaryColor 
@@ -135,7 +146,7 @@ const Header = memo(() => {
           </div>
         </Container>
       </Navbar>
-    </motion.div>
+    </motion.header>
   );
 });
 

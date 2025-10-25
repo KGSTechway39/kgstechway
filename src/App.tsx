@@ -6,6 +6,7 @@ import HeroSection from './components/HeroSection';
 import LoadingSpinner from './components/LoadingSpinner';
 import ErrorBoundary from './components/ErrorBoundary';
 import PerformanceMonitor from './components/PerformanceMonitor';
+import { SkipNavigation } from './hooks/useFocusManagement';
 import './App.css';
 
 // Lazy load heavy components for better performance
@@ -21,6 +22,7 @@ function App() {
     <ErrorBoundary>
       <Provider store={store}>
         <PerformanceMonitor />
+        <SkipNavigation />
         <div className="App">
           <Header />
           <main>
