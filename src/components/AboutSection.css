@@ -409,6 +409,227 @@
   box-shadow: 0 12px 35px rgba(0, 102, 204, 0.4);
 }
 
+/* Enhanced Tech Item Styles */
+.tech-item.enhanced {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tech-item.enhanced:hover {
+  background: rgba(0, 102, 204, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 102, 204, 0.1);
+}
+
+.tech-icon-name {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tech-emoji {
+  font-size: 1.5rem;
+}
+
+.tech-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.5rem 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+.about-section.dark .tech-description {
+  color: #a0aec0;
+}
+
+/* Certifications Section */
+.certifications-section {
+  margin: 6rem 0;
+}
+
+.certifications-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.about-section.dark .certifications-title {
+  color: #ffffff;
+}
+
+.certifications-description {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+.about-section.dark .certifications-description {
+  color: #cbd5e0;
+}
+
+.certification-card {
+  border: none;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  overflow: hidden;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.certification-card.dark {
+  background: rgba(45, 55, 72, 0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.certification-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.cert-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem auto;
+  font-size: 2rem;
+}
+
+.cert-emoji {
+  filter: brightness(0) invert(1);
+  font-size: 2rem;
+}
+
+.cert-content {
+  position: relative;
+  z-index: 2;
+}
+
+.cert-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #1a1a1a;
+}
+
+.about-section.dark .cert-title {
+  color: #ffffff;
+}
+
+.cert-description {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.about-section.dark .cert-description {
+  color: #a0aec0;
+}
+
+/* Team Expertise Section */
+.team-expertise-section {
+  margin: 6rem 0;
+}
+
+.team-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.about-section.dark .team-title {
+  color: #ffffff;
+}
+
+.team-description {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+.about-section.dark .team-description {
+  color: #cbd5e0;
+}
+
+.team-card {
+  border: none;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  overflow: hidden;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.team-card.dark {
+  background: rgba(45, 55, 72, 0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.team-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.team-emoji {
+  font-size: 3rem;
+}
+
+.team-content {
+  position: relative;
+  z-index: 2;
+}
+
+.team-count {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.team-area {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.about-section.dark .team-area {
+  color: #ffffff;
+}
+
+.team-description {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.about-section.dark .team-description {
+  color: #a0aec0;
+}
+
 /* Mobile Responsive */
 @media (max-width: 991.98px) {
   .story-content {
@@ -490,5 +711,34 @@
   
   .technologies-section {
     padding: 2rem 1.5rem;
+  }
+  
+  .certifications-title,
+  .team-title {
+    font-size: 2rem;
+  }
+  
+  .certifications-description,
+  .team-description {
+    font-size: 1.1rem;
+  }
+  
+  .certification-card,
+  .team-card {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+  }
+  
+  .cert-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .team-count {
+    font-size: 2rem;
+  }
+  
+  .team-area {
+    font-size: 1.1rem;
   }
 }

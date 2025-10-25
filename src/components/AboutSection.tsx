@@ -77,21 +77,129 @@ const AboutSection = () => {
   ];
 
   const technologies = [
-    { name: 'Software Development', level: 95 },
-    { name: 'AI Solutions', level: 92 },
-    { name: 'CRM/ERP Systems', level: 90 },
-    { name: 'Agentic AI', level: 88 },
-    { name: 'Cloud Platforms', level: 85 },
-    { name: 'Machine Learning', level: 87 }
+    { 
+      name: 'Full-Stack Development', 
+      level: 95,
+      description: 'React, Angular, Vue.js, Node.js, Python, .NET',
+      icon: '💻'
+    },
+    { 
+      name: 'AI & Machine Learning', 
+      level: 92,
+      description: 'TensorFlow, PyTorch, OpenAI GPT, Computer Vision',
+      icon: '🤖'
+    },
+    { 
+      name: 'Cloud Architecture', 
+      level: 90,
+      description: 'AWS, Azure, GCP, Docker, Kubernetes, Microservices',
+      icon: '☁️'
+    },
+    { 
+      name: 'Enterprise Solutions', 
+      level: 88,
+      description: 'CRM/ERP, Salesforce, SAP, Microsoft Dynamics',
+      icon: '🏢'
+    },
+    { 
+      name: 'Agentic AI Systems', 
+      level: 89,
+      description: 'LangChain, AutoGen, CrewAI, Multi-Agent Systems',
+      icon: '🧠'
+    },
+    { 
+      name: 'Database & Analytics', 
+      level: 87,
+      description: 'PostgreSQL, MongoDB, BigQuery, Data Warehousing',
+      icon: '📊'
+    },
+    { 
+      name: 'DevOps & Security', 
+      level: 85,
+      description: 'CI/CD, GitLab, Jenkins, Cybersecurity, SOC Compliance',
+      icon: '🔒'
+    },
+    { 
+      name: 'Mobile Development', 
+      level: 84,
+      description: 'React Native, Flutter, iOS, Android, Progressive Web Apps',
+      icon: '📱'
+    }
   ];
 
   const achievements = [
-    // '500+ Successful Projects Delivered',
     '99.9% Client Satisfaction Rate',
-    // 'ISO 27001 Certified Security Standards',
-    '24/7 Technical Support Coverage',
+    '24/7 Technical Support Coverage', 
     'Agile Development Methodology',
-    'Continuous Integration & Deployment'
+    'Continuous Integration & Deployment',
+    'ISO 27001 Security Standards Compliant',
+    'AWS & Azure Certified Solutions'
+  ];
+
+  const certifications = [
+    {
+      title: 'AWS Solutions Architect',
+      description: 'Professional cloud architecture and deployment',
+      icon: '☁️',
+      color: '#ff9900'
+    },
+    {
+      title: 'Microsoft Azure Expert',
+      description: 'Enterprise cloud solutions and AI services',
+      icon: '🔷',
+      color: '#0078d4'
+    },
+    {
+      title: 'Google Cloud Professional',
+      description: 'ML, AI and data analytics platforms',
+      icon: '🌟',
+      color: '#4285f4'
+    },
+    {
+      title: 'Certified Scrum Master',
+      description: 'Agile project management and delivery',
+      icon: '⚡',
+      color: '#00a86b'
+    },
+    {
+      title: 'Salesforce Certified',
+      description: 'CRM implementation and customization',
+      icon: '💼',
+      color: '#00a1e0'
+    },
+    {
+      title: 'AI/ML Specialist',
+      description: 'TensorFlow and PyTorch expertise',
+      icon: '🧠',
+      color: '#ff6b6b'
+    }
+  ];
+
+  const teamExpertise = [
+    {
+      area: 'Senior Architects',
+      count: '8+',
+      description: 'Solution architects with 10+ years experience',
+      icon: '🏗️'
+    },
+    {
+      area: 'AI/ML Engineers',
+      count: '12+',
+      description: 'Specialists in machine learning and neural networks',
+      icon: '🤖'
+    },
+    {
+      area: 'Full-Stack Developers',
+      count: '25+',
+      description: 'Expert developers across modern tech stacks',
+      icon: '💻'
+    },
+    {
+      area: 'DevOps Engineers',
+      count: '6+',
+      description: 'Infrastructure automation and security experts',
+      icon: '🔧'
+    }
   ];
 
   return (
@@ -166,23 +274,28 @@ const AboutSection = () => {
                   {technologies.map((tech, index) => (
                     <motion.div
                       key={index}
-                      className="tech-item"
+                      className="tech-item enhanced"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       viewport={{ once: true }}
+                      whileHover={{ scale: 1.02 }}
                     >
                       <div className="tech-header">
-                        <span className="tech-name">{tech.name}</span>
+                        <div className="tech-icon-name">
+                          <span className="tech-emoji">{tech.icon}</span>
+                          <span className="tech-name">{tech.name}</span>
+                        </div>
                         <span className="tech-percentage">{tech.level}%</span>
                       </div>
+                      <p className="tech-description">{tech.description}</p>
                       <ProgressBar
                         now={tech.level}
                         className="tech-progress"
                         style={{ 
                           '--progress-color': primaryColor,
-                          height: '8px',
-                          borderRadius: '4px'
+                          height: '6px',
+                          borderRadius: '3px'
                         } as React.CSSProperties}
                       />
                     </motion.div>
@@ -268,6 +381,86 @@ const AboutSection = () => {
             ))}
           </Row>
         </motion.div>
+
+        {/* Certifications Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="certifications-section"
+        >
+          <div className="section-header text-center">
+            <h3 className="certifications-title">Professional Certifications</h3>
+            <p className="certifications-description">
+              Our team holds industry-leading certifications ensuring expertise and quality delivery
+            </p>
+          </div>
+
+          <Row>
+            {certifications.map((cert, index) => (
+              <Col lg={4} md={6} key={index} className="mb-4">
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Card className={`certification-card h-100 ${isDarkMode ? 'dark' : 'light'}`}>
+                    <div 
+                      className="cert-icon"
+                      style={{ backgroundColor: cert.color }}
+                    >
+                      <span className="cert-emoji">{cert.icon}</span>
+                    </div>
+                    <div className="cert-content">
+                      <h6 className="cert-title">{cert.title}</h6>
+                      <p className="cert-description">{cert.description}</p>
+                    </div>
+                  </Card>
+                </motion.div>
+              </Col>
+            ))}
+          </Row>
+        </motion.div>
+
+        {/* Team Expertise Section */}
+        {/* <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="team-expertise-section"
+        >
+          <div className="section-header text-center">
+            <h3 className="team-title">Our Expert Team</h3>
+            <p className="team-description">
+              Talented professionals dedicated to delivering exceptional technology solutions
+            </p>
+          </div>
+
+          <Row>
+            {teamExpertise.map((team, index) => (
+              <Col lg={3} md={6} key={index} className="mb-4">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Card className={`team-card h-100 ${isDarkMode ? 'dark' : 'light'}`}>
+                    <div className="team-icon">
+                      <span className="team-emoji">{team.icon}</span>
+                    </div>
+                    <div className="team-content">
+                      <div className="team-count" style={{ color: primaryColor }}>
+                        {team.count}
+                      </div>
+                      <div className="team-area">{team.area}</div>
+                      <div className="team-description">{team.description}</div>
+                    </div>
+                  </Card>
+                </motion.div>
+              </Col>
+            ))}
+          </Row>
+        </motion.div> */}
 
         {/* Call to Action */}
         <motion.div

@@ -78,7 +78,7 @@ const ContactSection = () => {
     {
       icon: <FaEnvelope />,
       title: 'Email Us',
-      info: 'hello@kgstechway.com',
+      info: 'sales@kgstechway.com',
       subInfo: 'We respond within 24 hours',
       color: '#0066cc'
     },
