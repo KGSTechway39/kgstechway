@@ -163,15 +163,15 @@ const Footer: React.FC = () => {
               <div className="mb-3">
                 <div className="d-flex align-items-center mb-2">
                   <FaPhone className="me-2" />
-                  <span>+1 (555) 123-4567</span>
+                  <span>+91 8248718780</span>
                 </div>
                 <div className="d-flex align-items-center mb-2">
                   <FaEnvelope className="me-2" />
-                  <span>info@kgstechway.com</span>
+                  <span>sales@kgstechway.com</span>
                 </div>
                 <div className="d-flex align-items-start">
                   <FaMapMarkerAlt className="me-2 mt-1" />
-                  <span>123 Tech Street<br />Innovation City, IC 12345</span>
+                  <span>Krishnagiri, Tamil Nadu, India</span>
                 </div>
               </div>
               

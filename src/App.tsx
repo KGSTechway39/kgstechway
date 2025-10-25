@@ -13,7 +13,7 @@ import './App.css';
 const ServicesSection = lazy(() => import('./components/ServicesSection'));
 const AboutSection = lazy(() => import('./components/AboutSection'));
 const TechnologySection = lazy(() => import('./components/TechnologySection'));
-const TestimonialsSection = lazy(() => import('./components/TestimonialsSection'));
+// const TestimonialsSection = lazy(() => import('./components/TestimonialsSection'));
 const ContactSection = lazy(() => import('./components/ContactSection'));
 const Footer = lazy(() => import('./components/Footer'));
 

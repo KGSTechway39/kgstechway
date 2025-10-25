@@ -85,14 +85,14 @@ const ContactSection = () => {
     {
       icon: <FaPhone />,
       title: 'Call Us',
-      info: '+1 (555) 123-4567',
-      subInfo: 'Mon-Fri 9AM-6PM EST',
+      info: '+91 8248718780',
+      subInfo: 'Mon-Fri 9AM-6PM IST',
       color: '#28a745'
     },
     {
       icon: <FaMapMarkerAlt />,
       title: 'Visit Us',
-      info: '123 Tech Street, Digital City',
+      info: 'Krishnagiri, Tamil Nadu, India',
       subInfo: 'Schedule an appointment',
       color: '#ff6b35'
     },
@@ -258,7 +258,7 @@ const ContactSection = () => {
                             name="phone"
                             value={formData.phone}
                             onChange={handleInputChange}
-                            placeholder="+1 (555) 123-4567"
+                            placeholder="+91 9876543210"
                             className="custom-input"
                           />
                         </Form.Group>
