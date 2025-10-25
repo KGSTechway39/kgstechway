@@ -21,11 +21,14 @@ steps:
     echo "Setting up Git configuration..."
     git config --global user.email "pipeline@kgstechway.com"
     git config --global user.name "Azure DevOps Pipeline"
+    git config --global init.defaultBranch main
     
-    echo "Checking GitHub token..."
+    echo "Verifying GitHub token..."
     if [ -z "$(GITHUB_TOKEN)" ]; then
       echo "ERROR: GITHUB_TOKEN is not set"
       exit 1
+    else
+      echo "✅ GitHub token is configured"
     fi
     
     echo "Setting up GitHub remote..."
@@ -35,13 +38,21 @@ steps:
     # Add GitHub as remote with token authentication
     git remote add github https://$(GITHUB_TOKEN)@github.com/$(GITHUB_REPO).git
     
+    echo "Verifying remote setup..."
+    git remote -v
+    
+    echo "Checking current branch..."
+    CURRENT_BRANCH=$(git branch --show-current)
+    echo "Current branch: $CURRENT_BRANCH"
+    
     echo "Fetching from GitHub..."
-    git fetch github || echo "Repository might be empty, continuing..."
+    git fetch github --prune || echo "Repository might be empty or first push, continuing..."
     
     echo "Pushing to GitHub..."
-    git push github HEAD:main --force
+    git push github HEAD:main --force-with-lease || git push github HEAD:main --force
     
-    echo "Successfully synced to GitHub!"
+    echo "✅ Successfully synced to GitHub!"
+    echo "🔗 Repository URL: https://github.com/$(GITHUB_REPO)"
     
   displayName: 'Sync to GitHub'
   env:
