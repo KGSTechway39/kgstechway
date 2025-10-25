@@ -22,30 +22,13 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
-        manualChunks: (id) => {
-          // Vendor chunks for better caching
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'react-vendor';
-            }
-            if (id.includes('react-bootstrap') || id.includes('bootstrap')) {
-              return 'bootstrap-vendor';
-            }
-            if (id.includes('framer-motion')) {
-              return 'animation-vendor';
-            }
-            if (id.includes('@reduxjs/toolkit') || id.includes('react-redux')) {
-              return 'redux-vendor';
-            }
-            if (id.includes('react-icons')) {
-              return 'icons-vendor';
-            }
-            return 'vendor';
-          }
-          // Split components into separate chunks
-          if (id.includes('/components/')) {
-            return 'components';
-          }
+        manualChunks: {
+          // Stable vendor chunks
+          'react-vendor': ['react', 'react-dom'],
+          'bootstrap-vendor': ['react-bootstrap', 'bootstrap'],
+          'animation-vendor': ['framer-motion'],
+          'redux-vendor': ['@reduxjs/toolkit', 'react-redux'],
+          'icons-vendor': ['react-icons/fa', 'react-icons/si', 'react-icons/bs', 'react-icons/md']
         }
       }
     },
@@ -78,6 +61,20 @@ export default defineConfig({
     }
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-bootstrap', 'framer-motion', '@reduxjs/toolkit']
+    include: [
+      'react', 
+      'react-dom', 
+      'react-bootstrap', 
+      'framer-motion', 
+      '@reduxjs/toolkit',
+      'react-icons/fa',
+      'react-icons/si',
+      'react-icons/bs',
+      'react-icons/md'
+    ],
+    exclude: ['react-icons']
+  },
+  ssr: {
+    noExternal: ['react-icons']
   }
 })
