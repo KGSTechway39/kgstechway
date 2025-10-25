@@ -15,19 +15,33 @@ variables:
 steps:
 - checkout: self
   persistCredentials: true
+  clean: true
 
 - script: |
+    echo "Setting up Git configuration..."
     git config --global user.email "pipeline@kgstechway.com"
     git config --global user.name "Azure DevOps Pipeline"
     
-    # Remove existing GitHub remote if it exists
-    git remote remove github 2>/dev/null || true
+    echo "Checking GitHub token..."
+    if [ -z "$(GITHUB_TOKEN)" ]; then
+      echo "ERROR: GITHUB_TOKEN is not set"
+      exit 1
+    fi
     
-    # Add GitHub as remote
+    echo "Setting up GitHub remote..."
+    # Remove existing GitHub remote if it exists
+    git remote remove github 2>/dev/null || echo "No existing GitHub remote found"
+    
+    # Add GitHub as remote with token authentication
     git remote add github https://$(GITHUB_TOKEN)@github.com/$(GITHUB_REPO).git
     
-    # Push to GitHub
+    echo "Fetching from GitHub..."
+    git fetch github || echo "Repository might be empty, continuing..."
+    
+    echo "Pushing to GitHub..."
     git push github HEAD:main --force
+    
+    echo "Successfully synced to GitHub!"
     
   displayName: 'Sync to GitHub'
   env:
