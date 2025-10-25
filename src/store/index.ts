@@ -7,6 +7,16 @@ export const store = configureStore({
     theme: themeSlice,
     navigation: navigationSlice,
   },
+  // Enable Redux DevTools only in development
+  devTools: import.meta.env.DEV,
+  // Performance optimizations
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      // Disable serializable check in production for performance
+      serializableCheck: import.meta.env.DEV,
+      // Disable immutable check in production for performance
+      immutableCheck: import.meta.env.DEV,
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

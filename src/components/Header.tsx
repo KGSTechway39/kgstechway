@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback, useMemo, memo } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { setScrollY, setActiveSection, toggleMenu, setMenuOpen } from '../store/navigationSlice';
@@ -6,30 +6,41 @@ import { motion } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './Header.css';
 
-const Header = () => {
+const Header = memo(() => {
   const dispatch = useDispatch();
   const { isScrolled, activeSection, isMenuOpen } = useSelector((state: any) => state.navigation);
   const { isDarkMode, primaryColor } = useSelector((state: any) => state.theme);
 
+  // Throttle scroll events for better performance
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      dispatch(setScrollY(window.scrollY));
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          dispatch(setScrollY(window.scrollY));
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [dispatch]);
 
-  const navItems = [
+  // Memoize navigation items to prevent re-creation on every render
+  const navItems = useMemo(() => [
     { id: 'home', label: 'Home' },
     { id: 'services', label: 'Services' },
     { id: 'about', label: 'About' },
     { id: 'technology', label: 'Technology' },
     { id: 'testimonials', label: 'Testimonials' },
     { id: 'contact', label: 'Contact' }
-  ];
+  ], []);
 
-  const handleNavClick = (sectionId: string) => {
+  // Memoize click handler to prevent unnecessary re-renders
+  const handleNavClick = useCallback((sectionId: string) => {
     dispatch(setActiveSection(sectionId));
     dispatch(setMenuOpen(false));
     
@@ -37,7 +48,7 @@ const Header = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, [dispatch]);
 
   return (
     <motion.div
@@ -126,6 +137,7 @@ const Header = () => {
       </Navbar>
     </motion.div>
   );
-};
+});
 
+Header.displayName = 'Header';
 export default Header;

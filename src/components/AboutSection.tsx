@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import { Container, Row, Col, Card, ProgressBar } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
@@ -15,10 +15,11 @@ import {
 } from 'react-icons/fa';
 import './AboutSection.css';
 
-const AboutSection = () => {
+const AboutSection = memo(() => {
   const { isDarkMode, primaryColor } = useSelector((state: any) => state.theme);
 
-  const stats = [
+  // Memoize expensive data arrays to prevent unnecessary re-renders
+  const stats = useMemo(() => [
     {
       icon: <FaUsers />,
       number: '500+',
@@ -47,9 +48,9 @@ const AboutSection = () => {
       description: 'Proven track record in technology solutions',
       color: '#6f42c1'
     }
-  ];
+  ], []);
 
-  const values = [
+  const values = useMemo(() => [
     {
       icon: <FaRocket />,
       title: 'Innovation',
@@ -74,9 +75,9 @@ const AboutSection = () => {
       description: 'We ensure robust, secure, and scalable solutions that you can depend on.',
       gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
     }
-  ];
+  ], []);
 
-  const technologies = [
+  const technologies = useMemo(() => [
     { 
       name: 'Full-Stack Development', 
       level: 95,
@@ -125,18 +126,18 @@ const AboutSection = () => {
       description: 'React Native, Flutter, iOS, Android, Progressive Web Apps',
       icon: '📱'
     }
-  ];
+  ], []);
 
-  const achievements = [
+  const achievements = useMemo(() => [
     '99.9% Client Satisfaction Rate',
     '24/7 Technical Support Coverage', 
     'Agile Development Methodology',
     'Continuous Integration & Deployment',
     'ISO 27001 Security Standards Compliant',
     'AWS & Azure Certified Solutions'
-  ];
+  ], []);
 
-  const certifications = [
+  const certifications = useMemo(() => [
     {
       title: 'AWS Solutions Architect',
       description: 'Professional cloud architecture and deployment',
@@ -173,34 +174,9 @@ const AboutSection = () => {
       icon: '🧠',
       color: '#ff6b6b'
     }
-  ];
+  ], []);
 
-  const teamExpertise = [
-    {
-      area: 'Senior Architects',
-      count: '8+',
-      description: 'Solution architects with 10+ years experience',
-      icon: '🏗️'
-    },
-    {
-      area: 'AI/ML Engineers',
-      count: '12+',
-      description: 'Specialists in machine learning and neural networks',
-      icon: '🤖'
-    },
-    {
-      area: 'Full-Stack Developers',
-      count: '25+',
-      description: 'Expert developers across modern tech stacks',
-      icon: '💻'
-    },
-    {
-      area: 'DevOps Engineers',
-      count: '6+',
-      description: 'Infrastructure automation and security experts',
-      icon: '🔧'
-    }
-  ];
+
 
   return (
     <section id="about" className={`about-section ${isDarkMode ? 'dark' : 'light'}`}>
@@ -489,6 +465,7 @@ const AboutSection = () => {
       </Container>
     </section>
   );
-};
+});
 
+AboutSection.displayName = 'AboutSection';
 export default AboutSection;
