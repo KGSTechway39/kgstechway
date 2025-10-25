@@ -16,44 +16,82 @@ steps:
 - checkout: self
   persistCredentials: true
   clean: true
+  fetchDepth: 0  # Get full history for better Git operations
 
 - script: |
-    echo "Setting up Git configuration..."
+    set -e  # Exit on any error
+    
+    echo "🔧 Setting up Git configuration..."
     git config --global user.email "pipeline@kgstechway.com"
     git config --global user.name "Azure DevOps Pipeline"
     git config --global init.defaultBranch main
+    git config --global push.default simple
+    git config --global pull.rebase false
     
-    echo "Verifying GitHub token..."
+    echo "🔐 Verifying GitHub token..."
     if [ -z "$(GITHUB_TOKEN)" ]; then
-      echo "ERROR: GITHUB_TOKEN is not set"
+      echo "❌ ERROR: GITHUB_TOKEN is not set"
       exit 1
     else
       echo "✅ GitHub token is configured"
     fi
     
-    echo "Setting up GitHub remote..."
+    echo "📁 Current repository status..."
+    echo "Working directory: $(pwd)"
+    echo "Git status:"
+    git status --porcelain || true
+    
+    echo "🔗 Setting up GitHub remote..."
     # Remove existing GitHub remote if it exists
-    git remote remove github 2>/dev/null || echo "No existing GitHub remote found"
+    git remote remove github 2>/dev/null || echo "ℹ️ No existing GitHub remote found"
     
     # Add GitHub as remote with token authentication
     git remote add github https://$(GITHUB_TOKEN)@github.com/$(GITHUB_REPO).git
     
-    echo "Verifying remote setup..."
+    echo "📊 Verifying remote setup..."
     git remote -v
     
-    echo "Checking current branch..."
-    CURRENT_BRANCH=$(git branch --show-current)
+    echo "🌿 Checking current branch..."
+    CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
     echo "Current branch: $CURRENT_BRANCH"
     
-    echo "Fetching from GitHub..."
-    git fetch github --prune || echo "Repository might be empty or first push, continuing..."
+    # Ensure we're on main branch
+    if [ "$CURRENT_BRANCH" != "main" ]; then
+      echo "🔄 Switching to main branch..."
+      git checkout -B main
+    fi
     
-    echo "Pushing to GitHub..."
-    git push github HEAD:main --force-with-lease || git push github HEAD:main --force
+    echo "📥 Fetching from GitHub (if repository exists)..."
+    git fetch github --prune 2>/dev/null || echo "ℹ️ Repository might be empty or first push, continuing..."
+    
+    echo "📤 Pushing to GitHub..."
+    # Try force-with-lease first (safer), fallback to force if needed
+    if ! git push github main --force-with-lease 2>/dev/null; then
+      echo "⚠️ Force-with-lease failed, using force push..."
+      git push github main --force
+    fi
     
     echo "✅ Successfully synced to GitHub!"
     echo "🔗 Repository URL: https://github.com/$(GITHUB_REPO)"
+    echo "🎉 Auto-deployment should trigger on Vercel now!"
     
   displayName: 'Sync to GitHub'
   env:
     GITHUB_TOKEN: $(GITHUB_TOKEN)
+
+- script: |
+    echo "🔍 Verifying GitHub sync..."
+    
+    # Check if the push was successful by fetching latest commit
+    git ls-remote https://$(GITHUB_TOKEN)@github.com/$(GITHUB_REPO).git main
+    
+    echo "✅ Verification complete!"
+    echo "📋 Next steps:"
+    echo "   1. Check GitHub repository: https://github.com/$(GITHUB_REPO)"
+    echo "   2. Verify Vercel auto-deployment triggered"
+    echo "   3. Test your live website"
+    
+  displayName: 'Verify GitHub Sync'
+  env:
+    GITHUB_TOKEN: $(GITHUB_TOKEN)
+  condition: succeeded()
