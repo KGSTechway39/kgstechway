@@ -1,0 +1,36 @@
+# Azure DevOps Pipeline for GitHub Sync
+# This pipeline automatically pushes code from Azure DevOps to GitHub
+# Place this file as: azure-pipelines.yml in your repository root
+
+trigger:
+- main
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- group: GitHub-Secrets
+- name: GITHUB_REPO
+  value: 'gowthamkish/kgstechway'
+  
+steps:
+- checkout: self
+  persistCredentials: true
+
+- script: |
+    git config --global user.email "pipeline@kgstechway.com"
+    git config --global user.name "Azure DevOps Pipeline"
+    
+    # Remove existing GitHub remote if it exists
+    git remote remove github 2>/dev/null || true
+    
+    # Add GitHub as remote
+    git remote add github https://$(GITHUB_TOKEN)@github.com/$(GITHUB_REPO).git
+    
+    # Push to GitHub
+    git push github HEAD:main --force
+    
+  displayName: 'Sync to GitHub'
+  env:
+    GITHUB_TOKEN: $(GITHUB_TOKEN)
