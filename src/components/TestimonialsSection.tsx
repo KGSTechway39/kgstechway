@@ -1,16 +1,12 @@
 import { useState } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Card } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { 
   FaQuoteLeft, 
   FaStar, 
   FaChevronLeft, 
-  FaChevronRight,
-  FaUsers,
-  FaBuilding,
-  FaAward,
-  FaHandshake
+  FaChevronRight
 } from 'react-icons/fa';
 import './TestimonialsSection.css';
 
@@ -87,43 +83,43 @@ const TestimonialsSection = () => {
     }
   ];
 
-  const clientLogos = [
-    { name: 'TechCorp', logo: 'TC', color: '#0066cc' },
-    { name: 'InnovateLabs', logo: 'IL', color: '#ff6b35' },
-    { name: 'BusinessFlow', logo: 'BF', color: '#28a745' },
-    { name: 'FutureSync', logo: 'FS', color: '#6f42c1' },
-    { name: 'RetailMax', logo: 'RM', color: '#dc3545' },
-    { name: 'FinTech', logo: 'FI', color: '#fd7e14' },
-    { name: 'SmartCorp', logo: 'SC', color: '#20c997' },
-    { name: 'DataVision', logo: 'DV', color: '#e83e8c' }
-  ];
+  // const clientLogos = [
+  //   { name: 'TechCorp', logo: 'TC', color: '#0066cc' },
+  //   { name: 'InnovateLabs', logo: 'IL', color: '#ff6b35' },
+  //   { name: 'BusinessFlow', logo: 'BF', color: '#28a745' },
+  //   { name: 'FutureSync', logo: 'FS', color: '#6f42c1' },
+  //   { name: 'RetailMax', logo: 'RM', color: '#dc3545' },
+  //   { name: 'FinTech', logo: 'FI', color: '#fd7e14' },
+  //   { name: 'SmartCorp', logo: 'SC', color: '#20c997' },
+  //   { name: 'DataVision', logo: 'DV', color: '#e83e8c' }
+  // ];
 
-  const stats = [
-    {
-      icon: <FaUsers />,
-      number: '50+',
-      label: 'Happy Clients',
-      color: '#0066cc'
-    },
-    {
-      icon: <FaAward />,
-      number: '98%',
-      label: 'Success Rate',
-      color: '#28a745'
-    },
-    {
-      icon: <FaHandshake />,
-      number: '500+',
-      label: 'Projects Delivered',
-      color: '#ff6b35'
-    },
-    {
-      icon: <FaBuilding />,
-      number: '15+',
-      label: 'Industries Served',
-      color: '#6f42c1'
-    }
-  ];
+  // const stats = [
+  //   {
+  //     icon: <FaUsers />,
+  //     number: '50+',
+  //     label: 'Happy Clients',
+  //     color: '#0066cc'
+  //   },
+  //   {
+  //     icon: <FaAward />,
+  //     number: '98%',
+  //     label: 'Success Rate',
+  //     color: '#28a745'
+  //   },
+  //   {
+  //     icon: <FaHandshake />,
+  //     number: '500+',
+  //     label: 'Projects Delivered',
+  //     color: '#ff6b35'
+  //   },
+  //   {
+  //     icon: <FaBuilding />,
+  //     number: '15+',
+  //     label: 'Industries Served',
+  //     color: '#6f42c1'
+  //   }
+  // ];
 
   const handlePrevious = () => {
     setActiveIndex(activeIndex === 0 ? testimonials.length - 1 : activeIndex - 1);
@@ -272,7 +268,7 @@ const TestimonialsSection = () => {
         </motion.div>
 
         {/* Client Logos */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -298,10 +294,10 @@ const TestimonialsSection = () => {
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Stats Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -327,7 +323,7 @@ const TestimonialsSection = () => {
               </Col>
             ))}
           </Row>
-        </motion.div>
+        </motion.div> */}
       </Container>
     </section>
   );

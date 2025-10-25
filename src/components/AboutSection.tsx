@@ -129,11 +129,11 @@ const AboutSection = memo(() => {
   ], []);
 
   const achievements = useMemo(() => [
-    '99.9% Client Satisfaction Rate',
+    // '99.9% Client Satisfaction Rate',
     '24/7 Technical Support Coverage', 
     'Agile Development Methodology',
     'Continuous Integration & Deployment',
-    'ISO 27001 Security Standards Compliant',
+    // 'ISO 27001 Security Standards Compliant',
     'AWS & Azure Certified Solutions'
   ], []);
 

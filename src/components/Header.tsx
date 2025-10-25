@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setScrollY, setActiveSection, toggleMenu, setMenuOpen } from '../store/navigationSlice';
 import { motion } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import ThemeToggle from './ThemeToggle';
 import './Header.css';
 
 const Header = memo(() => {
@@ -35,7 +36,7 @@ const Header = memo(() => {
     { id: 'services', label: 'Services' },
     { id: 'about', label: 'About' },
     { id: 'technology', label: 'Technology' },
-    { id: 'testimonials', label: 'Testimonials' },
+    // { id: 'testimonials', label: 'Testimonials' },
     { id: 'contact', label: 'Contact' }
   ], []);
 
@@ -88,17 +89,20 @@ const Header = memo(() => {
           </Navbar.Brand>
 
           <div className="mobile-menu-toggle d-lg-none">
-            <Button
-              variant="link"
-              onClick={() => dispatch(toggleMenu())}
-              className="menu-toggle-btn"
-              style={{ color: primaryColor }}
-              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-              aria-expanded={isMenuOpen}
-              aria-controls="main-navigation"
-            >
-              {isMenuOpen ? <FaTimes size={24} aria-hidden="true" /> : <FaBars size={24} aria-hidden="true" />}
-            </Button>
+            <div className="mobile-header-actions">
+              <ThemeToggle />
+              <Button
+                variant="link"
+                onClick={() => dispatch(toggleMenu())}
+                className="menu-toggle-btn"
+                style={{ color: primaryColor }}
+                aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={isMenuOpen}
+                aria-controls="main-navigation"
+              >
+                {isMenuOpen ? <FaTimes size={24} aria-hidden="true" /> : <FaBars size={24} aria-hidden="true" />}
+              </Button>
+            </div>
           </div>
 
           <Navbar.Collapse in={isMenuOpen} className="justify-content-center" id="main-navigation">
@@ -124,7 +128,8 @@ const Header = memo(() => {
             </Nav>
           </Navbar.Collapse>
 
-          <div className="d-none d-lg-block">
+          <div className="header-actions d-none d-lg-flex align-items-center">
+            <ThemeToggle />
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

@@ -4,6 +4,26 @@
 /* Global App Styles */
 .App {
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme Variables */
+:root {
+  /* Light Theme Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #2d3748;
+  --text-secondary: #4a5568;
+  --border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  /* Dark Theme Colors */
+  --bg-primary: #1a202c;
+  --bg-secondary: #2d3748;
+  --text-primary: #f7fafc;
+  --text-secondary: #e2e8f0;
+  --border-color: rgba(255, 255, 255, 0.1);
 }
 
 * {
@@ -33,6 +53,40 @@
 button:focus-visible,
 .btn:focus-visible {
   box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.4);
+}
+
+/* Global Theme Styles */
+.light-theme {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.dark-theme {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Enhanced theme transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dark theme scrollbar */
+.dark-theme::-webkit-scrollbar {
+  width: 12px;
+}
+
+.dark-theme::-webkit-scrollbar-track {
+  background: #2d3748;
+}
+
+.dark-theme::-webkit-scrollbar-thumb {
+  background: #4a5568;
+  border-radius: 6px;
+}
+
+.dark-theme::-webkit-scrollbar-thumb:hover {
+  background: #718096;
 }
 
 /* Skip navigation styles */
