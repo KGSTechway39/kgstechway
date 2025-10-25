@@ -86,9 +86,9 @@ const AboutSection = () => {
   ];
 
   const achievements = [
-    '500+ Successful Projects Delivered',
+    // '500+ Successful Projects Delivered',
     '99.9% Client Satisfaction Rate',
-    'ISO 27001 Certified Security Standards',
+    // 'ISO 27001 Certified Security Standards',
     '24/7 Technical Support Coverage',
     'Agile Development Methodology',
     'Continuous Integration & Deployment'
@@ -217,7 +217,7 @@ const AboutSection = () => {
                     </div>
                     <div className="stat-content">
                       <div className="stat-number" style={{ color: stat.color }}>
-                        {stat.number}
+                        {/* {stat.number} */}
                       </div>
                       <div className="stat-label">{stat.label}</div>
                       <div className="stat-description">{stat.description}</div>

@@ -217,7 +217,7 @@ const HeroSection = () => {
               </Button>
             </motion.div>
 
-            <motion.div
+            {/* <motion.div
               className="hero-stats"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -235,7 +235,7 @@ const HeroSection = () => {
                 <span className="stat-number">5+</span>
                 <span className="stat-label">Years Experience</span>
               </div>
-            </motion.div>
+            </motion.div> */}
           </Col>
 
           <Col lg={5} className="hero-visual-section">
