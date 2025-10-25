@@ -19,14 +19,33 @@ export default defineConfig({
           animation: ['framer-motion']
         }
       }
-    }
+    },
+    target: 'es2015',
+    cssCodeSplit: true,
+    assetsInlineLimit: 4096,
+    chunkSizeWarningLimit: 1000
   },
   server: {
     port: 3000,
-    host: true
+    host: true,
+    headers: {
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+      'X-XSS-Protection': '1; mode=block',
+      'Referrer-Policy': 'strict-origin-when-cross-origin'
+    }
   },
   preview: {
     port: 3000,
-    host: true
+    host: true,
+    headers: {
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+      'X-XSS-Protection': '1; mode=block',
+      'Referrer-Policy': 'strict-origin-when-cross-origin'
+    }
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-bootstrap', 'framer-motion', '@reduxjs/toolkit']
   }
 })

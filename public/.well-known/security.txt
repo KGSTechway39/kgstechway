@@ -1,0 +1,8 @@
+Contact: mailto:security@kgstechway.com
+Contact: https://kgstechway.com/security
+Encryption: https://kgstechway.com/pgp-key.txt
+Acknowledgments: https://kgstechway.com/security-acknowledgments
+Preferred-Languages: en
+Canonical: https://kgstechway.com/.well-known/security.txt
+Policy: https://kgstechway.com/security-policy
+Hiring: https://kgstechway.com/careers

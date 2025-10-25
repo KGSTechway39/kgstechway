@@ -7,6 +7,7 @@ import AboutSection from './components/AboutSection';
 import TechnologySection from './components/TechnologySection';
 import TestimonialsSection from './components/TestimonialsSection';
 import ContactSection from './components/ContactSection';
+import Footer from './components/Footer';
 import './App.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <TestimonialsSection />
           <ContactSection />
         </main>
+        <Footer />
       </div>
     </Provider>
   );

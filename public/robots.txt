@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /node_modules/
+
+# Specific bot configurations
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+
+# SEO enhancements
+Sitemap: https://kgstechway.com/sitemap.xml
+Sitemap: https://kgstechway.com/sitemap-news.xml
+Sitemap: https://kgstechway.com/sitemap-images.xml
+
+# Host directive
+Host: kgstechway.com

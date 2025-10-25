@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "seo:validate": "node scripts/validate-seo.js",
+    "seo:sitemap": "node scripts/generate-sitemap.js",
+    "analyze": "npm run build && npx vite-bundle-analyzer",
+    "test:lighthouse": "lighthouse --output html --output-path ./lighthouse-report.html https://kgstechway.com"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.1.0",

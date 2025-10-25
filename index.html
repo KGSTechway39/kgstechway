@@ -31,26 +31,179 @@
     <link rel="canonical" href="https://kgstechway.com/" />
     <meta name="theme-color" content="#0066cc" />
     
-    <!-- Structured Data -->
+    <!-- Geographic SEO -->
+    <meta name="geo.region" content="US-CA" />
+    <meta name="geo.placename" content="Los Angeles" />
+    <meta name="geo.position" content="34.0522;-118.2437" />
+    <meta name="ICBM" content="34.0522, -118.2437" />
+    
+    <!-- Business SEO -->
+    <meta name="rating" content="5" />
+    <meta name="price" content="$$" />
+    <meta name="availability" content="Available" />
+    <meta name="currency" content="USD" />
+    
+    <!-- Mobile App SEO -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="KGSTechway" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <!-- Favicon variations -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline';" />
+    
+    <!-- Language and Locale -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="en_GB" />
+    
+    <!-- Additional Twitter Cards -->
+    <meta name="twitter:site" content="@kgstechway" />
+    <meta name="twitter:creator" content="@kgstechway" />
+    
+    <!-- Additional Open Graph -->
+    <meta property="og:updated_time" content="2025-10-25T12:00:00+00:00" />
+    <meta property="article:publisher" content="https://facebook.com/kgstechway" />
+    
+    <!-- Performance Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+    
+    <!-- Structured Data - Organization -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "KGSTechway Services",
+      "alternateName": "KGSTechway",
       "url": "https://kgstechway.com",
-      "logo": "https://kgstechway.com/logo.png",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://kgstechway.com/logo.png",
+        "width": 200,
+        "height": 60
+      },
       "description": "Leading technology solutions provider specializing in Software Product Development, AI Solutions, CRM/ERP Services, and Agentic AI Solutions",
+      "foundingDate": "2019",
+      "numberOfEmployees": "10-50",
+      "slogan": "Transforming Ideas into Digital Reality",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "123 Tech Street",
         "addressLocality": "Digital City",
+        "addressRegion": "CA",
+        "postalCode": "90210",
         "addressCountry": "US"
       },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+1-555-123-4567",
-        "contactType": "Customer Service",
-        "email": "hello@kgstechway.com"
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+1-555-123-4567",
+          "contactType": "Customer Service",
+          "email": "hello@kgstechway.com",
+          "availableLanguage": ["English"],
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          }
+        }
+      ],
+      "sameAs": [
+        "https://linkedin.com/company/kgstechway",
+        "https://twitter.com/kgstechway",
+        "https://github.com/kgstechway",
+        "https://facebook.com/kgstechway"
+      ],
+      "knowsAbout": [
+        "Software Development",
+        "AI Solutions",
+        "CRM/ERP Services",
+        "Agentic AI Solutions",
+        "Digital Transformation",
+        "Business Automation"
+      ],
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": "34.0522",
+          "longitude": "-118.2437"
+        },
+        "geoRadius": "10000000"
+      }
+    }
+    </script>
+
+    <!-- Structured Data - Services -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Software Development Services",
+      "provider": {
+        "@type": "Organization",
+        "name": "KGSTechway Services",
+        "url": "https://kgstechway.com"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Technology Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Software Product Development",
+              "description": "End-to-end software product development from concept to deployment"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI Solutions",
+              "description": "Advanced artificial intelligence solutions for business automation"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "CRM/ERP Services",
+              "description": "Customer Relationship Management and Enterprise Resource Planning solutions"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Agentic AI Solutions",
+              "description": "Next-generation autonomous AI agents for intelligent decision making"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+    <!-- Structured Data - WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "KGSTechway Services",
+      "url": "https://kgstechway.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://kgstechway.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
       },
       "sameAs": [
         "https://linkedin.com/company/kgstechway",
