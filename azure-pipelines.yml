@@ -10,9 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-- group: GitHub-Secrets
-- name: GITHUB_REPO
-  value: 'gowthamkish/kgstechway'
+  GITHUB_REPO: 'gowthamkish/kgstechway'
   
 steps:
 - checkout: self
