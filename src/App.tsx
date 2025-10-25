@@ -8,6 +8,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import PerformanceMonitor from './components/PerformanceMonitor';
 import { SkipNavigation } from './hooks/useFocusManagement';
 import './App.css';
+import { Analytics } from "@vercel/analytics/next"
 
 // Lazy load heavy components for better performance
 const ServicesSection = lazy(() => import('./components/ServicesSection'));
@@ -30,6 +31,7 @@ const ThemeWrapper = () => {
     <ErrorBoundary>
       <PerformanceMonitor />
       <SkipNavigation />
+      <Analytics />
       <div className="App">
         <Header />
         <main>
