@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Software Product Development Service -->
+  <url>
+    <loc>https://kgstechway.com/services/software-product-development</loc>
+    <lastmod>2025-10-25T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- AI Solutions Service -->
+  <url>
+    <loc>https://kgstechway.com/services/ai-solutions</loc>
+    <lastmod>2025-10-25T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- CRM/ERP Services -->
+  <url>
+    <loc>https://kgstechway.com/services/crm-erp-services</loc>
+    <lastmod>2025-10-25T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Agentic AI Solutions -->
+  <url>
+    <loc>https://kgstechway.com/services/agentic-ai-solutions</loc>
+    <lastmod>2025-10-25T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Digital Transformation -->
+  <url>
+    <loc>https://kgstechway.com/services/digital-transformation</loc>
+    <lastmod>2025-10-25T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Business Automation -->
+  <url>
+    <loc>https://kgstechway.com/services/business-automation</loc>
+    <lastmod>2025-10-25T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

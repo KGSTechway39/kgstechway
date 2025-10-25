@@ -198,8 +198,8 @@ const AboutSection = memo(() => {
             <span className="gradient-text"> Technology Excellence</span>
           </h2>
           <p className="section-description">
-            We specialize in Software Product Development, AI Solutions, CRM/ERP Services, 
-            and Agentic AI Solutions, helping businesses transform through innovative technology.
+            KGSTechway is a leading technology solutions provider specializing in Software Product Development, AI Solutions, CRM/ERP Services, 
+            and innovative Agentic AI Solutions, helping businesses transform through cutting-edge technology and expert digital strategies.
           </p>
         </motion.div>
 
@@ -216,9 +216,9 @@ const AboutSection = memo(() => {
               <div className="story-content">
                 <h3 className="story-title">Our Journey</h3>
                 <p className="story-text">
-                  KGSTechway specializes in Software Product Development/Services, AI Solutions, 
-                  CRM/ERP Services, and cutting-edge Agentic AI Solutions. We bridge the gap between 
-                  innovative technology and practical business applications.
+                  Founded with a vision to revolutionize business through technology, KGSTechway has become a trusted partner for 
+                  Software Product Development, AI Solutions, CRM/ERP Services, and pioneering Agentic AI Solutions. We bridge the gap between 
+                  innovative technology and practical business applications, delivering measurable results for our clients.
                 </p>
                 <p className="story-text">
                   Our expert team delivers comprehensive solutions from custom software development 

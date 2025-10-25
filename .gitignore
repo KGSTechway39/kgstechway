@@ -9,6 +9,9 @@ lerna-debug.log*
 
 node_modules
 PERFORMANCE.md
+GOOGLE_BUSINESS_SETUP.md
+SEO_STRATEGY.md
+SEO_IMPLEMENTATION_SUMMARY.md
 dist
 dist-ssr
 *.local

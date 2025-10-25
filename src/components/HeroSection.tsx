@@ -148,15 +148,15 @@ const HeroSection = () => {
               </div>
             </motion.div>
 
-            <motion.h1
-              className="hero-title"
-              initial={{ opacity: 0, y: 30 }}
+                        <motion.h1 
+              className="display-3 fw-bold mb-4"
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              style={{ color: isDarkMode ? '#ffffff' : '#1a1a1a' }}
+              transition={{ duration: 1 }}
+              style={{ color: isDarkMode ? '#ffffff' : '#2c3e50' }}
             >
-              Transforming Ideas into
-              <span className="gradient-text"> Digital Reality</span>
+              <span style={{ color: primaryColor }}>KGSTechway</span> - Transforming Ideas into{' '}
+              <span className='gradient-text'>Digital Reality</span>
             </motion.h1>
 
             <motion.div
@@ -185,9 +185,9 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              We specialize in Software Product Development, AI Solutions, CRM/ERP Services, 
-              and Agentic AI Solutions. Partner with KGSTechway to transform your business 
-              with innovative technology solutions that drive growth and efficiency.
+              KGSTechway is your trusted technology partner specializing in Software Product Development, AI Solutions, CRM/ERP Services, 
+              and cutting-edge Agentic AI Solutions. Choose KGSTechway to transform your business 
+              with innovative digital solutions that drive growth, efficiency, and competitive advantage.
             </motion.p>
 
             <motion.div

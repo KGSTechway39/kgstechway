@@ -19,8 +19,10 @@ Allow: /
 
 # SEO enhancements
 Sitemap: https://kgstechway.com/sitemap.xml
+Sitemap: https://kgstechway.com/sitemap-pages.xml
+Sitemap: https://kgstechway.com/sitemap-services.xml
 Sitemap: https://kgstechway.com/sitemap-news.xml
 Sitemap: https://kgstechway.com/sitemap-images.xml
 
-# Host directive
-Host: kgstechway.com
+# Host directive  
+Host: https://kgstechway.com
