@@ -68,7 +68,7 @@ const Header = () => {
               style={{ color: primaryColor }}
             >
               <span className="brand-name">KGSTechway</span>
-              <span className="brand-tagline">Services</span>
+              <span className="brand-tagline">Service</span>
             </motion.div>
           </Navbar.Brand>
 
