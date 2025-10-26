@@ -1,6 +1,7 @@
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { 
   FaCode, 
   FaRobot, 
@@ -8,12 +9,15 @@ import {
   FaCogs, 
   FaDatabase,
   FaArrowRight,
-  FaCheckCircle
+  FaCheckCircle,
+  FaCloud,
+  FaMobile
 } from 'react-icons/fa';
 import './ServicesSection.css';
 
 const ServicesSection = () => {
   const { isDarkMode, primaryColor } = useSelector((state: any) => state.theme);
+  const navigate = useNavigate();
 
   const services = [
     {
@@ -22,7 +26,8 @@ const ServicesSection = () => {
       description: 'End-to-end software product development from concept to deployment, delivering scalable and robust solutions.',
       features: ['Full-Stack Development', 'Product Architecture', 'Legacy System Modernization', 'Microservices Architecture'],
       gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      delay: 0.1
+      delay: 0.1,
+      route: '/services/software-development'
     },
     {
       icon: <FaRobot />,
@@ -30,7 +35,8 @@ const ServicesSection = () => {
       description: 'Advanced artificial intelligence solutions that automate processes and generate intelligent insights for your business.',
       features: ['Machine Learning Models', 'Predictive Analytics', 'Computer Vision', 'Natural Language Processing'],
       gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-      delay: 0.2
+      delay: 0.2,
+      route: '/services/ai-solutions'
     },
     {
       icon: <FaDatabase />,
@@ -38,7 +44,8 @@ const ServicesSection = () => {
       description: 'Comprehensive Customer Relationship Management and Enterprise Resource Planning solutions to streamline business operations.',
       features: ['Custom CRM Development', 'ERP Implementation', 'Business Process Automation', 'Data Integration'],
       gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-      delay: 0.3
+      delay: 0.3,
+      route: '/services/crm-erp'
     },
     {
       icon: <FaChartLine />,
@@ -46,9 +53,32 @@ const ServicesSection = () => {
       description: 'Next-generation autonomous AI agents that can perform complex tasks and make intelligent decisions independently.',
       features: ['Autonomous AI Agents', 'Decision Making Systems', 'Intelligent Automation', 'Multi-Agent Orchestration'],
       gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-      delay: 0.4
+      delay: 0.4,
+      route: '/services/agentic-ai'
+    },
+    {
+      icon: <FaCloud />,
+      title: 'Cloud & DevOps Solutions',
+      description: 'Scalable cloud infrastructure and DevOps practices to accelerate development and ensure reliable deployments.',
+      features: ['Cloud Migration', 'CI/CD Pipelines', 'Infrastructure as Code', 'Container Orchestration'],
+      gradient: 'linear-gradient(135deg, #ff9a56 0%, #ff6b6b 100%)',
+      delay: 0.5,
+      route: '/services/cloud-devops'
+    },
+    {
+      icon: <FaMobile />,
+      title: 'Mobile App Development',
+      description: 'Cross-platform mobile applications that deliver exceptional user experiences across iOS and Android platforms.',
+      features: ['Native iOS/Android', 'React Native', 'Flutter Development', 'Progressive Web Apps'],
+      gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+      delay: 0.6,
+      route: '/services/mobile-development'
     }
   ];
+
+  const handleLearnMoreClick = (route: string) => {
+    navigate(route);
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -146,6 +176,7 @@ const ServicesSection = () => {
                           borderColor: primaryColor,
                           color: primaryColor 
                         }}
+                        onClick={() => handleLearnMoreClick(service.route)}
                       >
                         Learn More
                         <FaArrowRight className="ms-2" />
