@@ -14,6 +14,10 @@ import MobileDevelopmentPage from './pages/MobileDevelopmentPage';
 
 // Lazy load components and pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'));
+const ServicesPage = lazy(() => import('./pages/ServicesPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const TechnologyPage = lazy(() => import('./pages/TechnologyPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
 const SoftwareProductDevelopmentPage = lazy(() => import('./pages/SoftwareProductDevelopmentPage'));
 const AISolutionsPage = lazy(() => import('./pages/AISolutionsPage'));
 const CRMERPServicesPage = lazy(() => import('./pages/CRMERPServicesPage'));
@@ -42,6 +46,10 @@ const ThemeWrapper = () => {
               <Suspense fallback={<LoadingSpinner text="Loading..." />}>
                 <Routes>
                   <Route path="/" element={<HomePage />} />
+                  <Route path="/services" element={<ServicesPage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/technology" element={<TechnologyPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
                   <Route path="/services/software-development" element={<SoftwareProductDevelopmentPage />} />
                   <Route path="/services/ai-solutions" element={<AISolutionsPage />} />
                   <Route path="/services/crm-erp" element={<CRMERPServicesPage />} />

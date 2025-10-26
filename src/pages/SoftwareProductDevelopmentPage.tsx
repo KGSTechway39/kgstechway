@@ -82,14 +82,14 @@ const SoftwareProductDevelopmentPage: React.FC = () => {
       {/* Hero Section */}
       <section className="service-hero">
         <Container>
-          <Row className="align-items-center min-vh-100 py-5">
+          <Row className="align-items-center py-5">
             <Col lg={6}>
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <Link to="/" className="back-link mb-3 d-inline-flex align-items-center">
+                <Link to="/services" className="back-link mb-3 d-inline-flex align-items-center">
                   <FaArrowLeft className="me-2" />
                   Back to Services
                 </Link>

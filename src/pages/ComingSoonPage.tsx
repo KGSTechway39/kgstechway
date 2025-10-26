@@ -24,7 +24,7 @@ const ComingSoonPage: React.FC<{ serviceName: string; description: string; icon?
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <Link to="/" className="back-link mb-3 d-inline-flex align-items-center">
+                <Link to="/services" className="back-link mb-3 d-inline-flex align-items-center">
                   <FaArrowLeft className="me-2" />
                   Back to Services
                 </Link>
