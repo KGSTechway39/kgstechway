@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
+import emailjs from '@emailjs/browser';
+import { emailConfig } from '../config/emailConfig';
 import { 
   FaEnvelope, 
   FaPhone, 
@@ -34,6 +36,36 @@ const ContactSection = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertType, setAlertType] = useState<'success' | 'danger'>('success');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [validated, setValidated] = useState(false);
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    service: '',
+    message: ''
+  });
+
+  const validateField = (name: string, value: string) => {
+    switch (name) {
+      case 'name':
+        if (!value.trim()) return 'Full name is required';
+        if (value.trim().length < 2) return 'Name must be at least 2 characters long';
+        return '';
+      case 'email':
+        if (!value.trim()) return 'Email address is required';
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) return 'Please enter a valid email address';
+        return '';
+      case 'service':
+        if (!value) return 'Please select a service';
+        return '';
+      case 'message':
+        if (!value.trim()) return 'Project details are required';
+        if (value.trim().length < 10) return 'Please provide more details (at least 10 characters)';
+        return '';
+      default:
+        return '';
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -41,15 +73,72 @@ const ContactSection = () => {
       ...prev,
       [name]: value
     }));
+
+    // Clear error when user starts typing
+    if (errors[name as keyof typeof errors]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate all mandatory fields
+    const newErrors = {
+      name: validateField('name', formData.name),
+      email: validateField('email', formData.email),
+      service: validateField('service', formData.service),
+      message: validateField('message', formData.message)
+    };
+
+    setErrors(newErrors);
+    setValidated(true);
+
+    // Check if there are any errors
+    const hasErrors = Object.values(newErrors).some(error => error !== '');
+    
+    if (hasErrors) {
+      return; // Don't submit if there are validation errors
+    }
+
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Check if EmailJS is properly configured
+      // if (emailConfig.publicKey === "" || 
+      //     emailConfig.serviceId === 'service_kgstechway' ||
+      //     emailConfig.templateId === 'template_contact') {
+      //   throw new Error('EmailJS not configured. Please set up your EmailJS credentials.');
+      // }
+
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone || 'Not provided',
+        company: formData.company || 'Not provided',
+        service: formData.service,
+        budget: formData.budget || 'Not specified',
+        timeline: formData.timeline || 'Not specified',
+        message: formData.message,
+        date: new Date().toLocaleString('en-IN', { 
+          timeZone: 'Asia/Kolkata',
+          dateStyle: 'full',
+          timeStyle: 'short'
+        }),
+        to_email: 'kgstechwayservices@gmail.com'
+      };
+
+      // Send email using EmailJS
+      await emailjs.send(
+        emailConfig.serviceId,
+        emailConfig.templateId,
+        templateParams,
+        emailConfig.publicKey
+      );
       
       setAlertType('success');
       setShowAlert(true);
@@ -64,8 +153,18 @@ const ContactSection = () => {
         message: ''
       });
       
+      // Clear validation state
+      setValidated(false);
+      setErrors({
+        name: '',
+        email: '',
+        service: '',
+        message: ''
+      });
+      
       setTimeout(() => setShowAlert(false), 5000);
     } catch (error) {
+      console.error('EmailJS Error:', error);
       setAlertType('danger');
       setShowAlert(true);
       setTimeout(() => setShowAlert(false), 5000);
@@ -206,13 +305,13 @@ const ContactSection = () => {
                     >
                       <FaCheckCircle className="me-2" />
                       {alertType === 'success' 
-                        ? 'Thank you! Your message has been sent successfully. We\'ll get back to you soon.'
-                        : 'Something went wrong. Please try again or contact us directly.'
+                        ? 'Thank you! Your message has been sent successfully to kgstechwayservices@gmail.com. We\'ll get back to you within 24 hours.'
+                        : 'Failed to send email. Please try again or contact us directly at kgstechwayservices@gmail.com.'
                       }
                     </Alert>
                   )}
 
-                  <Form onSubmit={handleSubmit}>
+                  <Form onSubmit={handleSubmit} noValidate>
                     <Row>
                       <Col md={6}>
                         <Form.Group className="mb-3">
@@ -227,7 +326,12 @@ const ContactSection = () => {
                             required
                             className="custom-input"
                             aria-describedby="name-help"
+                            isInvalid={!!errors.name}
+                            isValid={validated && !errors.name && formData.name.trim() !== ''}
                           />
+                          <Form.Control.Feedback type="invalid">
+                            {errors.name}
+                          </Form.Control.Feedback>
                           <Form.Text id="name-help" className="visually-hidden">
                             Enter your full name for contact purposes
                           </Form.Text>
@@ -244,7 +348,12 @@ const ContactSection = () => {
                             placeholder="your.email@example.com"
                             required
                             className="custom-input"
+                            isInvalid={!!errors.email}
+                            isValid={validated && !errors.email && formData.email.trim() !== ''}
                           />
+                          <Form.Control.Feedback type="invalid">
+                            {errors.email}
+                          </Form.Control.Feedback>
                         </Form.Group>
                       </Col>
                     </Row>
@@ -288,12 +397,17 @@ const ContactSection = () => {
                             onChange={handleInputChange}
                             required
                             className="custom-select"
+                            isInvalid={!!errors.service}
+                            isValid={validated && !errors.service && formData.service !== ''}
                           >
                             <option value="">Select a service</option>
                             {services.map((service, index) => (
                               <option key={index} value={service}>{service}</option>
                             ))}
                           </Form.Select>
+                          <Form.Control.Feedback type="invalid">
+                            {errors.service}
+                          </Form.Control.Feedback>
                         </Form.Group>
                       </Col>
                       <Col md={4}>
@@ -341,7 +455,12 @@ const ContactSection = () => {
                         placeholder="Please describe your project requirements, goals, and any specific features you need..."
                         required
                         className="custom-textarea"
+                        isInvalid={!!errors.message}
+                        isValid={validated && !errors.message && formData.message.trim() !== ''}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.message}
+                      </Form.Control.Feedback>
                     </Form.Group>
 
                     <div className="form-footer">

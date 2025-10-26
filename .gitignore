@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+.env
 PERFORMANCE.md
 GOOGLE_BUSINESS_SETUP.md
 SEO_STRATEGY.md
