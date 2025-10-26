@@ -77,7 +77,13 @@ const ServicesSection = () => {
   ];
 
   const handleLearnMoreClick = (route: string) => {
-    navigate(route);
+    // Scroll to top before navigation
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Navigate after a small delay to allow scroll animation
+    setTimeout(() => {
+      navigate(route);
+    }, 300);
   };
 
   const containerVariants = {

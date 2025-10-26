@@ -1,6 +1,7 @@
 import { useEffect, useCallback, useMemo, memo } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { setScrollY, setActiveSection, toggleMenu, setMenuOpen } from '../store/navigationSlice';
 import { motion } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
@@ -9,8 +10,12 @@ import './Header.css';
 
 const Header = memo(() => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const { isScrolled, activeSection, isMenuOpen } = useSelector((state: any) => state.navigation);
   const { isDarkMode, primaryColor } = useSelector((state: any) => state.theme);
+
+  // Check if current page is a service detail page
+  const isServiceDetailPage = location.pathname.startsWith('/services/');
 
   // Throttle scroll events for better performance
   useEffect(() => {
@@ -91,63 +96,69 @@ const Header = memo(() => {
           <div className="mobile-menu-toggle d-lg-none">
             <div className="mobile-header-actions">
               <ThemeToggle />
-              <Button
-                variant="link"
-                onClick={() => dispatch(toggleMenu())}
-                className="menu-toggle-btn"
-                style={{ color: primaryColor }}
-                aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-                aria-expanded={isMenuOpen}
-                aria-controls="main-navigation"
-              >
-                {isMenuOpen ? <FaTimes size={24} aria-hidden="true" /> : <FaBars size={24} aria-hidden="true" />}
-              </Button>
+              {!isServiceDetailPage && (
+                <Button
+                  variant="link"
+                  onClick={() => dispatch(toggleMenu())}
+                  className="menu-toggle-btn"
+                  style={{ color: primaryColor }}
+                  aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                  aria-expanded={isMenuOpen}
+                  aria-controls="main-navigation"
+                >
+                  {isMenuOpen ? <FaTimes size={24} aria-hidden="true" /> : <FaBars size={24} aria-hidden="true" />}
+                </Button>
+              )}
             </div>
           </div>
 
-          <Navbar.Collapse in={isMenuOpen} className="justify-content-center" id="main-navigation">
-            <Nav className="mx-auto nav-items" role="menubar">
-              {navItems.map((item) => (
-                <motion.div
-                  key={item.id}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Nav.Link
-                    href={`#${item.id}`}
-                    onClick={() => handleNavClick(item.id)}
-                    className={`nav-item ${activeSection === item.id ? 'active' : ''}`}
-                    role="menuitem"
-                    aria-current={activeSection === item.id ? 'page' : undefined}
-                    tabIndex={0}
+          {!isServiceDetailPage && (
+            <Navbar.Collapse in={isMenuOpen} className="justify-content-center" id="main-navigation">
+              <Nav className="mx-auto nav-items" role="menubar">
+                {navItems.map((item) => (
+                  <motion.div
+                    key={item.id}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    {item.label}
-                  </Nav.Link>
-                </motion.div>
-              ))}
-            </Nav>
-          </Navbar.Collapse>
+                    <Nav.Link
+                      href={`#${item.id}`}
+                      onClick={() => handleNavClick(item.id)}
+                      className={`nav-item ${activeSection === item.id ? 'active' : ''}`}
+                      role="menuitem"
+                      aria-current={activeSection === item.id ? 'page' : undefined}
+                      tabIndex={0}
+                    >
+                      {item.label}
+                    </Nav.Link>
+                  </motion.div>
+                ))}
+              </Nav>
+            </Navbar.Collapse>
+          )}
 
           <div className="header-actions d-none d-lg-flex align-items-center">
             <ThemeToggle />
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button
-                variant="primary"
-                size="lg"
-                className="cta-btn"
-                onClick={() => handleNavClick('contact')}
-                aria-label="Get started with KGSTechway services"
-                style={{ 
-                  backgroundColor: primaryColor,
-                  borderColor: primaryColor 
-                }}
+            {!isServiceDetailPage && (
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Get Started
-              </Button>
-            </motion.div>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="cta-btn"
+                  onClick={() => handleNavClick('contact')}
+                  aria-label="Get started with KGSTechway services"
+                  style={{ 
+                    backgroundColor: primaryColor,
+                    borderColor: primaryColor 
+                  }}
+                >
+                  Get Started
+                </Button>
+              </motion.div>
+            )}
           </div>
         </Container>
       </Navbar>
