@@ -45,7 +45,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://kgstechway.com/images/og-technology.jpg</image:loc>
-      <image:title>Technology Stack & Technical Expertise</image:title>
+      <image:title>Technology Stack and Technical Expertise</image:title>
     </image:image>
   </url>
 
@@ -79,7 +79,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://kgstechway.com/images/og-ai-solutions.jpg</image:loc>
-      <image:title>AI Solutions & Machine Learning Services</image:title>
+      <image:title>AI Solutions and Machine Learning Services</image:title>
     </image:image>
   </url>
 
@@ -90,7 +90,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://kgstechway.com/images/og-crm-erp.jpg</image:loc>
-      <image:title>CRM & ERP Business Management Solutions</image:title>
+      <image:title>CRM and ERP Business Management Solutions</image:title>
     </image:image>
   </url>
 
@@ -112,7 +112,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://kgstechway.com/images/og-cloud-devops.jpg</image:loc>
-      <image:title>Cloud & DevOps Infrastructure Solutions</image:title>
+      <image:title>Cloud and DevOps Infrastructure Solutions</image:title>
     </image:image>
   </url>
 
