@@ -10,10 +10,6 @@ import {
   FaMapMarkerAlt, 
   FaClock,
   FaPaperPlane,
-  FaLinkedin,
-  FaTwitter,
-  FaGithub,
-  FaWhatsapp,
   FaRocket,
   FaUsers,
   FaLightbulb,
@@ -203,12 +199,12 @@ const ContactSection = () => {
     }
   ];
 
-  const socialLinks = [
-    { icon: <FaLinkedin />, url: '#', color: '#0077b5' },
-    { icon: <FaTwitter />, url: '#', color: '#1da1f2' },
-    { icon: <FaGithub />, url: '#', color: '#333' },
-    { icon: <FaWhatsapp />, url: '#', color: '#25d366' }
-  ];
+  // const socialLinks = [
+  //   { icon: <FaLinkedin />, url: '#', color: '#0077b5' },
+  //   { icon: <FaTwitter />, url: '#', color: '#1da1f2' },
+  //   { icon: <FaGithub />, url: '#', color: '#333' },
+  //   { icon: <FaWhatsapp />, url: '#', color: '#25d366' }
+  // ];
 
   const services = [
     'Software Product Development/Services',
@@ -279,12 +275,12 @@ const ContactSection = () => {
           </p>
         </motion.div>
 
+        {/* Contact Form - Full Width */}
         <Row>
-          {/* Contact Form */}
-          <Col lg={8}>
+          <Col xs={12} className="mb-5">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
@@ -313,7 +309,7 @@ const ContactSection = () => {
                   <Form onSubmit={handleSubmit} noValidate>
                     <Row>
                       <Col md={6}>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3 w-100">
                           <Form.Label htmlFor="contact-name">Full Name *</Form.Label>
                           <Form.Control
                             id="contact-name"
@@ -321,7 +317,7 @@ const ContactSection = () => {
                             name="name"
                             value={formData.name}
                             onChange={handleInputChange}
-                            placeholder="Your full name"
+                            placeholder="Enter your full name"
                             required
                             className="custom-input"
                             aria-describedby="name-help"
@@ -337,14 +333,14 @@ const ContactSection = () => {
                         </Form.Group>
                       </Col>
                       <Col md={6}>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3 w-100">
                           <Form.Label>Email Address *</Form.Label>
                           <Form.Control
                             type="email"
                             name="email"
                             value={formData.email}
                             onChange={handleInputChange}
-                            placeholder="your.email@example.com"
+                            placeholder="Enter your email address"
                             required
                             className="custom-input"
                             isInvalid={!!errors.email}
@@ -359,20 +355,20 @@ const ContactSection = () => {
 
                     <Row>
                       <Col md={6}>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3 w-100">
                           <Form.Label>Phone Number</Form.Label>
                           <Form.Control
                             type="tel"
                             name="phone"
                             value={formData.phone}
                             onChange={handleInputChange}
-                            placeholder="+91 9876543210"
+                            placeholder="Enter your phone number"
                             className="custom-input"
                           />
                         </Form.Group>
                       </Col>
                       <Col md={6}>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3 w-100">
                           <Form.Label>Company</Form.Label>
                           <Form.Control
                             type="text"
@@ -388,7 +384,7 @@ const ContactSection = () => {
 
                     <Row>
                       <Col md={4}>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3 w-100">
                           <Form.Label>Service Needed *</Form.Label>
                           <Form.Select
                             name="service"
@@ -410,7 +406,7 @@ const ContactSection = () => {
                         </Form.Group>
                       </Col>
                       <Col md={4}>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3 w-100">
                           <Form.Label>Budget Range</Form.Label>
                           <Form.Select
                             name="budget"
@@ -426,7 +422,7 @@ const ContactSection = () => {
                         </Form.Group>
                       </Col>
                       <Col md={4}>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3 w-100">
                           <Form.Label>Timeline</Form.Label>
                           <Form.Select
                             name="timeline"
@@ -491,83 +487,81 @@ const ContactSection = () => {
               </Card>
             </motion.div>
           </Col>
+        </Row>
 
-          {/* Contact Information */}
-          <Col lg={4}>
+        {/* Contact Information Cards */}
+        <Row className="mb-5">
+          <Col xs={12} className="mb-4">
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="contact-info-section"
+              className="text-center"
             >
-              {/* Contact Cards */}
-              <div className="contact-cards">
-                {contactInfo.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Card className={`contact-info-card ${isDarkMode ? 'dark' : 'light'}`}>
-                      <div className="contact-icon" style={{ color: item.color }}>
-                        {item.icon}
-                      </div>
-                      <div className="contact-details">
-                        <h5>{item.title}</h5>
-                        <p className="contact-primary">{item.info}</p>
-                        <p className="contact-secondary">{item.subInfo}</p>
-                      </div>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Why Choose Us */}
-              <Card className={`why-choose-card ${isDarkMode ? 'dark' : 'light'}`}>
-                <Card.Body>
-                  <h4>Why Choose KGSTechway?</h4>
-                  <div className="why-choose-list">
-                    {whyChooseUs.map((item, index) => (
-                      <div key={index} className="why-choose-item">
-                        <div className="why-icon" style={{ color: primaryColor }}>
-                          {item.icon}
-                        </div>
-                        <div className="why-content">
-                          <h6>{item.title}</h6>
-                          <p>{item.description}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </Card.Body>
-              </Card>
-
-              {/* Social Links */}
-              <Card className={`social-card ${isDarkMode ? 'dark' : 'light'}`}>
-                <Card.Body>
-                  <h5>Follow Us</h5>
-                  <div className="social-links">
-                    {socialLinks.map((social, index) => (
-                      <motion.a
-                        key={index}
-                        href={social.url}
-                        className="social-link"
-                        style={{ color: social.color }}
-                        whileHover={{ scale: 1.2, rotate: 5 }}
-                        whileTap={{ scale: 0.9 }}
-                      >
-                        {social.icon}
-                      </motion.a>
-                    ))}
-                  </div>
-                  <p className="social-text">
-                    Stay updated with our latest projects and tech insights
-                  </p>
-                </Card.Body>
-              </Card>
+              <h3 className="contact-info-title">Get In Touch With Us</h3>
             </motion.div>
           </Col>
+          {contactInfo.map((item, index) => (
+            <Col lg={3} md={6} xs={12} key={index} className="mb-4">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
+                style={{ width: '100%' }}
+              >
+                <Card className={`contact-info-card-full ${isDarkMode ? 'dark' : 'light'} h-100`}>
+                  <Card.Body className="text-center">
+                    <div className="contact-icon-large mb-3" style={{ color: item.color }}>
+                      {item.icon}
+                    </div>
+                    <h5 className="contact-card-title">{item.title}</h5>
+                    <p className="contact-card-primary">{item.info}</p>
+                    <p className="contact-card-secondary">{item.subInfo}</p>
+                  </Card.Body>
+                </Card>
+              </motion.div>
+            </Col>
+          ))}
+        </Row>
+
+        {/* Why Choose Us Section */}
+        <Row className="mt-5">
+          <Col xs={12} className="mb-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <h3 className="why-choose-title">Why Choose KGSTechway?</h3>
+            </motion.div>
+          </Col>
+          {whyChooseUs.map((item, index) => (
+            <Col lg={4} md={6} xs={12} key={index} className="mb-4">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02 }}
+                style={{width: '100%'}}
+              >
+                <Card className={`why-choose-individual-card ${isDarkMode ? 'dark' : 'light'} h-100`}>
+                  <Card.Body className="text-center">
+                    <div className="why-icon-large mb-3" style={{ color: primaryColor }}>
+                      {item.icon}
+                    </div>
+                    <h5 className="why-card-title">{item.title}</h5>
+                    <p className="why-card-description">{item.description}</p>
+                  </Card.Body>
+                </Card>
+              </motion.div>
+            </Col>
+          ))}
         </Row>
       </Container>
     </section>
