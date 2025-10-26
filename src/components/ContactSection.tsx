@@ -128,8 +128,7 @@ const ContactSection = () => {
           timeZone: 'Asia/Kolkata',
           dateStyle: 'full',
           timeStyle: 'short'
-        }),
-        to_email: 'kgstechwayservices@gmail.com'
+        })
       };
 
       // Send email using EmailJS
@@ -199,7 +198,7 @@ const ContactSection = () => {
       icon: <FaClock />,
       title: 'Business Hours',
       info: 'Monday - Friday',
-      subInfo: '9:00 AM - 6:00 PM EST',
+      subInfo: '9:00 AM - 6:00 PM IST',
       color: '#6f42c1'
     }
   ];
