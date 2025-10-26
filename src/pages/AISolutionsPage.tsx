@@ -12,6 +12,8 @@ import {
   FaLanguage,
   FaClock,
 } from 'react-icons/fa';
+import SEO from '../components/SEO';
+import { generateServiceStructuredData, generateWebPageStructuredData } from '../utils/seoUtils';
 import './ServiceDetailPage.css';
 
 const AISolutionsPage: React.FC = () => {
@@ -78,8 +80,32 @@ const AISolutionsPage: React.FC = () => {
 //     { label: 'Client Satisfaction', value: '100%', icon: <FaUsers /> }
 //   ];
 
+  const serviceData = {
+    name: 'AI Solutions',
+    description: 'Advanced artificial intelligence solutions including machine learning, computer vision, predictive analytics, and natural language processing.',
+    features: features.map(f => f.title),
+    technologies: ['TensorFlow', 'PyTorch', 'OpenCV', 'NLTK', 'spaCy', 'Transformers', 'BERT', 'GPT'],
+    benefits: ['Intelligent Automation', 'Predictive Insights', 'Enhanced Decision Making', 'Process Optimization'],
+    priceRange: '$$$'
+  };
+
+  const structuredData = [
+    generateServiceStructuredData(serviceData),
+    generateWebPageStructuredData({
+      name: 'AI Solutions & Machine Learning Services',
+      description: 'Professional AI solutions including machine learning models, computer vision, predictive analytics, and natural language processing.',
+      url: 'https://kgstechway.com/services/ai-solutions',
+      breadcrumbs: [
+        { name: 'Home', url: 'https://kgstechway.com' },
+        { name: 'Services', url: 'https://kgstechway.com/services' },
+        { name: 'AI Solutions', url: 'https://kgstechway.com/services/ai-solutions' }
+      ]
+    })
+  ];
+
   return (
     <div className={`service-detail-page ${isDarkMode ? 'dark' : 'light'}`}>
+      <SEO structuredData={structuredData} />
       {/* Hero Section */}
       <section className="service-hero">
         <Container>

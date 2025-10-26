@@ -14,6 +14,8 @@ import {
   FaClock,
   FaCheckCircle,
 } from 'react-icons/fa';
+import SEO from '../components/SEO';
+import { generateServiceStructuredData, generateWebPageStructuredData } from '../utils/seoUtils';
 import './ServiceDetailPage.css';
 
 const CRMERPServicesPage: React.FC = () => {
@@ -89,8 +91,32 @@ const CRMERPServicesPage: React.FC = () => {
     'Enhanced financial management and compliance'
   ];
 
+  const serviceData = {
+    name: 'CRM/ERP Services',
+    description: 'Custom CRM and ERP solutions to streamline business operations, improve customer management, and optimize enterprise resources.',
+    features: ['Customer Management', 'Sales Automation', 'Inventory Management', 'Financial Reporting', 'Business Intelligence', 'Process Automation'],
+    technologies: ['Salesforce', 'Microsoft Dynamics', 'SAP', 'Oracle', 'Custom Development', 'API Integration'],
+    benefits: benefits,
+    priceRange: '$$'
+  };
+
+  const structuredData = [
+    generateServiceStructuredData(serviceData),
+    generateWebPageStructuredData({
+      name: 'CRM & ERP Solutions - Business Management Systems',
+      description: 'Custom CRM and ERP solutions to streamline business operations, customer management, inventory control, and financial management.',
+      url: 'https://kgstechway.com/services/crm-erp',
+      breadcrumbs: [
+        { name: 'Home', url: 'https://kgstechway.com' },
+        { name: 'Services', url: 'https://kgstechway.com/services' },
+        { name: 'CRM/ERP Services', url: 'https://kgstechway.com/services/crm-erp' }
+      ]
+    })
+  ];
+
   return (
     <div className={`service-detail-page ${isDarkMode ? 'dark' : 'light'}`}>
+      <SEO structuredData={structuredData} />
       {/* Hero Section */}
       <section className="service-hero">
         <Container>

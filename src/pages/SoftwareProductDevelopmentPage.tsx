@@ -11,6 +11,8 @@ import {
   FaChartLine,
   FaClock
 } from 'react-icons/fa';
+import SEO from '../components/SEO';
+import { generateServiceStructuredData, generateWebPageStructuredData } from '../utils/seoUtils';
 import './ServiceDetailPage.css';
 
 const SoftwareProductDevelopmentPage: React.FC = () => {
@@ -77,8 +79,32 @@ const SoftwareProductDevelopmentPage: React.FC = () => {
 //     { label: 'Success Rate', value: '98%', icon: <FaChartLine /> }
 //   ];
 
+  const serviceData = {
+    name: 'Software Product Development',
+    description: 'End-to-end software product development from concept to deployment using modern technologies and best practices.',
+    features: features.map(f => f.title),
+    technologies: ['React', 'Node.js', 'Python', '.NET', 'Django', 'Express.js', 'Microservices', 'Docker', 'Kubernetes'],
+    benefits: ['Scalable Architecture', 'Modern Technologies', 'Agile Development', 'Quality Assurance', 'Ongoing Support'],
+    priceRange: '$$$'
+  };
+
+  const structuredData = [
+    generateServiceStructuredData(serviceData),
+    generateWebPageStructuredData({
+      name: 'Software Product Development Services',
+      description: 'Professional software product development services including full-stack development, architecture design, and legacy system modernization.',
+      url: 'https://kgstechway.com/services/software-development',
+      breadcrumbs: [
+        { name: 'Home', url: 'https://kgstechway.com' },
+        { name: 'Services', url: 'https://kgstechway.com/services' },
+        { name: 'Software Development', url: 'https://kgstechway.com/services/software-development' }
+      ]
+    })
+  ];
+
   return (
     <div className={`service-detail-page ${isDarkMode ? 'dark' : 'light'}`}>
+      <SEO structuredData={structuredData} />
       {/* Hero Section */}
       <section className="service-hero">
         <Container>

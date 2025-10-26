@@ -1,71 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Home Page -->
   <url>
     <loc>https://kgstechway.com/</loc>
-    <lastmod>2025-10-25</lastmod>
+    <lastmod>2025-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://kgstechway.com/og-image.jpg</image:loc>
+      <image:loc>https://kgstechway.com/images/og-home.jpg</image:loc>
       <image:title>KGSTechway Services - Technology Solutions Provider</image:title>
-      <image:caption>Leading provider of Software Development, AI Solutions, CRM/ERP Services, and Agentic AI Solutions</image:caption>
+      <image:caption>Leading provider of software development, AI solutions, and technology services</image:caption>
     </image:image>
   </url>
+
+  <!-- Main Pages -->
   <url>
-    <loc>https://kgstechway.com/#services</loc>
-    <lastmod>2025-10-25</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://kgstechway.com/services</loc>
+    <lastmod>2025-10-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kgstechway.com/images/og-services.jpg</image:loc>
+      <image:title>Technology Services - KGSTechway</image:title>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://kgstechway.com/#about</loc>
-    <lastmod>2025-10-25</lastmod>
+    <loc>https://kgstechway.com/about</loc>
+    <lastmod>2025-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kgstechway.com/images/og-about.jpg</image:loc>
+      <image:title>About KGSTechway - Technology Innovation Leaders</image:title>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://kgstechway.com/#technology</loc>
-    <lastmod>2025-10-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://kgstechway.com/#testimonials</loc>
-    <lastmod>2025-10-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://kgstechway.com/#contact</loc>
-    <lastmod>2025-10-25</lastmod>
+    <loc>https://kgstechway.com/technology</loc>
+    <lastmod>2025-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kgstechway.com/images/og-technology.jpg</image:loc>
+      <image:title>Technology Stack & Technical Expertise</image:title>
+    </image:image>
   </url>
-  <!-- Service Pages -->
+
   <url>
-    <loc>https://kgstechway.com/software-development</loc>
-    <lastmod>2025-10-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://kgstechway.com/contact</loc>
+    <lastmod>2025-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kgstechway.com/images/og-contact.jpg</image:loc>
+      <image:title>Contact KGSTechway - Start Your Technology Project</image:title>
+    </image:image>
   </url>
+
+  <!-- Service Detail Pages -->
   <url>
-    <loc>https://kgstechway.com/ai-solutions</loc>
-    <lastmod>2025-10-25</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://kgstechway.com/services/software-development</loc>
+    <lastmod>2025-10-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kgstechway.com/images/og-software-development.jpg</image:loc>
+      <image:title>Software Product Development Services</image:title>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://kgstechway.com/crm-erp-services</loc>
-    <lastmod>2025-10-25</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://kgstechway.com/services/ai-solutions</loc>
+    <lastmod>2025-10-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kgstechway.com/images/og-ai-solutions.jpg</image:loc>
+      <image:title>AI Solutions & Machine Learning Services</image:title>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://kgstechway.com/agentic-ai</loc>
-    <lastmod>2025-10-25</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://kgstechway.com/services/crm-erp</loc>
+    <lastmod>2025-10-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kgstechway.com/images/og-crm-erp.jpg</image:loc>
+      <image:title>CRM & ERP Business Management Solutions</image:title>
+    </image:image>
   </url>
+
+  <url>
+    <loc>https://kgstechway.com/services/agentic-ai</loc>
+    <lastmod>2025-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kgstechway.com/images/og-agentic-ai.jpg</image:loc>
+      <image:title>Agentic AI Solutions - Autonomous Intelligence</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kgstechway.com/services/cloud-devops</loc>
+    <lastmod>2025-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kgstechway.com/images/og-cloud-devops.jpg</image:loc>
+      <image:title>Cloud & DevOps Infrastructure Solutions</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://kgstechway.com/services/mobile-development</loc>
+    <lastmod>2025-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kgstechway.com/images/og-mobile-development.jpg</image:loc>
+      <image:title>Mobile App Development Services</image:title>
+    </image:image>
+  </url>
+
 </urlset>
