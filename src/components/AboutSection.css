@@ -1,6 +1,6 @@
 /* About Section Styles */
 .about-section {
-  padding: 120px 0;
+  padding: 80px 0;
   background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
   position: relative;
 }
@@ -10,7 +10,7 @@
 }
 
 .section-header {
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
 }
 
 .section-badge {
@@ -59,7 +59,7 @@
 
 /* Company Story */
 .company-story {
-  margin: 6rem 0;
+  margin: 4rem 0;
 }
 
 .story-content {
@@ -69,7 +69,7 @@
 .story-title {
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   color: #1a1a1a;
 }
 
@@ -81,7 +81,7 @@
   font-size: 1.1rem;
   line-height: 1.8;
   color: #555;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .about-section.dark .story-text {
@@ -89,7 +89,7 @@
 }
 
 .achievements-list {
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
 }
 
 .achievement-item {
@@ -114,7 +114,7 @@
 /* Technologies Section */
 .technologies-section {
   background: rgba(0, 102, 204, 0.03);
-  padding: 3rem 2.5rem;
+  padding: 2rem 2rem;
   border-radius: 20px;
   border: 1px solid rgba(0, 102, 204, 0.1);
 }
@@ -127,7 +127,7 @@
 .tech-title {
   font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   color: #1a1a1a;
 }
 
@@ -138,12 +138,12 @@
 .technologies-grid {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .tech-item {
   background: rgba(255, 255, 255, 0.8);
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 12px;
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -642,16 +642,14 @@
   }
 }
 
-@media (max-width: 767.98px) {
-  .about-section {
-    padding: 80px 0;
-  }
-  
-  .section-header {
-    margin-bottom: 4rem;
-  }
-  
-  .section-title {
+  @media (max-width: 767.98px) {
+    .about-section {
+      padding: 60px 0;
+    }
+    
+    .section-header {
+      margin-bottom: 2.5rem;
+    }  .section-title {
     font-size: 2.2rem;
   }
   

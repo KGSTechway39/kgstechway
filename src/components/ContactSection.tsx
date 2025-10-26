@@ -147,7 +147,7 @@ const ContactSection = () => {
     {
       icon: <FaUsers />,
       title: 'Expert Team',
-      description: 'Skilled professionals with 5+ years experience'
+      description: 'Skilled professionals'
     },
     {
       icon: <FaLightbulb />,
