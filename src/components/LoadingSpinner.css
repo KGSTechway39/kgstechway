@@ -2,34 +2,110 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 200px;
+  min-height: 100vh;
   padding: 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  z-index: 9999;
+}
+
+[data-theme="dark"] .loading-spinner-container {
+  background: rgba(26, 32, 44, 0.95);
+}
+
+/* Prevent scrolling when loader is active */
+body:has(.loading-spinner-container) {
+  overflow: hidden;
+}
+
+/* Fallback for browsers without :has support */
+body.loading-active {
+  overflow: hidden;
 }
 
 .loading-content {
   text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .loading-content {
+  background: rgba(45, 55, 72, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .loading-spinner {
   margin-bottom: 1rem;
+  width: 3rem;
+  height: 3rem;
 }
 
 .loading-text {
   margin: 0;
-  color: var(--bs-secondary);
-  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 /* Animation for smooth loading */
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: scale(0.9);
   }
   to {
     opacity: 1;
+    transform: scale(1);
   }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .loading-spinner-container {
   animation: fadeIn 0.3s ease-in-out;
+}
+
+.loading-content {
+  animation: fadeIn 0.4s ease-in-out 0.1s both;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .loading-content {
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
+  
+  .loading-spinner {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .loading-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-content {
+    padding: 1rem;
+    margin: 0 0.5rem;
+  }
+  
+  .loading-spinner {
+    width: 2rem;
+    height: 2rem;
+  }
 }

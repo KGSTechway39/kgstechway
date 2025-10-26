@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Spinner } from 'react-bootstrap';
 import './LoadingSpinner.css';
 
@@ -11,6 +11,15 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   size = 'lg', 
   text = 'Loading...' 
 }) => {
+  useEffect(() => {
+    // Add loading class to body to prevent scrolling
+    document.body.classList.add('loading-active');
+    
+    // Cleanup function to remove class when component unmounts
+    return () => {
+      document.body.classList.remove('loading-active');
+    };
+  }, []);
   return (
     <div className="loading-spinner-container">
       <div className="loading-content">
