@@ -46,7 +46,7 @@ const AboutPage: React.FC = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h1 className="display-4 fw-bold mb-4">
-                  About <span style={{ color: '#0066cc' }}>KGSTechway</span>
+                  About <span style={{ color: '#0066cc' }}>KGS Techway</span>
                 </h1>
                 <p className="lead mb-0" style={{ fontSize: '1.2rem', opacity: 0.8 }}>
                   Transforming ideas into digital reality through innovative technology solutions. 

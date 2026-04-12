@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Card, Button, Badge } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   FaChartLine, 
   FaArrowLeft, 
@@ -17,6 +17,8 @@ import './ServiceDetailPage.css';
 
 const AgenticAIPage: React.FC = () => {
   const { isDarkMode, primaryColor } = useSelector((state: any) => state.theme);
+  const navigate = useNavigate();
+  const goToContact = () => { window.scrollTo({ top: 0, behavior: 'smooth' }); setTimeout(() => navigate('/contact'), 300); };
 
   const features = [
     {
@@ -142,10 +144,10 @@ const AgenticAIPage: React.FC = () => {
                 </div> */}
 
                 <div className="hero-actions">
-                  <Button size="lg" className="primary-btn me-3">
+                  <Button size="lg" className="primary-btn me-3" onClick={goToContact}>
                     Deploy AI Agents
                   </Button>
-                  <Button variant="outline-primary" size="lg">
+                  <Button variant="outline-primary" size="lg" onClick={goToContact}>
                     View Demonstrations
                   </Button>
                 </div>
@@ -159,11 +161,48 @@ const AgenticAIPage: React.FC = () => {
                 className="hero-visual"
               >
                 <div className="tech-showcase">
-                  <div className="floating-code-blocks">
-                    <div className="code-block">🤖 Agents</div>
-                    <div className="code-block">🧠 Intelligence</div>
-                    <div className="code-block">⚡ Automation</div>
-                    <div className="code-block">🎯 Optimization</div>
+                  <div className="hero-dashboard">
+                    <div className="dashboard-header">
+                      <div className="dashboard-header-left">
+                        <FaRobot className="dashboard-header-icon" style={{ color: '#fa709a' }} />
+                        Agentic AI Orchestration
+                      </div>
+                      <div className="dashboard-live-badge">
+                        <span className="live-dot" /> ACTIVE
+                      </div>
+                    </div>
+                    <div className="dashboard-metrics">
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(250,112,154,0.18)', color: '#fa709a' }}><FaRobot /></div>
+                        <span className="metric-value">24/7</span>
+                        <span className="metric-label">Autonomous Ops</span>
+                        <span className="metric-sub">Zero downtime agents</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(79,172,254,0.18)', color: '#4facfe' }}><FaNetworkWired /></div>
+                        <span className="metric-value">Multi</span>
+                        <span className="metric-label">Agent Network</span>
+                        <span className="metric-sub">Coordinated workflows</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(67,233,123,0.18)', color: '#43e97b' }}><FaBrain /></div>
+                        <span className="metric-value">LLM</span>
+                        <span className="metric-label">Decision Engine</span>
+                        <span className="metric-sub">GPT-4 & Claude powered</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(241,196,15,0.18)', color: '#f1c40f' }}><FaCheckCircle /></div>
+                        <span className="metric-value">80%</span>
+                        <span className="metric-label">Cost Reduction</span>
+                        <span className="metric-sub">Process automation</span>
+                      </div>
+                    </div>
+                    <div className="dashboard-footer">
+                      <span className="footer-label">Stack:</span>
+                      {['LangChain', 'AutoGen', 'CrewAI', 'OpenAI', 'Claude', 'LlamaIndex'].map(t => (
+                        <span key={t} className="tech-pill">{t}</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -329,10 +368,10 @@ const AgenticAIPage: React.FC = () => {
                   Deploy intelligent agents that work 24/7 to optimize your business operations and drive growth.
                 </p>
                 <div className="cta-actions">
-                  <Button size="lg" className="primary-btn me-3">
+                  <Button size="lg" className="primary-btn me-3" onClick={goToContact}>
                     Deploy AI Agents
                   </Button>
-                  <Button variant="outline-primary" size="lg">
+                  <Button variant="outline-primary" size="lg" onClick={goToContact}>
                     Request Demo
                   </Button>
                 </div>

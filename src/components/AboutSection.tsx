@@ -209,14 +209,14 @@ const AboutSection = memo(() => {
         >
           <div className="section-badge">
             <FaUsers className="me-2" />
-            About KGSTechway
+            About KGS Techway
           </div>
           <h2 className="section-title">
             Empowering Businesses Through
             <span className="gradient-text"> Technology Excellence</span>
           </h2>
           <p className="section-description">
-            KGSTechway is a leading technology solutions provider specializing
+            KGS Techway is a leading technology solutions provider specializing
             in Software Product Development, AI Solutions, CRM/ERP Services, and
             innovative Agentic AI Solutions, helping businesses transform
             through cutting-edge technology and expert digital strategies.
@@ -237,7 +237,7 @@ const AboutSection = memo(() => {
                 <h3 className="story-title">Our Journey</h3>
                 <p className="story-text">
                   Founded with a vision to revolutionize business through
-                  technology, KGSTechway has become a trusted partner for
+                  technology, KGS Techway has become a trusted partner for
                   Software Product Development, AI Solutions, CRM/ERP Services,
                   and pioneering Agentic AI Solutions. We bridge the gap between
                   innovative technology and practical business applications,

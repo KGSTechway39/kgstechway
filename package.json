@@ -13,7 +13,15 @@
     "seo:sitemap": "node scripts/generate-sitemap.js",
     "analyze": "npm run build && npx vite-bundle-analyzer",
     "test:lighthouse": "lighthouse --output html --output-path ./lighthouse-report.html https://kgstechway.com",
-    "perf:audit": "npm run build && npm run seo:validate && node scripts/bundle-analyzer.js"
+    "perf:audit": "npm run build && npm run seo:validate && node scripts/bundle-analyzer.js",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report",
+    "test:nav": "playwright test navigation.spec.ts",
+    "test:form": "playwright test contact-form.spec.ts",
+    "test:services": "playwright test services.spec.ts",
+    "test:home": "playwright test homepage.spec.ts"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -35,6 +43,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@playwright/test": "^1.59.1",
     "@types/node": "^24.6.0",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",

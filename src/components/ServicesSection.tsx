@@ -3,15 +3,17 @@ import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { 
-  FaCode, 
-  FaRobot, 
-  FaChartLine, 
-  FaCogs, 
+  FaCode,
+  FaRobot,
+  FaChartLine,
+  FaCogs,
   FaDatabase,
   FaArrowRight,
   FaCheckCircle,
   FaCloud,
-  FaMobile
+  FaMobile,
+  FaBug,
+  FaUsers
 } from 'react-icons/fa';
 import './ServicesSection.css';
 
@@ -73,6 +75,24 @@ const ServicesSection = () => {
       gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
       delay: 0.6,
       route: '/services/mobile-development'
+    },
+    {
+      icon: <FaBug />,
+      title: 'QA & Testing Services',
+      description: 'End-to-end quality assurance from manual exploratory testing to automated CI/CD pipelines, ensuring every release ships with confidence.',
+      features: ['Manual & Automation Testing', 'API & Performance Testing', 'Security Testing', 'CI/CD Pipeline Testing'],
+      gradient: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)',
+      delay: 0.7,
+      route: '/services/qa-testing'
+    },
+    {
+      icon: <FaUsers />,
+      title: 'Staff Augmentation & Dedicated Teams',
+      description: 'Pre-vetted engineers on monthly contracts with US EST timezone overlap, NDA protection, and flexible team scaling from day one.',
+      features: ['Dedicated Developers', 'Frontend / Backend / Full Stack', 'QA · DevOps · AI/ML · PM', 'NDA & IP Protection'],
+      gradient: 'linear-gradient(135deg, #fc4a1a 0%, #f7971e 100%)',
+      delay: 0.8,
+      route: '/services/staff-augmentation'
     }
   ];
 
@@ -213,10 +233,11 @@ const ServicesSection = () => {
               <Button
                 size="lg"
                 className="primary-cta"
-                style={{ 
+                style={{
                   backgroundColor: primaryColor,
-                  borderColor: primaryColor 
+                  borderColor: primaryColor
                 }}
+                onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setTimeout(() => navigate('/contact'), 300); }}
               >
                 Schedule Consultation
               </Button>

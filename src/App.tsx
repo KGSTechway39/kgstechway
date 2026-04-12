@@ -1,7 +1,8 @@
 import { Suspense, lazy, useEffect } from 'react';
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { store } from './store';
+import { useTheme } from './hooks/useTheme';
 import Header from './components/Header';
 import LoadingSpinner from './components/LoadingSpinner';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -11,6 +12,8 @@ import './App.css';
 import { Analytics } from '@vercel/analytics/react';
 import CloudDevOpsPage from './pages/CloudDevOpsPage';
 import MobileDevelopmentPage from './pages/MobileDevelopmentPage';
+import QAServicesPage from './pages/QAServicesPage';
+import StaffAugmentationPage from './pages/StaffAugmentationPage';
 
 // Lazy load components and pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -26,7 +29,7 @@ const Footer = lazy(() => import('./components/Footer'));
 
 // Theme wrapper component to apply theme data attribute
 const ThemeWrapper = () => {
-  const { isDarkMode } = useSelector((state: any) => state.theme);
+  const { isDarkMode } = useTheme();
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
@@ -56,6 +59,8 @@ const ThemeWrapper = () => {
                   <Route path="/services/agentic-ai" element={<AgenticAIPage />} />
                   <Route path="/services/cloud-devops" element={<CloudDevOpsPage />} />
                   <Route path="/services/mobile-development" element={<MobileDevelopmentPage />} />
+                  <Route path="/services/qa-testing" element={<QAServicesPage />} />
+                  <Route path="/services/staff-augmentation" element={<StaffAugmentationPage />} />
                 </Routes>
               </Suspense>
             </ErrorBoundary>
