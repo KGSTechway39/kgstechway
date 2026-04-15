@@ -1,0 +1,26 @@
+- generic [ref=e2]:
+  - button "Skip to main content" [ref=e3] [cursor=pointer]
+  - generic [ref=e4]:
+    - banner:
+      - navigation "Main navigation" [ref=e5]:
+        - generic [ref=e6]:
+          - link "KGSTechway Service - Go to homepage" [ref=e7] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e8]:
+              - generic [ref=e9]: KGSTechway
+              - generic [ref=e10]: Service
+          - menubar [ref=e12]:
+            - menuitem "Home" [ref=e14] [cursor=pointer]
+            - menuitem "Services" [ref=e16] [cursor=pointer]
+            - menuitem "About" [ref=e18] [cursor=pointer]
+            - menuitem "Technology" [ref=e20] [cursor=pointer]
+            - menuitem "Contact" [ref=e22] [cursor=pointer]
+          - generic [ref=e23]:
+            - generic [ref=e24]:
+              - button "Switch to dark mode" [ref=e25] [cursor=pointer]:
+                - img [ref=e29]
+              - generic [ref=e31]: Light
+            - button "Get started with KGSTechway services" [ref=e33] [cursor=pointer]: Get Started
+    - main [ref=e34]:
+      - paragraph [ref=e38]: Loading...
+    - paragraph [ref=e42]: Loading...

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 165" width="320" height="165" role="img" aria-label="KGSTechway Services">
+  <title>KGSTechway Services — The Intelligent Pathway to Business Success</title>
+  <!--
+    KGSTechway Services — Stacked / Vertical Logo
+    Icon TOP · Company Name CENTRE · SERVICES label · Tagline BOTTOM
+    Best for: square social avatars (with padding), email signatures,
+              document headers, print materials.
+    Google Fonts: https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;800&display=swap
+  -->
+  <defs>
+    <linearGradient id="arrow-s" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#E74C3C"/>
+      <stop offset="100%" stop-color="#E67E22"/>
+    </linearGradient>
+    <!-- Tagline underline accent gradient -->
+    <linearGradient id="rule-s" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#E74C3C" stop-opacity="0"/>
+      <stop offset="35%"  stop-color="#E74C3C"/>
+      <stop offset="65%"  stop-color="#E67E22"/>
+      <stop offset="100%" stop-color="#F1C40F" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow-s" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#00000022"/>
+    </filter>
+    <filter id="glow-s" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ── Icon — 80×80, centred horizontally in 320px canvas ── -->
+  <!-- x = (320 - 80) / 2 = 120; scale = 80/64 = 1.25 -->
+  <g transform="translate(120, 10) scale(1.25)">
+    <!-- Origin dots -->
+    <circle cx="7" cy="13" r="5" fill="#E74C3C"/>
+    <circle cx="7" cy="32" r="5" fill="#E67E22"/>
+    <circle cx="7" cy="51" r="5" fill="#F1C40F"/>
+    <!-- Pathway curves -->
+    <path d="M 12,13 C 27,13 38,24 44,24"
+          stroke="#E74C3C" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M 12,32 C 23,30 35,34 44,32"
+          stroke="#E67E22" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M 12,51 C 27,51 38,40 44,40"
+          stroke="#F1C40F" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <!-- Convergence arrow -->
+    <polygon points="44,23 57,32 44,41"
+             fill="url(#arrow-s)" filter="url(#glow-s)"/>
+  </g>
+
+  <!-- ── Decorative accent rule under icon ── -->
+  <rect x="130" y="103" width="60" height="1.5" rx="0.75" fill="url(#rule-s)"/>
+
+  <!-- ── Company Name — centred ── -->
+  <text text-anchor="middle" x="160" y="124"
+        font-family="'Plus Jakarta Sans', 'Inter', 'Segoe UI', Arial, sans-serif"
+        font-size="30" fill="#1A1A2E">
+    <tspan font-weight="800" letter-spacing="-0.8">KGS</tspan><tspan dx="2" font-weight="300" letter-spacing="0.3">techway</tspan>
+  </text>
+
+  <!-- ── SERVICES label — centred, spaced caps ── -->
+  <text text-anchor="middle" x="160" y="140"
+        font-family="'Plus Jakarta Sans', 'Inter', 'Segoe UI', Arial, sans-serif"
+        font-size="8" font-weight="400" fill="#E67E22" letter-spacing="5.5">SERVICES</text>
+
+  <!-- ── Tagline — centred ── -->
+  <text text-anchor="middle" x="160" y="156"
+        font-family="'Plus Jakarta Sans', 'Inter', 'Segoe UI', Arial, sans-serif"
+        font-size="8.5" font-weight="300" fill="#6B7B8D" letter-spacing="0.8">The Intelligent Pathway to Business Success</text>
+</svg>

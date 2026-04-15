@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 90" width="480" height="90" role="img" aria-label="KGSTechway Services">
+  <title>KGSTechway Services — The Intelligent Pathway to Business Success</title>
+  <!--
+    KGSTechway Services — Primary Horizontal Logo
+    The definitive horizontal layout. Icon LEFT · Name RIGHT · Tagline BELOW.
+    Use on any background by adjusting text fill colors.
+    This version: dark text on transparent / white background.
+
+    Minimum usage width: 240px
+    Clear space: equal to the height of the letter "K" on all sides.
+    Google Fonts: https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;800&display=swap
+  -->
+  <defs>
+    <linearGradient id="arrow-h" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#E74C3C"/>
+      <stop offset="100%" stop-color="#E67E22"/>
+    </linearGradient>
+    <!-- Warm red → orange gradient for the name accent (optional usage) -->
+    <linearGradient id="name-accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#E74C3C"/>
+      <stop offset="100%" stop-color="#E67E22"/>
+    </linearGradient>
+    <filter id="shadow-h" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="#00000018"/>
+    </filter>
+  </defs>
+
+  <!-- ── Divider rule (decorative, subtle) ── -->
+  <!-- Thin vertical rule between icon and text -->
+  <line x1="75" y1="16" x2="75" y2="74"
+        stroke="#E0E0E0" stroke-width="1" opacity="0.6"/>
+
+  <!-- ── Icon — 68×68, vertically centred in 90px canvas ── -->
+  <!-- (90 - 68) / 2 = 11px vertical margin; scale = 68/64 = 1.0625 -->
+  <g transform="translate(0, 11) scale(1.0625)">
+    <!-- Origin dots -->
+    <circle cx="7" cy="13" r="5" fill="#E74C3C"/>
+    <circle cx="7" cy="32" r="5" fill="#E67E22"/>
+    <circle cx="7" cy="51" r="5" fill="#F1C40F"/>
+    <!-- Pathway curves -->
+    <path d="M 12,13 C 27,13 38,24 44,24"
+          stroke="#E74C3C" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M 12,32 C 23,30 35,34 44,32"
+          stroke="#E67E22" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M 12,51 C 27,51 38,40 44,40"
+          stroke="#F1C40F" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <!-- Convergence arrow -->
+    <polygon points="44,23 57,32 44,41"
+             fill="url(#arrow-h)" filter="url(#shadow-h)"/>
+  </g>
+
+  <!-- ── Company Name ── -->
+  <text y="49" font-family="'Plus Jakarta Sans', 'Inter', 'Segoe UI', Arial, sans-serif" font-size="34">
+    <tspan x="88" font-weight="800" fill="#1A1A2E" letter-spacing="-1">KGS</tspan><tspan dx="3" font-weight="300" fill="#1A1A2E" letter-spacing="0.5">techway</tspan>
+  </text>
+
+  <!-- ── SERVICES label — wide-tracked small caps ── -->
+  <text x="90" y="62"
+        font-family="'Plus Jakarta Sans', 'Inter', 'Segoe UI', Arial, sans-serif"
+        font-size="7.5" font-weight="400" fill="#E67E22" letter-spacing="5">SERVICES</text>
+
+  <!-- ── Tagline ── -->
+  <text x="88" y="78"
+        font-family="'Plus Jakarta Sans', 'Inter', 'Segoe UI', Arial, sans-serif"
+        font-size="9.5" font-weight="300" fill="#6B7B8D" letter-spacing="1.2">The Intelligent Pathway to Business Success</text>
+</svg>

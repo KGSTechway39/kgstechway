@@ -1,0 +1,619 @@
+- generic [ref=e2]:
+  - button "Skip to main content" [ref=e3] [cursor=pointer]
+  - generic [ref=e4]:
+    - banner:
+      - navigation "Main navigation" [ref=e5]:
+        - generic [ref=e6]:
+          - link "KGSTechway Service - Go to homepage" [ref=e7] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e9]:
+              - img [ref=e10]
+              - generic [ref=e19]:
+                - generic [ref=e20]: KGS
+                - generic [ref=e21]: techway
+          - menubar [ref=e23]:
+            - menuitem "Home" [ref=e25] [cursor=pointer]
+            - menuitem "Services" [ref=e27] [cursor=pointer]
+            - menuitem "About" [ref=e29] [cursor=pointer]
+            - menuitem "Technology" [ref=e31] [cursor=pointer]
+            - menuitem "Contact" [ref=e33] [cursor=pointer]
+          - generic [ref=e34]:
+            - generic [ref=e35]:
+              - button "Switch to dark mode" [ref=e36] [cursor=pointer]:
+                - img [ref=e40]
+              - generic [ref=e42]: Light
+            - button "Get started with KGSTechway services" [ref=e44] [cursor=pointer]: Get Started
+    - main [ref=e45]:
+      - main "Hero section - KGSTechway Services introduction" [ref=e46]:
+        - generic [ref=e48]:
+          - img [ref=e50]
+          - img [ref=e53]
+          - img [ref=e56]
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - generic [ref=e62]:
+              - generic [ref=e63]: 🚀
+              - generic [ref=e64]: Leading Technology Solutions Provider
+            - heading "KGSTechway - Transforming Ideas into Digital Reality" [level=1] [ref=e65]
+            - paragraph [ref=e67]:
+              - text: Expert in
+              - generic "Specializing in Software Product Development/Services" [ref=e68]: Software Product Development/Services|
+            - paragraph [ref=e69]: KGSTechway is your trusted technology partner specializing in Software Product Development, AI Solutions, CRM/ERP Services, and cutting-edge Agentic AI Solutions. Choose KGSTechway to transform your business with innovative digital solutions that drive growth, efficiency, and competitive advantage.
+            - generic [ref=e70]:
+              - button "Start your project with KGSTechway - Contact us" [ref=e71] [cursor=pointer]:
+                - text: Start Your Project
+                - img [ref=e72]
+              - button "Learn about our services and solutions" [ref=e74] [cursor=pointer]:
+                - img [ref=e75]
+                - text: View Services
+          - generic [ref=e79]:
+            - generic [ref=e81] [cursor=pointer]:
+              - heading "AI Solutions" [level=3] [ref=e82]
+              - paragraph [ref=e83]: Advanced AI & Machine Learning
+            - generic [ref=e85] [cursor=pointer]:
+              - heading "CRM/ERP Services" [level=3] [ref=e86]
+              - paragraph [ref=e87]: Business Management Solutions
+            - generic [ref=e89] [cursor=pointer]:
+              - heading "Agentic AI Solutions" [level=3] [ref=e90]
+              - paragraph [ref=e91]: Intelligent Autonomous Systems
+        - generic [ref=e95] [cursor=pointer]: Scroll to explore
+      - generic [ref=e97]:
+        - generic [ref=e98]:
+          - generic [ref=e99]:
+            - img [ref=e100]
+            - text: Our Services
+          - heading "Comprehensive Technology Solutions for Your Business" [level=2] [ref=e102]
+          - paragraph [ref=e103]: We deliver end-to-end technology services that drive innovation, improve efficiency, and accelerate your digital transformation journey.
+        - generic [ref=e105]:
+          - generic [ref=e108]:
+            - img [ref=e111]
+            - generic [ref=e113]:
+              - generic [ref=e114]: Software Product Development/Services
+              - paragraph [ref=e115]: End-to-end software product development from concept to deployment, delivering scalable and robust solutions.
+              - generic [ref=e116]:
+                - generic [ref=e117]:
+                  - img [ref=e118]
+                  - generic [ref=e120]: Full-Stack Development
+                - generic [ref=e121]:
+                  - img [ref=e122]
+                  - generic [ref=e124]: Product Architecture
+                - generic [ref=e125]:
+                  - img [ref=e126]
+                  - generic [ref=e128]: Legacy System Modernization
+                - generic [ref=e129]:
+                  - img [ref=e130]
+                  - generic [ref=e132]: Microservices Architecture
+            - button "Learn More" [ref=e134] [cursor=pointer]:
+              - text: Learn More
+              - img [ref=e135]
+          - generic [ref=e139]:
+            - img [ref=e142]
+            - generic [ref=e144]:
+              - generic [ref=e145]: AI Solutions
+              - paragraph [ref=e146]: Advanced artificial intelligence solutions that automate processes and generate intelligent insights for your business.
+              - generic [ref=e147]:
+                - generic [ref=e148]:
+                  - img [ref=e149]
+                  - generic [ref=e151]: Machine Learning Models
+                - generic [ref=e152]:
+                  - img [ref=e153]
+                  - generic [ref=e155]: Predictive Analytics
+                - generic [ref=e156]:
+                  - img [ref=e157]
+                  - generic [ref=e159]: Computer Vision
+                - generic [ref=e160]:
+                  - img [ref=e161]
+                  - generic [ref=e163]: Natural Language Processing
+            - button "Learn More" [ref=e165] [cursor=pointer]:
+              - text: Learn More
+              - img [ref=e166]
+          - generic [ref=e170]:
+            - img [ref=e173]
+            - generic [ref=e175]:
+              - generic [ref=e176]: CRM/ERP Services
+              - paragraph [ref=e177]: Comprehensive Customer Relationship Management and Enterprise Resource Planning solutions to streamline business operations.
+              - generic [ref=e178]:
+                - generic [ref=e179]:
+                  - img [ref=e180]
+                  - generic [ref=e182]: Custom CRM Development
+                - generic [ref=e183]:
+                  - img [ref=e184]
+                  - generic [ref=e186]: ERP Implementation
+                - generic [ref=e187]:
+                  - img [ref=e188]
+                  - generic [ref=e190]: Business Process Automation
+                - generic [ref=e191]:
+                  - img [ref=e192]
+                  - generic [ref=e194]: Data Integration
+            - button "Learn More" [ref=e196] [cursor=pointer]:
+              - text: Learn More
+              - img [ref=e197]
+          - generic [ref=e201]:
+            - img [ref=e204]
+            - generic [ref=e206]:
+              - generic [ref=e207]: Agentic AI Solutions
+              - paragraph [ref=e208]: Next-generation autonomous AI agents that can perform complex tasks and make intelligent decisions independently.
+              - generic [ref=e209]:
+                - generic [ref=e210]:
+                  - img [ref=e211]
+                  - generic [ref=e213]: Autonomous AI Agents
+                - generic [ref=e214]:
+                  - img [ref=e215]
+                  - generic [ref=e217]: Decision Making Systems
+                - generic [ref=e218]:
+                  - img [ref=e219]
+                  - generic [ref=e221]: Intelligent Automation
+                - generic [ref=e222]:
+                  - img [ref=e223]
+                  - generic [ref=e225]: Multi-Agent Orchestration
+            - button "Learn More" [ref=e227] [cursor=pointer]:
+              - text: Learn More
+              - img [ref=e228]
+          - generic [ref=e232]:
+            - img [ref=e235]
+            - generic [ref=e237]:
+              - generic [ref=e238]: Cloud & DevOps Solutions
+              - paragraph [ref=e239]: Scalable cloud infrastructure and DevOps practices to accelerate development and ensure reliable deployments.
+              - generic [ref=e240]:
+                - generic [ref=e241]:
+                  - img [ref=e242]
+                  - generic [ref=e244]: Cloud Migration
+                - generic [ref=e245]:
+                  - img [ref=e246]
+                  - generic [ref=e248]: CI/CD Pipelines
+                - generic [ref=e249]:
+                  - img [ref=e250]
+                  - generic [ref=e252]: Infrastructure as Code
+                - generic [ref=e253]:
+                  - img [ref=e254]
+                  - generic [ref=e256]: Container Orchestration
+            - button "Learn More" [ref=e258] [cursor=pointer]:
+              - text: Learn More
+              - img [ref=e259]
+          - generic [ref=e263]:
+            - img [ref=e266]
+            - generic [ref=e268]:
+              - generic [ref=e269]: Mobile App Development
+              - paragraph [ref=e270]: Cross-platform mobile applications that deliver exceptional user experiences across iOS and Android platforms.
+              - generic [ref=e271]:
+                - generic [ref=e272]:
+                  - img [ref=e273]
+                  - generic [ref=e275]: Native iOS/Android
+                - generic [ref=e276]:
+                  - img [ref=e277]
+                  - generic [ref=e279]: React Native
+                - generic [ref=e280]:
+                  - img [ref=e281]
+                  - generic [ref=e283]: Flutter Development
+                - generic [ref=e284]:
+                  - img [ref=e285]
+                  - generic [ref=e287]: Progressive Web Apps
+            - button "Learn More" [ref=e289] [cursor=pointer]:
+              - text: Learn More
+              - img [ref=e290]
+          - generic [ref=e294]:
+            - img [ref=e297]
+            - generic [ref=e299]:
+              - generic [ref=e300]: QA & Testing Services
+              - paragraph [ref=e301]: End-to-end quality assurance from manual exploratory testing to automated CI/CD pipelines, ensuring every release ships with confidence.
+              - generic [ref=e302]:
+                - generic [ref=e303]:
+                  - img [ref=e304]
+                  - generic [ref=e306]: Manual & Automation Testing
+                - generic [ref=e307]:
+                  - img [ref=e308]
+                  - generic [ref=e310]: API & Performance Testing
+                - generic [ref=e311]:
+                  - img [ref=e312]
+                  - generic [ref=e314]: Security Testing
+                - generic [ref=e315]:
+                  - img [ref=e316]
+                  - generic [ref=e318]: CI/CD Pipeline Testing
+            - button "Learn More" [ref=e320] [cursor=pointer]:
+              - text: Learn More
+              - img [ref=e321]
+          - generic [ref=e325]:
+            - img [ref=e328]
+            - generic [ref=e330]:
+              - generic [ref=e331]: Staff Augmentation & Dedicated Teams
+              - paragraph [ref=e332]: Pre-vetted engineers on monthly contracts with US EST timezone overlap, NDA protection, and flexible team scaling from day one.
+              - generic [ref=e333]:
+                - generic [ref=e334]:
+                  - img [ref=e335]
+                  - generic [ref=e337]: Dedicated Developers
+                - generic [ref=e338]:
+                  - img [ref=e339]
+                  - generic [ref=e341]: Frontend / Backend / Full Stack
+                - generic [ref=e342]:
+                  - img [ref=e343]
+                  - generic [ref=e345]: QA · DevOps · AI/ML · PM
+                - generic [ref=e346]:
+                  - img [ref=e347]
+                  - generic [ref=e349]: NDA & IP Protection
+            - button "Learn More" [ref=e351] [cursor=pointer]:
+              - text: Learn More
+              - img [ref=e352]
+        - generic [ref=e355]:
+          - heading "Need a Custom Solution?" [level=3] [ref=e356]
+          - paragraph [ref=e357]: Every business is unique. Let's discuss how we can create a tailored solution that perfectly fits your specific requirements and goals.
+          - generic [ref=e358]:
+            - button "Schedule Consultation" [ref=e359] [cursor=pointer]
+            - button "View Portfolio" [ref=e360] [cursor=pointer]
+        - generic [ref=e361]:
+          - generic [ref=e362]:
+            - heading "Our Development Process" [level=3] [ref=e363]
+            - paragraph [ref=e364]: We follow a proven methodology to ensure successful project delivery
+          - generic [ref=e365]:
+            - generic [ref=e366]:
+              - generic [ref=e367]: "1"
+              - generic [ref=e368]:
+                - heading "Discovery & Analysis" [level=5] [ref=e369]
+                - paragraph [ref=e370]: Understanding your requirements and business objectives
+            - generic [ref=e371]:
+              - generic [ref=e372]: "2"
+              - generic [ref=e373]:
+                - heading "Design & Planning" [level=5] [ref=e374]
+                - paragraph [ref=e375]: Creating detailed designs and project roadmaps
+            - generic [ref=e376]:
+              - generic [ref=e377]: "3"
+              - generic [ref=e378]:
+                - heading "Development & Testing" [level=5] [ref=e379]
+                - paragraph [ref=e380]: Building robust solutions with comprehensive testing
+            - generic [ref=e381]:
+              - generic [ref=e382]: "4"
+              - generic [ref=e383]:
+                - heading "Deployment & Support" [level=5] [ref=e384]
+                - paragraph [ref=e385]: Launching your solution with ongoing maintenance
+      - generic [ref=e387]:
+        - generic [ref=e388]:
+          - generic [ref=e389]:
+            - img [ref=e390]
+            - text: Technologies We Work With
+          - heading "Our Full Technology Stack" [level=2] [ref=e392]
+          - paragraph [ref=e393]: From frontend frameworks to cloud infrastructure and QA tooling — we bring the right technology to every layer of your product.
+        - generic [ref=e394]:
+          - generic [ref=e395]:
+            - generic [ref=e396]:
+              - img [ref=e398]
+              - generic [ref=e400]: Frontend
+            - generic [ref=e401]:
+              - generic [ref=e402]:
+                - img [ref=e404]
+                - generic [ref=e406]: React
+              - generic [ref=e407]:
+                - img [ref=e409]
+                - generic [ref=e411]: Angular
+              - generic [ref=e412]:
+                - img [ref=e414]
+                - generic [ref=e416]: Vue.js
+              - generic [ref=e417]:
+                - img [ref=e419]
+                - generic [ref=e421]: Next.js
+          - generic [ref=e422]:
+            - generic [ref=e423]:
+              - img [ref=e425]
+              - generic [ref=e427]: Backend
+            - generic [ref=e428]:
+              - generic [ref=e429]:
+                - img [ref=e431]
+                - generic [ref=e433]: Node.js
+              - generic [ref=e434]:
+                - img [ref=e436]
+                - generic [ref=e438]: Python
+              - generic [ref=e439]:
+                - img [ref=e441]
+                - generic [ref=e443]: Java
+              - generic [ref=e444]:
+                - img [ref=e446]
+                - generic [ref=e448]: .NET
+          - generic [ref=e449]:
+            - generic [ref=e450]:
+              - img [ref=e452]
+              - generic [ref=e454]: Mobile
+            - generic [ref=e455]:
+              - generic [ref=e456]:
+                - img [ref=e458]
+                - generic [ref=e460]: Flutter
+              - generic [ref=e461]:
+                - img [ref=e463]
+                - generic [ref=e465]: React Native
+              - generic [ref=e466]:
+                - img [ref=e468]
+                - generic [ref=e470]: Swift
+              - generic [ref=e471]:
+                - img [ref=e473]
+                - generic [ref=e475]: Kotlin
+          - generic [ref=e476]:
+            - generic [ref=e477]:
+              - img [ref=e479]
+              - generic [ref=e481]: Cloud
+            - generic [ref=e482]:
+              - generic [ref=e483]:
+                - img [ref=e485]
+                - generic [ref=e487]: AWS
+              - generic [ref=e488]:
+                - img [ref=e490]
+                - generic [ref=e492]: Azure
+              - generic [ref=e493]:
+                - img [ref=e495]
+                - generic [ref=e497]: GCP
+          - generic [ref=e498]:
+            - generic [ref=e499]:
+              - img [ref=e501]
+              - generic [ref=e503]: DevOps
+            - generic [ref=e504]:
+              - generic [ref=e505]:
+                - img [ref=e507]
+                - generic [ref=e509]: Docker
+              - generic [ref=e510]:
+                - img [ref=e512]
+                - generic [ref=e514]: Kubernetes
+              - generic [ref=e515]:
+                - img [ref=e517]
+                - generic [ref=e519]: Jenkins
+              - generic [ref=e520]:
+                - img [ref=e522]
+                - generic [ref=e524]: GitHub Actions
+          - generic [ref=e525]:
+            - generic [ref=e526]:
+              - img [ref=e528]
+              - generic [ref=e530]: Database
+            - generic [ref=e531]:
+              - generic [ref=e532]:
+                - img [ref=e534]
+                - generic [ref=e536]: PostgreSQL
+              - generic [ref=e537]:
+                - img [ref=e539]
+                - generic [ref=e541]: MongoDB
+              - generic [ref=e542]:
+                - img [ref=e544]
+                - generic [ref=e546]: MySQL
+              - generic [ref=e547]:
+                - img [ref=e549]
+                - generic [ref=e551]: Redis
+          - generic [ref=e552]:
+            - generic [ref=e553]:
+              - img [ref=e555]
+              - generic [ref=e557]: QA Tools
+            - generic [ref=e558]:
+              - generic [ref=e559]:
+                - img [ref=e561]
+                - generic [ref=e563]: Selenium
+              - generic [ref=e564]:
+                - img [ref=e566]
+                - generic [ref=e568]: Cypress
+              - generic [ref=e569]:
+                - img [ref=e571]
+                - generic [ref=e573]: JMeter
+              - generic [ref=e574]:
+                - img [ref=e576]
+                - generic [ref=e578]: Postman
+      - generic [ref=e580]:
+        - generic [ref=e581]:
+          - generic [ref=e582]:
+            - img [ref=e583]
+            - text: How We Work
+          - heading "Our Engagement Process" [level=2] [ref=e585]
+          - paragraph [ref=e586]: A proven six-step process that keeps you in control at every stage — from first conversation to long-term success.
+        - generic [ref=e589]:
+          - generic [ref=e591]:
+            - generic [ref=e592]:
+              - img [ref=e594]
+              - generic [ref=e596]: "1"
+            - heading "Discovery & Requirements" [level=5] [ref=e597]
+            - paragraph [ref=e598]: Understand your goals, users, and constraints before writing a single line of code.
+          - generic [ref=e600]:
+            - generic [ref=e601]:
+              - img [ref=e603]
+              - generic [ref=e605]: "2"
+            - heading "Planning & Architecture" [level=5] [ref=e606]
+            - paragraph [ref=e607]: Define the technical roadmap, system design, and sprint plan aligned with your timeline.
+          - generic [ref=e609]:
+            - generic [ref=e610]:
+              - img [ref=e612]
+              - generic [ref=e614]: "3"
+            - heading "Development & Sprints" [level=5] [ref=e615]
+            - paragraph [ref=e616]: Build iteratively in two-week sprints with daily standups and continuous client visibility.
+          - generic [ref=e618]:
+            - generic [ref=e619]:
+              - img [ref=e621]
+              - generic [ref=e623]: "4"
+            - heading "QA & Quality Assurance" [level=5] [ref=e624]
+            - paragraph [ref=e625]: Automated and manual testing at every sprint gate — nothing ships without a quality sign-off.
+          - generic [ref=e627]:
+            - generic [ref=e628]:
+              - img [ref=e630]
+              - generic [ref=e632]: "5"
+            - heading "Deployment & Launch" [level=5] [ref=e633]
+            - paragraph [ref=e634]: Zero-downtime production releases through CI/CD pipelines with full rollback capability.
+          - generic [ref=e636]:
+            - generic [ref=e637]:
+              - img [ref=e639]
+              - generic [ref=e641]: "6"
+            - heading "Support & Maintenance" [level=5] [ref=e642]
+            - paragraph [ref=e643]: Proactive monitoring, bug fixes, and feature enhancements to keep your product healthy.
+      - generic [ref=e645]:
+        - generic [ref=e646]:
+          - generic [ref=e647]:
+            - img [ref=e648]
+            - text: Get In Touch
+          - heading "Ready to Start Your Digital Journey?" [level=2] [ref=e650]
+          - paragraph [ref=e651]: Let's discuss your project requirements and how we can help transform your ideas into powerful digital solutions.
+        - generic [ref=e656]:
+          - generic [ref=e657]:
+            - heading "Tell Us About Your Project" [level=3] [ref=e658]
+            - paragraph [ref=e659]: Fill out the form below and we'll get back to you within 24 hours
+          - generic [ref=e660]:
+            - generic [ref=e661]:
+              - generic [ref=e663]:
+                - generic [ref=e664]: Full Name *
+                - textbox "Full Name *" [ref=e665]:
+                  - /placeholder: Enter your full name
+                - generic [ref=e666]: Enter your full name for contact purposes
+              - generic [ref=e668]:
+                - generic [ref=e669]: Email Address *
+                - textbox "Enter your email address" [ref=e670]
+            - generic [ref=e671]:
+              - generic [ref=e673]:
+                - generic [ref=e674]: Phone Number
+                - textbox "Enter your phone number" [ref=e675]
+              - generic [ref=e677]:
+                - generic [ref=e678]: Company
+                - textbox "Your company name" [ref=e679]
+            - generic [ref=e680]:
+              - generic [ref=e682]:
+                - generic [ref=e683]: Service Needed *
+                - combobox [ref=e684]:
+                  - option "Select a service" [selected]
+                  - option "Software Product Development/Services"
+                  - option "AI Solutions"
+                  - option "CRM/ERP Services"
+                  - option "Agentic AI Solutions"
+                  - option "Other"
+              - generic [ref=e686]:
+                - generic [ref=e687]: Budget Range
+                - combobox [ref=e688]:
+                  - option "Select budget range" [selected]
+                  - option "Under $10,000"
+                  - option "$10,000 - $50,000"
+                  - option "$50,000 - $100,000"
+                  - option "$100,000 - $250,000"
+                  - option "$250,000+"
+                  - option "Let's discuss"
+              - generic [ref=e690]:
+                - generic [ref=e691]: Timeline
+                - combobox [ref=e692]:
+                  - option "Select timeline" [selected]
+                  - option "ASAP"
+                  - option "1-3 months"
+                  - option "3-6 months"
+                  - option "6-12 months"
+                  - option "12+ months"
+                  - option "Flexible"
+            - generic [ref=e693]:
+              - generic [ref=e694]: Project Details *
+              - textbox "Please describe your project requirements, goals, and any specific features you need..." [ref=e695]
+            - generic [ref=e696]:
+              - button "Send Message" [ref=e697] [cursor=pointer]:
+                - img [ref=e698]
+                - text: Send Message
+              - paragraph [ref=e700]: By submitting this form, you agree to our privacy policy and terms of service.
+        - generic [ref=e701]:
+          - heading "Get In Touch With Us" [level=3] [ref=e704]
+          - generic [ref=e708]:
+            - img [ref=e710]
+            - heading "Email Us" [level=5] [ref=e712]
+            - paragraph [ref=e713]: sales@kgstechway.com
+            - paragraph [ref=e714]: We respond within 24 hours
+          - generic [ref=e718]:
+            - img [ref=e720]
+            - heading "Call Us" [level=5] [ref=e722]
+            - paragraph [ref=e723]: +91 8248718780
+            - paragraph [ref=e724]: Mon-Fri 9AM-6PM IST
+          - generic [ref=e728]:
+            - img [ref=e730]
+            - heading "Visit Us" [level=5] [ref=e732]
+            - paragraph [ref=e733]: Krishnagiri, Tamil Nadu, India
+            - paragraph [ref=e734]: Schedule an appointment
+          - generic [ref=e738]:
+            - img [ref=e740]
+            - heading "Business Hours" [level=5] [ref=e742]
+            - paragraph [ref=e743]: Monday - Friday
+            - paragraph [ref=e744]: 9:00 AM - 6:00 PM IST
+        - generic [ref=e745]:
+          - heading "Why Choose KGSTechway?" [level=3] [ref=e748]
+          - generic [ref=e752]:
+            - img [ref=e754]
+            - heading "Fast Delivery" [level=5] [ref=e756]
+            - paragraph [ref=e757]: We deliver projects on time with agile methodologies
+          - generic [ref=e761]:
+            - img [ref=e763]
+            - heading "Expert Team" [level=5] [ref=e765]
+            - paragraph [ref=e766]: Skilled professionals
+          - generic [ref=e770]:
+            - img [ref=e772]
+            - heading "Innovation" [level=5] [ref=e774]
+            - paragraph [ref=e775]: Cutting-edge solutions for modern challenges
+    - contentinfo [ref=e776]:
+      - generic [ref=e777]:
+        - generic [ref=e778]:
+          - generic [ref=e780]:
+            - generic [ref=e782] [cursor=pointer]:
+              - img [ref=e783]
+              - generic [ref=e791]:
+                - generic [ref=e792]:
+                  - generic [ref=e793]: KGS
+                  - generic [ref=e794]: techway
+                - generic [ref=e795]: The Intelligent Pathway to Business Success
+            - paragraph [ref=e796]: Leading provider of innovative technology solutions, specializing in software development, AI solutions, and enterprise services.
+            - generic [ref=e797]:
+              - link "LinkedIn" [ref=e798] [cursor=pointer]:
+                - /url: https://linkedin.com/company/kgstechway
+                - img [ref=e799]
+              - link "Twitter" [ref=e801] [cursor=pointer]:
+                - /url: https://twitter.com/kgstechway
+                - img [ref=e802]
+              - link "Facebook" [ref=e804] [cursor=pointer]:
+                - /url: https://facebook.com/kgstechway
+                - img [ref=e805]
+              - link "Instagram" [ref=e807] [cursor=pointer]:
+                - /url: https://instagram.com/kgstechway
+                - img [ref=e808]
+              - link "GitHub" [ref=e810] [cursor=pointer]:
+                - /url: https://github.com/kgstechway
+                - img [ref=e811]
+          - generic [ref=e814]:
+            - heading "Services" [level=6] [ref=e815]
+            - generic [ref=e816]:
+              - link "Software Development" [ref=e818] [cursor=pointer]:
+                - /url: "#services"
+              - link "AI Solutions" [ref=e820] [cursor=pointer]:
+                - /url: "#services"
+              - link "CRM/ERP Services" [ref=e822] [cursor=pointer]:
+                - /url: "#services"
+              - link "Agentic AI Solutions" [ref=e824] [cursor=pointer]:
+                - /url: "#services"
+          - generic [ref=e826]:
+            - heading "Company" [level=6] [ref=e827]
+            - generic [ref=e828]:
+              - link "About Us" [ref=e830] [cursor=pointer]:
+                - /url: "#about"
+              - link "Technology" [ref=e832] [cursor=pointer]:
+                - /url: "#technology"
+              - link "Testimonials" [ref=e834] [cursor=pointer]:
+                - /url: "#testimonials"
+              - link "Careers" [ref=e836] [cursor=pointer]:
+                - /url: /careers
+              - link "Blog" [ref=e838] [cursor=pointer]:
+                - /url: /blog
+          - generic [ref=e840]:
+            - heading "Support" [level=6] [ref=e841]
+            - generic [ref=e842]:
+              - link "Contact Us" [ref=e844] [cursor=pointer]:
+                - /url: "#contact"
+              - link "Help Center" [ref=e846] [cursor=pointer]:
+                - /url: /support
+              - link "Privacy Policy" [ref=e848] [cursor=pointer]:
+                - /url: /privacy
+              - link "Terms of Service" [ref=e850] [cursor=pointer]:
+                - /url: /terms
+          - generic [ref=e852]:
+            - heading "Contact Info" [level=6] [ref=e853]
+            - generic [ref=e854]:
+              - generic [ref=e855]:
+                - img [ref=e856]
+                - generic [ref=e858]: +91 8248718780
+              - generic [ref=e859]:
+                - img [ref=e860]
+                - generic [ref=e862]: sales@kgstechway.com
+              - generic [ref=e863]:
+                - img [ref=e864]
+                - generic [ref=e866]: Krishnagiri, Tamil Nadu, India
+            - heading "Newsletter" [level=6] [ref=e867]
+            - generic [ref=e868]:
+              - textbox "Enter your email" [ref=e870]
+              - button "Subscribe" [ref=e871] [cursor=pointer]
+        - separator [ref=e872]
+        - generic [ref=e873]:
+          - paragraph [ref=e875]: © 2026 KGSTechway. All rights reserved.
+          - generic [ref=e877]: Built with ❤️ using React & TypeScript
