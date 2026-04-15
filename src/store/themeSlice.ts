@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isDarkMode: false,
-  primaryColor: '#0066cc',
-  secondaryColor: '#003d7a',
-  accentColor: '#ff6b35',
+  isDarkMode: true,
+  primaryColor: '#00C896',
+  secondaryColor: '#007A5E',
+  accentColor: '#4DFFD8',
 };
 
 const themeSlice = createSlice({

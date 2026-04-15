@@ -5,7 +5,8 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { setScrollY, setActiveSection, toggleMenu, setMenuOpen } from '../store/navigationSlice';
 import { motion } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import ThemeToggle from './ThemeToggle';
+// import ThemeToggle from './ThemeToggle';
+import BrandLogo from './BrandLogo';
 import './Header.css';
 
 const Header = memo(() => {
@@ -84,11 +85,6 @@ const Header = memo(() => {
         expand="lg"
         fixed="top"
         className={`modern-navbar ${isScrolled ? 'scrolled' : ''} ${isDarkMode ? 'dark' : 'light'}`}
-        style={{ 
-          backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.1)',
-          backdropFilter: isScrolled ? 'blur(20px)' : 'none',
-          borderBottom: isScrolled ? '1px solid rgba(0, 102, 204, 0.1)' : 'none'
-        }}
         role="navigation"
         aria-label="Main navigation"
       >
@@ -103,17 +99,14 @@ const Header = memo(() => {
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400 }}
-              className="brand-text"
-              style={{ color: primaryColor }}
             >
-              <span className="brand-name">KGSTechway</span>
-              <span className="brand-tagline">Service</span>
+              <BrandLogo size="md" showTagline={true} onDark={isDarkMode || !isScrolled} />
             </motion.div>
           </Navbar.Brand>
 
           <div className="mobile-menu-toggle d-lg-none">
             <div className="mobile-header-actions">
-              <ThemeToggle />
+              {/* <ThemeToggle /> */}
               {/* {!isServiceDetailPage && ( */}
                 <Button
                   variant="link"
@@ -157,7 +150,7 @@ const Header = memo(() => {
           {/* )} */}
 
           <div className="header-actions d-none d-lg-flex align-items-center">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             {/* {!isServiceDetailPage && ( */}
               <motion.div
                 whileHover={{ scale: 1.05 }}

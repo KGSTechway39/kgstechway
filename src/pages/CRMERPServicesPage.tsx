@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Card, Button, Badge } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   FaDatabase, 
   FaArrowLeft, 
@@ -20,6 +20,8 @@ import './ServiceDetailPage.css';
 
 const CRMERPServicesPage: React.FC = () => {
   const { isDarkMode, primaryColor } = useSelector((state: any) => state.theme);
+  const navigate = useNavigate();
+  const goToContact = () => { window.scrollTo({ top: 0, behavior: 'smooth' }); setTimeout(() => navigate('/contact'), 300); };
 
   const features = [
     {
@@ -160,10 +162,10 @@ const CRMERPServicesPage: React.FC = () => {
                 </div> */}
 
                 <div className="hero-actions">
-                  <Button size="lg" className="primary-btn me-3">
+                  <Button size="lg" className="primary-btn me-3" onClick={goToContact}>
                     Get ERP Solution
                   </Button>
-                  <Button variant="outline-primary" size="lg">
+                  <Button variant="outline-primary" size="lg" onClick={goToContact}>
                     View Case Studies
                   </Button>
                 </div>
@@ -177,11 +179,48 @@ const CRMERPServicesPage: React.FC = () => {
                 className="hero-visual"
               >
                 <div className="tech-showcase">
-                  <div className="floating-code-blocks">
-                    <div className="code-block">📊 CRM</div>
-                    <div className="code-block">🏢 ERP</div>
-                    <div className="code-block">⚙️ Automation</div>
-                    <div className="code-block">📈 Analytics</div>
+                  <div className="hero-dashboard">
+                    <div className="dashboard-header">
+                      <div className="dashboard-header-left">
+                        <FaDatabase className="dashboard-header-icon" style={{ color: '#43e97b' }} />
+                        CRM / ERP Platform
+                      </div>
+                      <div className="dashboard-live-badge">
+                        <span className="live-dot" /> ACTIVE
+                      </div>
+                    </div>
+                    <div className="dashboard-metrics">
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(67,233,123,0.18)', color: '#43e97b' }}><FaUsers /></div>
+                        <span className="metric-value">360°</span>
+                        <span className="metric-label">Customer View</span>
+                        <span className="metric-sub">Unified CRM data</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(102,126,234,0.18)', color: '#667eea' }}><FaCogs /></div>
+                        <span className="metric-value">Auto</span>
+                        <span className="metric-label">Workflow Engine</span>
+                        <span className="metric-sub">Smart process automation</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(250,112,154,0.18)', color: '#fa709a' }}><FaChartBar /></div>
+                        <span className="metric-value">Live</span>
+                        <span className="metric-label">Reporting Dashboard</span>
+                        <span className="metric-sub">Real-time insights</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(79,172,254,0.18)', color: '#4facfe' }}><FaSync /></div>
+                        <span className="metric-value">50+</span>
+                        <span className="metric-label">Integrations</span>
+                        <span className="metric-sub">API & third-party sync</span>
+                      </div>
+                    </div>
+                    <div className="dashboard-footer">
+                      <span className="footer-label">Stack:</span>
+                      {['Salesforce', 'SAP', 'Odoo', 'HubSpot', 'Power BI', 'Dynamics 365'].map(t => (
+                        <span key={t} className="tech-pill">{t}</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -357,10 +396,10 @@ const CRMERPServicesPage: React.FC = () => {
                   Streamline your operations with our comprehensive CRM/ERP solutions tailored to your needs.
                 </p>
                 <div className="cta-actions">
-                  <Button size="lg" className="primary-btn me-3">
+                  <Button size="lg" className="primary-btn me-3" onClick={goToContact}>
                     Start Implementation
                   </Button>
-                  <Button variant="outline-primary" size="lg">
+                  <Button variant="outline-primary" size="lg" onClick={goToContact}>
                     Schedule Demo
                   </Button>
                 </div>

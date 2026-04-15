@@ -1,6 +1,6 @@
 /* Contact Section Styles */
 .contact-section {
-  padding: 60px 0;
+  padding: 40px 0 60px;
   position: relative;
   overflow: hidden;
 }
@@ -37,6 +37,11 @@
   font-weight: 700;
   margin-bottom: 15px;
   line-height: 1.2;
+  color: #1a1a1a;
+}
+
+.contact-section.dark .section-title {
+  color: #eef7f4;
 }
 
 .gradient-text {
@@ -48,9 +53,13 @@
 
 .section-description {
   font-size: 1.2rem;
-  opacity: 0.8;
   max-width: 600px;
   margin: 0 auto;
+  color: #555;
+}
+
+.contact-section.dark .section-description {
+  color: #a0b4ae;
 }
 
 /* Contact Form Card */
@@ -98,12 +107,21 @@
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+.contact-section.dark .form-header h3 {
+  color: #eef7f4;
 }
 
 .form-header p {
-  opacity: 0.7;
   margin: 0;
   font-size: 1.1rem;
+  color: #555;
+}
+
+.contact-section.dark .form-header p {
+  color: #a0b4ae;
 }
 
 /* Custom Form Controls */
@@ -130,8 +148,18 @@
 .contact-section.dark .custom-input,
 .contact-section.dark .custom-select,
 .contact-section.dark .custom-textarea {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.07);
   border-color: #4a5568;
+  color: #e2e8f0;
+}
+
+.contact-section.dark .custom-input::placeholder,
+.contact-section.dark .custom-textarea::placeholder {
+  color: #6b8f84;
+}
+
+.contact-section.dark .custom-select option {
+  background: #2d3748;
   color: #e2e8f0;
 }
 
@@ -153,6 +181,11 @@
   margin-bottom: 10px;
   display: block;
   font-size: 1rem;
+  color: #2c3e50;
+}
+
+.contact-section.dark .form-label {
+  color: #d0e8e0;
 }
 
 /* Form Groups */
@@ -195,12 +228,16 @@
 
 .form-note {
   font-size: 14px;
-  opacity: 0.6;
   margin-top: 20px;
   margin-bottom: 0;
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  color: #666;
+}
+
+.contact-section.dark .form-note {
+  color: #8db5a8;
 }
 
 /* Custom Alert */
@@ -307,19 +344,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #1a1a1a;
+}
+
+.contact-info-card-full.dark .contact-card-title {
+  color: #eef7f4;
 }
 
 .contact-card-primary {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 5px;
-  color: inherit;
+  color: #2c3e50;
+}
+
+.contact-info-card-full.dark .contact-card-primary {
+  color: #c8e6de;
 }
 
 .contact-card-secondary {
   font-size: 0.9rem;
-  opacity: 0.7;
   margin: 0;
+  color: #666;
+}
+
+.contact-info-card-full.dark .contact-card-secondary {
+  color: #8db5a8;
 }
 
 .contact-info-card {
@@ -466,11 +516,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #1a1a1a;
+}
+
+.why-choose-individual-card.dark .why-card-title {
+  color: #eef7f4;
 }
 
 .why-card-description {
   font-size: 1rem;
-  opacity: 0.8;
   margin: 0;
   line-height: 1.6;
   text-align: center;
@@ -478,6 +532,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #555;
+}
+
+.why-choose-individual-card.dark .why-card-description {
+  color: #a0b4ae;
 }
 
 /* Social Card */

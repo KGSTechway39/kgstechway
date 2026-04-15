@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Card, Button, Badge } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   FaRobot, 
   FaArrowLeft, 
@@ -18,6 +18,8 @@ import './ServiceDetailPage.css';
 
 const AISolutionsPage: React.FC = () => {
   const { isDarkMode } = useSelector((state: any) => state.theme);
+  const navigate = useNavigate();
+  const goToContact = () => { window.scrollTo({ top: 0, behavior: 'smooth' }); setTimeout(() => navigate('/contact'), 300); };
 
   const features = [
     {
@@ -149,10 +151,10 @@ const AISolutionsPage: React.FC = () => {
                 </div> */}
 
                 <div className="hero-actions">
-                  <Button size="lg" className="primary-btn me-3">
+                  <Button size="lg" className="primary-btn me-3" onClick={goToContact}>
                     Explore AI Solutions
                   </Button>
-                  <Button variant="outline-primary" size="lg">
+                  <Button variant="outline-primary" size="lg" onClick={goToContact}>
                     View AI Portfolio
                   </Button>
                 </div>
@@ -166,11 +168,48 @@ const AISolutionsPage: React.FC = () => {
                 className="hero-visual"
               >
                 <div className="tech-showcase">
-                  <div className="floating-code-blocks">
-                    <div className="code-block ai-block">🧠 ML</div>
-                    <div className="code-block ai-block">👁️ CV</div>
-                    <div className="code-block ai-block">📊 Analytics</div>
-                    <div className="code-block ai-block">🤖 NLP</div>
+                  <div className="hero-dashboard">
+                    <div className="dashboard-header">
+                      <div className="dashboard-header-left">
+                        <FaBrain className="dashboard-header-icon" style={{ color: '#4facfe' }} />
+                        AI Solutions Platform
+                      </div>
+                      <div className="dashboard-live-badge">
+                        <span className="live-dot" /> RUNNING
+                      </div>
+                    </div>
+                    <div className="dashboard-metrics">
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(79,172,254,0.18)', color: '#4facfe' }}><FaBrain /></div>
+                        <span className="metric-value">95%+</span>
+                        <span className="metric-label">Model Accuracy</span>
+                        <span className="metric-sub">ML & deep learning</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(250,112,154,0.18)', color: '#fa709a' }}><FaEye /></div>
+                        <span className="metric-value">CV</span>
+                        <span className="metric-label">Computer Vision</span>
+                        <span className="metric-sub">Object detection & OCR</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(67,233,123,0.18)', color: '#43e97b' }}><FaChartBar /></div>
+                        <span className="metric-value">Real-time</span>
+                        <span className="metric-label">Analytics Engine</span>
+                        <span className="metric-sub">Predictive insights</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(102,126,234,0.18)', color: '#667eea' }}><FaLanguage /></div>
+                        <span className="metric-value">NLP</span>
+                        <span className="metric-label">Language Models</span>
+                        <span className="metric-sub">GPT, BERT, LLMs</span>
+                      </div>
+                    </div>
+                    <div className="dashboard-footer">
+                      <span className="footer-label">Stack:</span>
+                      {['TensorFlow', 'PyTorch', 'OpenCV', 'spaCy', 'MLflow', 'BERT'].map(t => (
+                        <span key={t} className="tech-pill">{t}</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -290,10 +329,10 @@ const AISolutionsPage: React.FC = () => {
                   Transform your business with intelligent automation and data-driven insights.
                 </p>
                 <div className="cta-actions">
-                  <Button size="lg" className="primary-btn me-3">
+                  <Button size="lg" className="primary-btn me-3" onClick={goToContact}>
                     Start AI Project
                   </Button>
-                  <Button variant="outline-primary" size="lg">
+                  <Button variant="outline-primary" size="lg" onClick={goToContact}>
                     AI Consultation
                   </Button>
                 </div>

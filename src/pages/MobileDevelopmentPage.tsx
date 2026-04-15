@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Card, Button, Badge } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   FaMobile, 
   FaArrowLeft,
@@ -15,6 +15,8 @@ import './ServiceDetailPage.css';
 
 const MobileDevelopmentPage: React.FC = () => {
   const { isDarkMode } = useSelector((state: any) => state.theme);
+  const navigate = useNavigate();
+  const goToContact = () => { window.scrollTo({ top: 0, behavior: 'smooth' }); setTimeout(() => navigate('/contact'), 300); };
 
   const features = [
     {
@@ -95,10 +97,10 @@ const MobileDevelopmentPage: React.FC = () => {
                 </div> */}
 
                 <div className="hero-actions">
-                  <Button size="lg" className="primary-btn me-3">
+                  <Button size="lg" className="primary-btn me-3" onClick={goToContact}>
                     Start Project
                   </Button>
-                  <Button variant="outline-primary" size="lg">
+                  <Button variant="outline-primary" size="lg" onClick={goToContact}>
                     View Portfolio
                   </Button>
                 </div>
@@ -112,11 +114,48 @@ const MobileDevelopmentPage: React.FC = () => {
                 className="hero-visual"
               >
                 <div className="tech-showcase">
-                  <div className="floating-code-blocks">
-                    <div className="code-block">📱 iOS</div>
-                    <div className="code-block">🤖 Android</div>
-                    <div className="code-block">⚛️ React Native</div>
-                    <div className="code-block">🎯 Flutter</div>
+                  <div className="hero-dashboard">
+                    <div className="dashboard-header">
+                      <div className="dashboard-header-left">
+                        <FaMobile className="dashboard-header-icon" style={{ color: '#a8edea' }} />
+                        Mobile Development Studio
+                      </div>
+                      <div className="dashboard-live-badge">
+                        <span className="live-dot" /> BUILDING
+                      </div>
+                    </div>
+                    <div className="dashboard-metrics">
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(168,237,234,0.18)', color: '#a8edea' }}><FaApple /></div>
+                        <span className="metric-value">iOS</span>
+                        <span className="metric-label">Native Development</span>
+                        <span className="metric-sub">Swift & SwiftUI</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(67,233,123,0.18)', color: '#43e97b' }}><FaCode /></div>
+                        <span className="metric-value">Android</span>
+                        <span className="metric-label">Native Development</span>
+                        <span className="metric-sub">Kotlin & Jetpack</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(79,172,254,0.18)', color: '#4facfe' }}><FaReact /></div>
+                        <span className="metric-value">RN</span>
+                        <span className="metric-label">React Native</span>
+                        <span className="metric-sub">Cross-platform apps</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(250,112,154,0.18)', color: '#fa709a' }}><FaRocket /></div>
+                        <span className="metric-value">4.9★</span>
+                        <span className="metric-label">App Store Rating</span>
+                        <span className="metric-sub">Average client rating</span>
+                      </div>
+                    </div>
+                    <div className="dashboard-footer">
+                      <span className="footer-label">Stack:</span>
+                      {['Swift', 'Kotlin', 'React Native', 'Flutter', 'Expo', 'Firebase'].map(t => (
+                        <span key={t} className="tech-pill">{t}</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -192,10 +231,10 @@ const MobileDevelopmentPage: React.FC = () => {
                   Transform your ideas into powerful mobile applications that engage users and drive business growth.
                 </p>
                 <div className="cta-actions">
-                  <Button size="lg" className="primary-btn me-3">
+                  <Button size="lg" className="primary-btn me-3" onClick={goToContact}>
                     Start Project
                   </Button>
-                  <Button variant="outline-primary" size="lg">
+                  <Button variant="outline-primary" size="lg" onClick={goToContact}>
                     Get Quote
                   </Button>
                 </div>

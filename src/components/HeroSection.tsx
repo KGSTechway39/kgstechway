@@ -2,19 +2,18 @@ import { useEffect, useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
-import { FaArrowRight, FaPlay, FaCode, FaRocket, FaGlobe } from 'react-icons/fa';
+import { FaArrowRight, FaPlay } from 'react-icons/fa';
 import './HeroSection.css';
 
 type RootState = {
   theme: {
     isDarkMode: boolean;
     primaryColor: string;
-    accentColor: string;
   };
 };
 
 const HeroSection = () => {
-  const { isDarkMode, primaryColor, accentColor } = useSelector((state: RootState) => state.theme);
+  const { isDarkMode, primaryColor } = useSelector((state: RootState) => state.theme);
   const [typedText, setTypedText] = useState('');
   
   const services = [
@@ -84,55 +83,8 @@ const HeroSection = () => {
       aria-label="Hero section - KGSTechway Services introduction"
       role="main"
     >
-      {/* Animated Background Elements */}
-      <div className="hero-background">
-        <div className="floating-elements">
-          <motion.div
-            className="floating-icon"
-            animate={{
-              y: [-20, 20, -20],
-              rotate: [0, 180, 360],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <FaCode size={40} color={primaryColor} />
-          </motion.div>
-          <motion.div
-            className="floating-icon"
-            animate={{
-              y: [20, -20, 20],
-              rotate: [360, 180, 0],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          >
-            <FaRocket size={35} color={accentColor} />
-          </motion.div>
-          <motion.div
-            className="floating-icon"
-            animate={{
-              y: [-15, 25, -15],
-              rotate: [0, -180, -360],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2
-            }}
-          >
-            <FaGlobe size={45} color={primaryColor} />
-          </motion.div>
-        </div>
-      </div>
+      {/* Dot-grid ambient background only — no floating icons */}
+      <div className="hero-background" />
 
       <Container className="hero-content">
         <Row className="align-items-center min-vh-100">
@@ -155,7 +107,7 @@ const HeroSection = () => {
               transition={{ duration: 1 }}
               style={{ color: isDarkMode ? '#ffffff' : '#2c3e50' }}
             >
-              <span style={{ color: primaryColor }}>KGSTechway</span> - Transforming Ideas into{' '}
+              <span style={{ color: primaryColor }}>KGS Techway</span> - Transforming Ideas into{' '}
               <span className='gradient-text'>Digital Reality</span>
             </motion.h1>
 
@@ -185,8 +137,8 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              KGSTechway is your trusted technology partner specializing in Software Product Development, AI Solutions, CRM/ERP Services, 
-              and cutting-edge Agentic AI Solutions. Choose KGSTechway to transform your business 
+              KGS Techway is your trusted technology partner specializing in Software Product Development, AI Solutions, CRM/ERP Services,
+              and cutting-edge Agentic AI Solutions. Choose KGS Techway to transform your business
               with innovative digital solutions that drive growth, efficiency, and competitive advantage.
             </motion.p>
 
@@ -285,6 +237,17 @@ const HeroSection = () => {
                   <div className="tech-card-content">
                     <h3>Agentic AI Solutions</h3>
                     <p>Intelligent Autonomous Systems</p>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="tech-card"
+                  whileHover={{ scale: 1.05, rotateY: -15 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="tech-card-content">
+                    <h3>QA & Testing Services</h3>
+                    <p>End-to-End Quality Assurance</p>
                   </div>
                 </motion.div>
               </div>

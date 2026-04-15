@@ -3,6 +3,8 @@ import HeroSection from '../components/HeroSection';
 import ServicesSection from '../components/ServicesSection';
 // import AboutSection from '../components/AboutSection';
 // import TechnologySection from '../components/TechnologySection';
+import TechStackSection from '../components/TechStackSection';
+import HowWeWorkSection from '../components/HowWeWorkSection';
 import ContactSection from '../components/ContactSection';
 import SEO from '../components/SEO';
 import { generateCompanyStructuredData, generateFAQStructuredData } from '../utils/seoUtils';
@@ -41,6 +43,8 @@ const HomePage: React.FC = () => {
       <ServicesSection />
       {/* <AboutSection /> */}
       {/* <TechnologySection /> */}
+      <TechStackSection />
+      <HowWeWorkSection />
       <ContactSection />
     </>
   );

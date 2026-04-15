@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Card, Button, Badge } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   FaCode, 
   FaArrowLeft, 
@@ -17,6 +17,8 @@ import './ServiceDetailPage.css';
 
 const SoftwareProductDevelopmentPage: React.FC = () => {
   const { isDarkMode, primaryColor } = useSelector((state: any) => state.theme);
+  const navigate = useNavigate();
+  const goToContact = () => { window.scrollTo({ top: 0, behavior: 'smooth' }); setTimeout(() => navigate('/contact'), 300); };
 
   const features = [
     {
@@ -148,10 +150,10 @@ const SoftwareProductDevelopmentPage: React.FC = () => {
                 </div> */}
 
                 <div className="hero-actions">
-                  <Button size="lg" className="primary-btn me-3">
+                  <Button size="lg" className="primary-btn me-3" onClick={goToContact}>
                     Get Started
                   </Button>
-                  <Button variant="outline-primary" size="lg">
+                  <Button variant="outline-primary" size="lg" onClick={goToContact}>
                     View Portfolio
                   </Button>
                 </div>
@@ -165,11 +167,48 @@ const SoftwareProductDevelopmentPage: React.FC = () => {
                 className="hero-visual"
               >
                 <div className="tech-showcase">
-                  <div className="floating-code-blocks">
-                    <div className="code-block">{'<React />'}</div>
-                    <div className="code-block">{'{ Node.js }'}</div>
-                    <div className="code-block">{'@Python'}</div>
-                    <div className="code-block">{'.NET Core'}</div>
+                  <div className="hero-dashboard">
+                    <div className="dashboard-header">
+                      <div className="dashboard-header-left">
+                        <FaCode className="dashboard-header-icon" style={{ color: '#667eea' }} />
+                        Full-Stack Development
+                      </div>
+                      <div className="dashboard-live-badge">
+                        <span className="live-dot" /> ACTIVE
+                      </div>
+                    </div>
+                    <div className="dashboard-metrics">
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(102,126,234,0.18)', color: '#667eea' }}><FaRocket /></div>
+                        <span className="metric-value">50+</span>
+                        <span className="metric-label">Projects Shipped</span>
+                        <span className="metric-sub">On time & on budget</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(67,233,123,0.18)', color: '#43e97b' }}><FaChartLine /></div>
+                        <span className="metric-value">99.9%</span>
+                        <span className="metric-label">Uptime SLA</span>
+                        <span className="metric-sub">Production reliability</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(250,112,154,0.18)', color: '#fa709a' }}><FaCogs /></div>
+                        <span className="metric-value">2×</span>
+                        <span className="metric-label">Faster Delivery</span>
+                        <span className="metric-sub">Agile methodology</span>
+                      </div>
+                      <div className="metric-tile">
+                        <div className="metric-icon-box" style={{ background: 'rgba(79,172,254,0.18)', color: '#4facfe' }}><FaClock /></div>
+                        <span className="metric-value">5+</span>
+                        <span className="metric-label">Years Experience</span>
+                        <span className="metric-sub">Enterprise-grade</span>
+                      </div>
+                    </div>
+                    <div className="dashboard-footer">
+                      <span className="footer-label">Stack:</span>
+                      {['React', 'Node.js', 'Python', '.NET', 'Vue.js', 'PostgreSQL'].map(t => (
+                        <span key={t} className="tech-pill">{t}</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -289,10 +328,10 @@ const SoftwareProductDevelopmentPage: React.FC = () => {
                   Let's discuss your project requirements and create a solution that drives your business forward.
                 </p>
                 <div className="cta-actions">
-                  <Button size="lg" className="primary-btn me-3">
+                  <Button size="lg" className="primary-btn me-3" onClick={goToContact}>
                     Start Your Project
                   </Button>
-                  <Button variant="outline-primary" size="lg">
+                  <Button variant="outline-primary" size="lg" onClick={goToContact}>
                     Schedule Consultation
                   </Button>
                 </div>

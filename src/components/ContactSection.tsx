@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
-import emailjs from '@emailjs/browser';
-import { emailConfig } from '../config/emailConfig';
+// Web3Forms — free email service (100 submissions/month)
+// Sign up at https://web3forms.com/ with sales@kgstechway.com to get your access key
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '';
 import { 
   FaEnvelope, 
   FaPhone, 
@@ -103,37 +104,30 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      // Check if EmailJS is properly configured
-      // if (emailConfig.publicKey === "" || 
-      //     emailConfig.serviceId === 'service_kgstechway' ||
-      //     emailConfig.templateId === 'template_contact') {
-      //   throw new Error('EmailJS not configured. Please set up your EmailJS credentials.');
-      // }
-
-      // Prepare template parameters
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        phone: formData.phone || 'Not provided',
-        company: formData.company || 'Not provided',
-        service: formData.service,
-        budget: formData.budget || 'Not specified',
-        timeline: formData.timeline || 'Not specified',
-        message: formData.message,
-        date: new Date().toLocaleString('en-IN', { 
-          timeZone: 'Asia/Kolkata',
-          dateStyle: 'full',
-          timeStyle: 'short'
-        })
-      };
-
-      // Send email using EmailJS
-      await emailjs.send(
-        emailConfig.serviceId,
-        emailConfig.templateId,
-        templateParams,
-        emailConfig.publicKey
-      );
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New Enquiry from ${formData.name} — ${formData.service || 'KGS Techway Website'}`,
+          from_name: 'KGS Techway Website',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || 'Not provided',
+          company: formData.company || 'Not provided',
+          service: formData.service,
+          budget: formData.budget || 'Not specified',
+          timeline: formData.timeline || 'Not specified',
+          message: formData.message,
+          date: new Date().toLocaleString('en-IN', {
+            timeZone: 'Asia/Kolkata',
+            dateStyle: 'full',
+            timeStyle: 'short',
+          }),
+        }),
+      });
+      const result = await response.json();
+      if (!result.success) throw new Error(result.message || 'Submission failed');
       
       setAlertType('success');
       setShowAlert(true);
@@ -159,7 +153,7 @@ const ContactSection = () => {
       
       setTimeout(() => setShowAlert(false), 5000);
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error('Web3Forms Error:', error);
       setAlertType('danger');
       setShowAlert(true);
       setTimeout(() => setShowAlert(false), 5000);
@@ -300,8 +294,8 @@ const ContactSection = () => {
                     >
                       <FaCheckCircle className="me-2" />
                       {alertType === 'success' 
-                        ? 'Thank you! Your message has been sent successfully to kgstechwayservices@gmail.com. We\'ll get back to you within 24 hours.'
-                        : 'Failed to send email. Please try again or contact us directly at kgstechwayservices@gmail.com.'
+                        ? 'Thank you! Your message has been sent successfully to sales@kgstechway.com. We\'ll get back to you within 24 hours.'
+                        : 'Failed to send email. Please try again or contact us directly at sales@kgstechway.com.'
                       }
                     </Alert>
                   )}
@@ -537,7 +531,7 @@ const ContactSection = () => {
               viewport={{ once: true }}
               className="text-center"
             >
-              <h3 className="why-choose-title">Why Choose KGSTechway?</h3>
+              <h3 className="why-choose-title">Why Choose KGS Techway?</h3>
             </motion.div>
           </Col>
           {whyChooseUs.map((item, index) => (
