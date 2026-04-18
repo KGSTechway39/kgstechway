@@ -292,8 +292,8 @@ const ContactSection = () => {
                     >
                       <FaCheckCircle className="me-2" />
                       {alertType === 'success'
-                        ? 'Thank you! Your message has been sent successfully to sales@kgstechway.com. We\'ll get back to you within 24 hours.'
-                        : 'Failed to send email. Please try again or contact us directly at sales@kgstechway.com.'
+                        ? 'Thank you! Your message has been sent successfully to sales@kgstechway.com We\'ll get back to you within 24 hours.'
+                        : 'Failed to send email. Please try again or contact us directly at sales@kgstechway.com'
                       }
                     </Alert>
                   )}

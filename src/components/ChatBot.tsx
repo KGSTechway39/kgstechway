@@ -121,7 +121,7 @@ const ChatBot = () => {
         ...prev,
         {
           role: 'model',
-          text: 'Sorry, something went wrong. Please try again or contact us at sales@kgstechway.com.',
+          text: 'Sorry, something went wrong. Please try again or contact us at sales@kgstechway.com',
         },
       ]);
     } finally {
