@@ -1,30 +1,18 @@
-// EmailJS Configuration
-// To set up EmailJS:
-// 1. Sign up at https://www.emailjs.com/
-// 2. Create a new service (Gmail, Outlook, etc.)
-// 3. Create an email template
-// 4. Replace the values below with your actual EmailJS credentials
+// Zoho SMTP Configuration
+// The actual SMTP connection is handled server-side in /api/send-email.js
+// Set the following environment variables in Vercel Dashboard > Project Settings > Environment Variables:
+//
+//   ZOHO_EMAIL    = sales@kgstechwayservices.com
+//   ZOHO_PASSWORD = <your Zoho account password or App Password if 2FA is on>
+//
+// Zoho Free SMTP Settings:
+//   Host : smtp.zoho.in  (India) or smtp.zoho.com (global)
+//   Port : 587  (STARTTLS)
+//   Auth : Login (username + password)
 
 export const emailConfig = {
-  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_kgstechway',
-  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_contact',
-  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'your_public_key_here'
+  smtpHost: 'smtp.zoho.in',
+  smtpPort: 587,
+  fromEmail: 'sales@kgstechwayservices.com',
+  toEmail: 'sales@kgstechwayservices.com',
 };
-
-// Example email template for EmailJS:
-// Subject: New Contact Form Submission from {{from_name}}
-// 
-// You have received a new contact form submission:
-// 
-// Name: {{from_name}}
-// Email: {{from_email}}
-// Phone: {{phone}}
-// Company: {{company}}
-// Service Needed: {{service}}
-// Budget Range: {{budget}}
-// Timeline: {{timeline}}
-// 
-// Message:
-// {{message}}
-// 
-// Please respond to this inquiry as soon as possible.
