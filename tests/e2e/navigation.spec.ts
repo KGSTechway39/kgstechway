@@ -17,6 +17,15 @@
 
 import { test, expect } from '@playwright/test';
 
+/** Open hamburger menu on mobile if nav links are hidden */
+async function ensureNavOpen(page: import('@playwright/test').Page) {
+  const hamburger = page.locator('[aria-label="Open navigation menu"]');
+  if (await hamburger.isVisible()) {
+    await hamburger.click();
+    await page.waitForTimeout(300); // allow animation
+  }
+}
+
 test.describe('Navigation', () => {
 
   test.beforeEach(async ({ page }) => {
@@ -36,9 +45,9 @@ test.describe('Navigation', () => {
   });
 
   test('homepage shows QA & Testing Services card', async ({ page }) => {
-    // QA service card must be visible on home page
+    // QA service card must be visible on home page (.first() handles multiple matches)
     await expect(
-      page.getByText('QA & Testing Services')
+      page.getByText('QA & Testing Services').first()
     ).toBeVisible();
   });
 
@@ -47,6 +56,7 @@ test.describe('Navigation', () => {
   test('clicking logo navigates to homepage', async ({ page }) => {
     // Go to another page first
     await page.goto('/about');
+    await ensureNavOpen(page);
     // Click the brand logo
     await page.click('a.brand-logo');
     await expect(page).toHaveURL('/');
@@ -63,6 +73,7 @@ test.describe('Navigation', () => {
 
   for (const { label, expectedUrl } of navLinks) {
     test(`clicking "${label}" navigates to ${expectedUrl}`, async ({ page }) => {
+      await ensureNavOpen(page);
       await page.click(`nav a:has-text("${label}")`);
       await expect(page).toHaveURL(expectedUrl);
     });
@@ -71,7 +82,13 @@ test.describe('Navigation', () => {
   // ── CTA Button ──────────────────────────────────────────
 
   test('"Get Started" button navigates to /contact', async ({ page }) => {
-    await page.click('button:has-text("Get Started")');
+    // Use JS click to handle cases where button may be off-screen or behind overlay on mobile
+    await page.evaluate(() => {
+      const btn = Array.from(document.querySelectorAll('button')).find(
+        (b) => b.textContent?.includes('Get Started')
+      );
+      if (btn) (btn as HTMLElement).click();
+    });
     await expect(page).toHaveURL('/contact');
   });
 

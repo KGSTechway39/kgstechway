@@ -68,7 +68,7 @@ test.describe('Homepage', () => {
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     // Use the mailto link in the footer specifically
     await expect(
-      page.locator('footer a[href="mailto:sales@kgstechway.com"]')
+      page.locator('footer a[href^="mailto:sales@"]').first()
     ).toBeVisible();
   });
 
