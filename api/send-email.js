@@ -24,13 +24,14 @@ export default async function handler(req, res) {
   }
 
   const transporter = nodemailer.createTransport({
-    host: 'smtp.zoho.in',
+    host: 'smtp.zoho.com',
     port: 587,
-    secure: false, // STARTTLS
+    secure: false,
     auth: {
       user: process.env.ZOHO_EMAIL,
       pass: process.env.ZOHO_PASSWORD,
     },
+    tls: { rejectUnauthorized: false },
   });
 
   const mailOptions = {

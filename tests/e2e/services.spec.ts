@@ -61,7 +61,7 @@ test.describe('QA & Testing Services Detail Page', () => {
   });
 
   test('Playwright spotlight section is visible', async ({ page }) => {
-    await expect(page.getByText('Powered by')).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Powered by Playwright/i })).toBeVisible();
     await expect(page.getByText('Playwright').first()).toBeVisible();
   });
 

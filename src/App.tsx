@@ -8,6 +8,7 @@ import LoadingSpinner from './components/LoadingSpinner';
 import ErrorBoundary from './components/ErrorBoundary';
 import PerformanceMonitor from './components/PerformanceMonitor';
 import { SkipNavigation } from './hooks/useFocusManagement';
+import ChatBot from './components/ChatBot';
 import './App.css';
 import { Analytics } from '@vercel/analytics/react';
 import CloudDevOpsPage from './pages/CloudDevOpsPage';
@@ -70,6 +71,7 @@ const ThemeWrapper = () => {
               <Footer />
             </Suspense>
           </ErrorBoundary>
+          <ChatBot />
         </div>
       </ErrorBoundary>
     </Router>

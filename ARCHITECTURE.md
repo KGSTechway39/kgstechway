@@ -1,7 +1,7 @@
 # KGS Techway — Project Architecture & Developer Guide
 
 > **Production-Ready • Beginner-Friendly • PDF-Convertible**
-> Version 1.0 | Last Updated: April 2026
+> Version 2.0 | Last Updated: April 2026
 
 ---
 
@@ -18,28 +18,32 @@
 9. [Best Practices Used](#9-best-practices-used)
 10. [Adding a New Service Page](#10-adding-a-new-service-page)
 11. [Environment Variables](#11-environment-variables)
-12. [Future Enhancements](#12-future-enhancements)
-13. [Glossary for Freshers](#13-glossary-for-freshers)
+12. [AI Chatbot (Groq)](#12-ai-chatbot-groq)
+13. [SEO Architecture](#13-seo-architecture)
+14. [Deployment Guide](#14-deployment-guide)
+15. [Future Enhancements](#15-future-enhancements)
+16. [Glossary for Freshers](#16-glossary-for-freshers)
 
 ---
 
 ## 1. PROJECT OVERVIEW
 
-**KGS Techway** is the official marketing and services website for KGS Techway — a technology company offering software development, AI solutions, QA & testing, cloud DevOps, CRM/ERP, mobile development, and staff augmentation services.
+**KGS Techway** is the official marketing and services website for KGS Techway Services — a technology company offering software development, AI solutions, QA & testing, cloud DevOps, CRM/ERP, mobile development, and staff augmentation services.
 
 ### What this project does
 
-- Presents the company's services to potential clients
+- Presents the company's 8 core services to potential clients
 - Provides a contact form so visitors can request consultations
 - Sends enquiry emails to `sales@kgstechway.com` via Web3Forms (free email API)
+- Powers an always-on AI chatbot assistant (Groq / Llama 3.3 70B)
 - Shows the technology stack the company works with
-- Optimised for SEO (search engine ranking)
+- Optimised for SEO (structured data, Open Graph, FAQ schema, LocalBusiness schema)
 
 ### Who will use this project
 
 | Person | How they use it |
 |--------|----------------|
-| Potential clients | Browse services, submit contact form |
+| Potential clients | Browse services, submit contact form, chat with AI assistant |
 | Search engines | Index pages via structured data and meta tags |
 | Developers | Build and extend the site |
 | Freshers | Use as a real-world React + TypeScript reference |
@@ -84,11 +88,19 @@
 |------|-----|
 | **Web3Forms** | Free email API (100 submissions/month). Contact form sends a POST request and emails land in `sales@kgstechway.com`. No backend server needed. |
 
+### AI Chatbot
+
+| Tool | Why |
+|------|-----|
+| **Groq SDK** | Ultra-fast LLM inference API. Free tier: 14,400 requests/day. Powers the KGS AI Assistant. |
+| **Llama 3.3 70B** | Open-source LLM by Meta, served via Groq. Excellent for conversational Q&A about services. |
+| **Vercel Serverless** | `/api/chat.js` runs server-side so the Groq API key is never exposed to the browser. |
+
 ### Testing
 
 | Tool | Why |
 |------|-----|
-| **Playwright** | Microsoft's browser automation framework. Considered the gold standard for E2E (end-to-end) web testing. Tests run in real Chromium, Firefox, and WebKit browsers. |
+| **Playwright** | Microsoft's browser automation framework. Considered the gold standard for E2E (end-to-end) web testing. Tests run in real Chromium and WebKit (Mobile Safari) browsers. |
 
 ### Hosting & Analytics
 
@@ -103,86 +115,100 @@
 
 ```
 kgstechway/
-├── src/                          ← All source code lives here
+├── api/                              ← Vercel Serverless Functions (Node.js ESM)
+│   ├── chat.js                       ← AI chatbot endpoint: POST /api/chat
+│   └── send-email.js                 ← Legacy SMTP handler (kept, not used for contact form)
+│
+├── src/                              ← All React source code lives here
 │   │
 │   ├── types/
-│   │   └── index.ts              ← TypeScript interfaces for the whole app
-│   │                               (RootState, Service, Feature, FormData, etc.)
+│   │   └── index.ts                  ← TypeScript interfaces for the whole app
 │   │
 │   ├── constants/
-│   │   ├── company.ts            ← Company info, email, phone, URLs, routes
-│   │   └── theme.ts              ← Brand colors, gradients, animation presets
+│   │   ├── company.ts                ← Company info, email, phone, URLs, routes
+│   │   └── theme.ts                  ← Brand colors, gradients, animation presets
 │   │
 │   ├── hooks/
-│   │   ├── useTheme.ts           ← Typed Redux selector for theme state
-│   │   ├── useNavigation.ts      ← Typed selector + goTo / goToContact helpers
-│   │   └── useFocusManagement.tsx← Keyboard navigation & accessibility
+│   │   ├── useTheme.ts               ← Typed Redux selector for theme state
+│   │   ├── useNavigation.ts          ← Typed selector + goTo / goToContact helpers
+│   │   └── useFocusManagement.tsx    ← Keyboard navigation & accessibility
 │   │
 │   ├── store/
-│   │   ├── index.ts              ← Creates the Redux store
-│   │   ├── themeSlice.ts         ← Dark mode + brand colors state
-│   │   └── navigationSlice.ts    ← Active section, scroll, menu state
+│   │   ├── index.ts                  ← Creates the Redux store
+│   │   ├── themeSlice.ts             ← Dark mode + brand colors state
+│   │   └── navigationSlice.ts        ← Active section, scroll, menu state
 │   │
-│   ├── components/               ← Reusable UI components (used across pages)
-│   │   ├── Header.tsx            ← Top navigation bar
-│   │   ├── Footer.tsx            ← Bottom footer
-│   │   ├── BrandLogo.tsx         ← SVG logo + "KGS Techway" wordmark
-│   │   ├── HeroSection.tsx       ← Landing page hero (typewriter + CTA)
-│   │   ├── ServicesSection.tsx   ← 8 service cards grid
-│   │   ├── TechStackSection.tsx  ← Technology categories with pill UI
-│   │   ├── HowWeWorkSection.tsx  ← 6-step process visualization
-│   │   ├── ContactSection.tsx    ← Contact form with Web3Forms integration
-│   │   ├── SEO.tsx               ← Meta tags and structured data (JSON-LD)
-│   │   ├── ErrorBoundary.tsx     ← Catches React render errors gracefully
-│   │   └── LoadingSpinner.tsx    ← Shown while lazy-loaded pages load
+│   ├── components/                   ← Reusable UI components (used across pages)
+│   │   ├── Header.tsx                ← Top navigation bar
+│   │   ├── Footer.tsx                ← Bottom footer
+│   │   ├── BrandLogo.tsx             ← SVG logo + "KGS Techway" wordmark
+│   │   ├── HeroSection.tsx           ← Landing page hero (typewriter + CTA)
+│   │   ├── ServicesSection.tsx       ← 8 service cards grid
+│   │   ├── TechStackSection.tsx      ← Technology categories with pill UI
+│   │   ├── HowWeWorkSection.tsx      ← 6-step process visualization
+│   │   ├── ContactSection.tsx        ← Contact form with Web3Forms integration
+│   │   ├── ChatBot.tsx               ← AI chatbot bubble + chat window (always open)
+│   │   ├── ChatBot.css               ← Chatbot styles (gradient design, animations)
+│   │   ├── SEO.tsx                   ← Meta tags and structured data (JSON-LD)
+│   │   ├── ErrorBoundary.tsx         ← Catches React render errors gracefully
+│   │   └── LoadingSpinner.tsx        ← Shown while lazy-loaded pages load
 │   │
-│   ├── pages/                    ← One file per route / page
-│   │   ├── HomePage.tsx          ← / (root route)
-│   │   ├── ServicesPage.tsx      ← /services
-│   │   ├── AboutPage.tsx         ← /about
-│   │   ├── TechnologyPage.tsx    ← /technology
-│   │   ├── ContactPage.tsx       ← /contact
-│   │   ├── QAServicesPage.tsx    ← /services/qa-testing  ★ most complex
-│   │   ├── AISolutionsPage.tsx   ← /services/ai-solutions
-│   │   ├── AgenticAIPage.tsx     ← /services/agentic-ai
-│   │   ├── CloudDevOpsPage.tsx   ← /services/cloud-devops
-│   │   ├── CRMERPServicesPage.tsx← /services/crm-erp
+│   ├── pages/                        ← One file per route / page
+│   │   ├── HomePage.tsx              ← / (root route)
+│   │   ├── ServicesPage.tsx          ← /services
+│   │   ├── AboutPage.tsx             ← /about
+│   │   ├── TechnologyPage.tsx        ← /technology
+│   │   ├── ContactPage.tsx           ← /contact
+│   │   ├── QAServicesPage.tsx        ← /services/qa-testing  ★ most complex
+│   │   ├── AISolutionsPage.tsx       ← /services/ai-solutions
+│   │   ├── AgenticAIPage.tsx         ← /services/agentic-ai
+│   │   ├── CloudDevOpsPage.tsx       ← /services/cloud-devops
+│   │   ├── CRMERPServicesPage.tsx    ← /services/crm-erp
 │   │   ├── MobileDevelopmentPage.tsx ← /services/mobile-development
 │   │   ├── SoftwareProductDevelopmentPage.tsx ← /services/software-development
 │   │   └── StaffAugmentationPage.tsx ← /services/staff-augmentation
 │   │
 │   ├── utils/
-│   │   └── seoUtils.ts           ← Generates JSON-LD structured data for SEO
+│   │   └── seoUtils.ts               ← Generates JSON-LD structured data for SEO
 │   │
 │   ├── config/
-│   │   └── emailConfig.ts        ← Legacy EmailJS config (now replaced by Web3Forms)
+│   │   └── emailConfig.ts            ← SMTP config reference (Zoho, currently unused)
 │   │
-│   ├── App.tsx                   ← Root component: Redux provider + Router + Routes
-│   ├── main.tsx                  ← Entry point: ReactDOM.createRoot(...)
-│   ├── index.css                 ← Global CSS (CSS reset, fonts, base styles)
-│   └── App.css                   ← App-level layout CSS
+│   ├── App.tsx                       ← Root component: Redux provider + Router + ChatBot
+│   ├── main.tsx                      ← Entry point: ReactDOM.createRoot(...)
+│   ├── index.css                     ← Global CSS (CSS reset, fonts, base styles)
+│   └── App.css                       ← App-level layout CSS
+│
+├── public/                           ← Static files served as-is
+│   ├── robots.txt                    ← Search engine crawl rules
+│   ├── sitemap.xml                   ← Main sitemap
+│   ├── sitemap-pages.xml             ← Page-level sitemap
+│   ├── sitemap-services.xml          ← Services sitemap
+│   ├── manifest.json                 ← PWA manifest
+│   └── site.webmanifest              ← Web app manifest for mobile
 │
 ├── tests/
-│   └── e2e/                      ← Playwright end-to-end tests
-│       ├── homepage.spec.ts      ← Homepage + branding + footer tests
-│       ├── navigation.spec.ts    ← Header navigation + routing tests
-│       ├── contact-form.spec.ts  ← Form validation + submission tests
-│       └── services.spec.ts      ← Service pages + CTA button tests
+│   └── e2e/                          ← Playwright end-to-end tests
+│       ├── homepage.spec.ts          ← Homepage + branding + footer tests
+│       ├── navigation.spec.ts        ← Header navigation + routing tests
+│       ├── contact-form.spec.ts      ← Form validation + submission tests
+│       └── services.spec.ts          ← Service pages + CTA button tests
 │
-├── playwright.config.ts          ← Playwright browser & server configuration
-├── playwright-report/            ← Generated HTML test report (git-ignored)
-├── .env                          ← Secret environment variables (git-ignored)
-├── .env.example                  ← Template showing which variables are needed
-├── vite.config.ts                ← Build configuration (code splitting, security headers)
-├── tsconfig.json                 ← TypeScript compiler settings
-├── package.json                  ← Dependencies and npm scripts
-└── ARCHITECTURE.md               ← This file
+├── index.html                        ← Entry HTML with full SEO meta tags + JSON-LD schemas
+├── playwright.config.ts              ← Playwright: Chromium + Mobile Safari
+├── vercel.json                       ← SPA routing rewrite rules
+├── .env                              ← Secret environment variables (git-ignored)
+├── vite.config.ts                    ← Build configuration
+├── tsconfig.json                     ← TypeScript compiler settings
+├── package.json                      ← Dependencies and npm scripts
+└── ARCHITECTURE.md                   ← This file
 ```
 
 ### Purpose of Each Folder — For Freshers
 
 | Folder | Analogy | What Goes In It |
 |--------|---------|-----------------|
+| `api/` | Backend server | Serverless functions — run on Vercel's servers, not the browser |
 | `types/` | Blueprint | TypeScript interfaces — defines the *shape* of your data |
 | `constants/` | Settings file | Values that don't change: company name, colors, routes |
 | `hooks/` | Helpers | Reusable React logic extracted from components |
@@ -211,21 +237,33 @@ index.html
                  │    │    ├─ /services → ServicesPage
                  │    │    └─ /services/qa-testing → QAServicesPage
                  │    └─ Footer (always visible)
+                 ├─ ChatBot (always visible — floating bubble + chat window)
                  └─ Supporting: ErrorBoundary, PerformanceMonitor, Analytics
 ```
 
-### Data Flow
+### Data Flow — Contact Form
 
 ```
-User action (click "Contact")
-  → Header dispatches navigate('/contact')
-  → React Router updates the URL
-  → ContactPage component renders
-  → ContactSection shows the form
-  → User fills form + submits
-  → Web3Forms API called (POST request)
-  → Email delivered to sales@kgstechway.com
-  → Success alert shown to user
+User fills form + clicks "Send Message"
+  → handleSubmit() in ContactSection.tsx
+  → validateField() checks required fields
+  → If errors → inline messages shown, stop
+  → If valid → fetch POST to https://api.web3forms.com/submit
+  → Web3Forms API forwards email to sales@kgstechway.com
+  → Success or error alert shown to user
+```
+
+### Data Flow — AI Chatbot
+
+```
+User types message in ChatBot.tsx
+  → sendMessage() called
+  → fetch POST to /api/chat (Vercel serverless function)
+  → api/chat.js receives { message, history }
+  → Groq SDK calls Llama 3.3 70B with KGS system prompt
+  → Bot reply returned as { reply: "..." }
+  → formatBotText() renders markdown → bullet points, bold text
+  → Message appended to chat history
 ```
 
 ### State Management (Redux)
@@ -233,16 +271,16 @@ User action (click "Contact")
 ```
 Redux Store
   ├── theme
-  │     ├── isDarkMode: true        ← Controls dark/light class on all components
-  │     ├── primaryColor: '#00C896' ← Brand teal used on buttons / accents
+  │     ├── isDarkMode: true         ← Controls dark/light class on all components
+  │     ├── primaryColor: '#00C896'  ← Brand teal used on buttons / accents
   │     ├── secondaryColor: '#007A5E'
   │     └── accentColor: '#4DFFD8'
   │
   └── navigation
-        ├── activeSection: 'home'   ← Which nav item is highlighted
-        ├── isMenuOpen: false        ← Mobile hamburger state
-        ├── scrollY: 0               ← Current scroll position
-        └── isScrolled: false        ← Is header in compact scroll mode?
+        ├── activeSection: 'home'    ← Which nav item is highlighted
+        ├── isMenuOpen: false         ← Mobile hamburger state
+        ├── scrollY: 0                ← Current scroll position
+        └── isScrolled: false         ← Is header in compact scroll mode?
 ```
 
 ### Why Lazy Loading?
@@ -273,8 +311,8 @@ git --version     # For version control
 ### Step 1 — Clone the project
 
 ```bash
-git clone https://github.com/kgstechway/website.git
-cd website/kgstechway
+git clone https://github.com/KGSTechway39/kgstechway.git
+cd kgstechway
 ```
 
 ### Step 2 — Install dependencies
@@ -291,10 +329,11 @@ This reads `package.json` and downloads all libraries into `node_modules/`.
 cp .env.example .env
 ```
 
-Then edit `.env` and add your real Web3Forms key:
+Then edit `.env` and add your real keys:
 
 ```bash
-VITE_WEB3FORMS_ACCESS_KEY=your_actual_key_here
+VITE_WEB3FORMS_ACCESS_KEY=your_web3forms_key_here
+GROQ_API_KEY=your_groq_api_key_here
 ```
 
 **How to get a Web3Forms key (free):**
@@ -302,15 +341,17 @@ VITE_WEB3FORMS_ACCESS_KEY=your_actual_key_here
 2. Enter `sales@kgstechway.com`
 3. Click "Create Access Key"
 4. Check email for the key
-5. Paste into `.env`
+
+**How to get a Groq API key (free):**
+1. Go to https://console.groq.com/
+2. Sign up and create an API key
+3. Free tier: 14,400 requests/day
 
 ### Step 4 — Install Playwright browsers
 
 ```bash
 npx playwright install chromium
 ```
-
-This downloads the Chromium browser engine used by tests.
 
 ---
 
@@ -322,7 +363,7 @@ This downloads the Chromium browser engine used by tests.
 npm run dev
 ```
 
-Opens at **http://localhost:3000** with hot reload — changes appear instantly without refreshing.
+Opens at **http://localhost:3000** with hot reload.
 
 ### Production Build
 
@@ -338,15 +379,13 @@ Creates optimised files in `dist/`. This is what gets deployed.
 npm run preview
 ```
 
-Opens the production build at http://localhost:4173 — test exactly what Vercel will serve.
+Opens the production build at http://localhost:4173.
 
 ### Lint (code quality check)
 
 ```bash
 npm run lint
 ```
-
-Catches unused variables, bad patterns, and TypeScript errors.
 
 ---
 
@@ -386,24 +425,20 @@ npm run test:services  # Service pages tests
 | `contact-form.spec.ts` | Validation errors, success/failure states, API mocking |
 | `services.spec.ts` | Service cards, detail pages, CTA buttons on all service pages |
 
-### Understanding Test Output
+### Browsers Tested
 
-```
-✓ homepage loads and shows hero title        (1.2s)
-✓ logo shows "KGS Techway"                  (0.8s)
-✗ footer copyright shows "KGS Techway"      ← FAILED
-    Expected: contains "KGS Techway"
-    Received: "KGSTechway. All rights reserved."
-```
-
-A red `✗` means the test caught a real bug — fix the code, re-run.
+| Browser | Device | Status |
+|---------|--------|--------|
+| Chromium | Desktop | ✅ Active |
+| WebKit | Mobile Safari (iPhone 12) | ✅ Active |
+| Firefox | — | Removed (not required) |
 
 ### API Mocking in Tests
 
 Contact form tests use `page.route()` to intercept API calls:
 
 ```typescript
-// This intercepts the REAL API call and returns fake data
+// Intercepts the REAL API call and returns fake data
 await page.route('https://api.web3forms.com/submit', async (route) => {
   await route.fulfill({
     status: 200,
@@ -414,23 +449,6 @@ await page.route('https://api.web3forms.com/submit', async (route) => {
 
 **Why mock?** Tests run without internet. No real emails sent. Tests are fast and deterministic.
 
-### Writing a New Test
-
-```typescript
-import { test, expect } from '@playwright/test';
-
-test('my new feature works', async ({ page }) => {
-  // 1. Navigate to the page
-  await page.goto('/services');
-
-  // 2. Interact with it
-  await page.click('button:has-text("Learn More")');
-
-  // 3. Assert the expected result
-  await expect(page).toHaveURL('/services/ai-solutions');
-});
-```
-
 ---
 
 ## 8. CODE FLOW EXPLANATION
@@ -439,96 +457,79 @@ test('my new feature works', async ({ page }) => {
 
 ```
 1. Browser requests http://localhost:3000/services/qa-testing
-2. Vite serves index.html (single page, always the same HTML)
-3. React boots in the browser, Redux store initialises
-4. React Router reads the URL: /services/qa-testing
-5. Routes component finds: <Route path="/services/qa-testing" element={<QAServicesPage />} />
+2. Vite serves index.html (single page app)
+3. React boots, Redux store initialises
+4. React Router reads URL: /services/qa-testing
+5. Routes finds: <Route path="/services/qa-testing" element={<QAServicesPage />} />
 6. QAServicesPage is lazy-loaded (downloaded now, not before)
 7. Suspense shows <LoadingSpinner> while downloading
-8. QAServicesPage renders:
-   a. useTheme() → gets isDarkMode from Redux → applies CSS class
-   b. Renders Hero section, Feature cards, Playwright Spotlight
-   c. Framer Motion adds scroll-reveal animations
-9. Header is always visible above, Footer always below
+8. QAServicesPage renders with dark mode + scroll animations
 ```
 
-### Request: User submits contact form
+### Request: User chats with AI Assistant
 
 ```
-1. User fills Name, Email, Service, Message
-2. Clicks "Send Message"
-3. handleSubmit() runs in ContactSection.tsx
-4. validateField() checks each required field
-5. If errors → show inline error messages, stop
-6. If valid → setIsSubmitting(true) → button shows "Sending..."
-7. fetch('https://api.web3forms.com/submit', { method: 'POST', body: {...} })
-8. Web3Forms API processes the request
-9. Email delivered to sales@kgstechway.com
-10. result.success === true → success alert shown → form reset
-11. result.success === false → error alert shown
+1. ChatBot.tsx renders as open (isOpen = true by default)
+2. User types a question and hits Enter
+3. sendMessage() adds user message to state
+4. fetch POST to /api/chat with { message, history }
+5. Vercel routes request to api/chat.js serverless function
+6. Groq SDK sends message to Llama 3.3 70B with KGS system prompt
+7. Model returns formatted response (bullet points, bold text)
+8. api/chat.js returns { reply: "..." }
+9. ChatBot.tsx receives reply, passes to formatBotText()
+10. formatBotText() parses markdown: **bold** → <strong>, - item → <li>
+11. Rendered message appended to chat window
 ```
 
 ### How Dark Mode Works
 
 ```
-1. Redux store initialises: isDarkMode = true (always dark by default)
+1. Redux store initialises: isDarkMode = true (locked to dark)
 2. ThemeWrapper reads isDarkMode
 3. Sets: document.documentElement.setAttribute('data-theme', 'dark')
 4. Every component reads isDarkMode from useTheme()
-5. Applies CSS class: className={`feature-card ${isDarkMode ? 'dark' : 'light'}`}
-6. CSS rules: .feature-card.dark { background: rgba(55,68,88,...); color: #eef7f4 }
-7. Dark mode ThemeToggle is hidden (commented out) — locked to dark
+5. Applies CSS class: className={`card ${isDarkMode ? 'dark' : 'light'}`}
 ```
 
 ---
 
 ## 9. BEST PRACTICES USED
 
-### 1. Single Source of Truth for Constants
+### 1. Serverless API for Secret Keys
+
+The Groq API key is **never exposed to the browser**. It lives only in Vercel's environment variables and is accessed inside `/api/chat.js` which runs server-side:
+
+```javascript
+// api/chat.js — runs on Vercel servers, NOT in the browser
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+```
+
+### 2. Single Source of Truth for Constants
 
 ```typescript
 // src/constants/company.ts
 export const COMPANY = {
   contact: { email: 'sales@kgstechway.com' }
 };
-
-// Usage everywhere:
-<span>{COMPANY.contact.email}</span>
-// NOT: <span>sales@kgstechway.com</span>  ← hardcoded = error-prone
 ```
 
-### 2. Custom Hooks Instead of Repeated useSelector
+### 3. Custom Hooks Instead of Repeated useSelector
 
 ```typescript
-// Before (anti-pattern — repeated 25+ times):
-const { isDarkMode } = useSelector((state: any) => state.theme);
-
-// After (correct — typed, single definition):
+// Typed, single definition:
 const { isDarkMode } = useTheme();  // src/hooks/useTheme.ts
-```
-
-### 3. Typed Redux State — No `any`
-
-```typescript
-// WRONG — bypasses TypeScript
-const { isDarkMode } = useSelector((state: any) => state.theme);
-
-// CORRECT — type-safe
-import type { RootState } from '../types';
-const { isDarkMode } = useSelector((state: RootState) => state.theme);
 ```
 
 ### 4. Lazy Loading for Performance
 
 ```typescript
-// Only downloads QAServicesPage.js when user visits /services/qa-testing
 const QAServicesPage = lazy(() => import('./pages/QAServicesPage'));
 ```
 
 ### 5. Error Boundaries
 
 ```tsx
-// Catches crashes in child components and shows a fallback UI
 <ErrorBoundary fallback={<LoadingSpinner text="Failed to load page..." />}>
   <Suspense><Routes>...</Routes></Suspense>
 </ErrorBoundary>
@@ -538,20 +539,14 @@ const QAServicesPage = lazy(() => import('./pages/QAServicesPage'));
 
 | Concern | Where it lives |
 |---------|----------------|
-| Data / state | `store/` slices |
+| AI chatbot backend | `api/chat.js` (serverless) |
+| AI chatbot UI | `src/components/ChatBot.tsx` |
+| Contact form | `src/components/ContactSection.tsx` |
+| Global state | `store/` slices |
 | Business logic | `hooks/` |
-| UI rendering | `components/` and `pages/` |
 | Config / constants | `constants/` |
 | Type definitions | `types/` |
-| Pure utilities | `utils/` |
 | Tests | `tests/` |
-
-### 7. API Mocking in Tests
-
-Never call real APIs in tests. Use `page.route()` to intercept and return controlled responses. This makes tests:
-- Fast (no network latency)
-- Reliable (no flaky external dependencies)
-- Safe (no real emails sent, no real data mutated)
 
 ---
 
@@ -564,56 +559,34 @@ Follow these steps to add a new service (e.g. "Blockchain Services"):
 ```typescript
 // src/constants/company.ts
 export const ROUTES = {
-  // ...existing routes
-  blockchain: '/services/blockchain',  // ADD THIS
+  blockchain: '/services/blockchain',
 };
 ```
 
-### Step 2 — Add the gradient
-
-```typescript
-// src/constants/theme.ts
-export const GRADIENTS = {
-  // ...existing
-  blockchain: 'linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)',
-};
-```
-
-### Step 3 — Create the page file
+### Step 2 — Create the page file
 
 Copy `MobileDevelopmentPage.tsx` as a template — it is the simplest service page.
 
-```bash
-cp src/pages/MobileDevelopmentPage.tsx src/pages/BlockchainPage.tsx
-```
-
-Edit the new file: update title, description, features array, hero dashboard.
-
-### Step 4 — Add to router (App.tsx)
+### Step 3 — Add to router (App.tsx)
 
 ```tsx
 const BlockchainPage = lazy(() => import('./pages/BlockchainPage'));
-
-// Inside <Routes>:
 <Route path={ROUTES.blockchain} element={<BlockchainPage />} />
 ```
 
-### Step 5 — Add to services listing
+### Step 4 — Add to services listing (ServicesSection.tsx)
 
 ```typescript
-// src/components/ServicesSection.tsx
 {
   title: 'Blockchain Services',
   route: ROUTES.blockchain,
   gradient: GRADIENTS.blockchain,
-  // ...
 }
 ```
 
-### Step 6 — Add a test
+### Step 5 — Add a test
 
 ```typescript
-// tests/e2e/services.spec.ts
 test('Blockchain page loads', async ({ page }) => {
   await page.goto('/services/blockchain');
   await expect(page.locator('h1')).toContainText('Blockchain');
@@ -624,39 +597,193 @@ test('Blockchain page loads', async ({ page }) => {
 
 ## 11. ENVIRONMENT VARIABLES
 
-All environment variables must start with `VITE_` to be accessible in the browser.
+### Local (.env file — git-ignored)
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `VITE_WEB3FORMS_ACCESS_KEY` | **Yes** | From web3forms.com — enables contact form emails |
+| Variable | Required | Where Used | Description |
+|----------|----------|-----------|-------------|
+| `VITE_WEB3FORMS_ACCESS_KEY` | Yes | Browser (ContactSection.tsx) | Contact form email delivery |
+| `GROQ_API_KEY` | Yes | Server (api/chat.js) | AI chatbot LLM access |
 
-### How to set up locally
+> `VITE_` prefix = embedded into the browser bundle at build time by Vite.
+> Variables **without** `VITE_` prefix are only available in server-side `api/` functions.
 
-```bash
-# 1. Copy the example file
-cp .env.example .env
+### Vercel (production)
 
-# 2. Edit .env and add real values
-VITE_WEB3FORMS_ACCESS_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+Set in Vercel Dashboard → Project → Settings → Environment Variables:
 
-# 3. Restart the dev server (required after .env changes)
-npm run dev
-```
-
-### How to set up on Vercel (production)
-
-1. Go to vercel.com → your project → Settings → Environment Variables
-2. Add `VITE_WEB3FORMS_ACCESS_KEY` with the production value
-3. Redeploy
+| Variable | Value |
+|----------|-------|
+| `VITE_WEB3FORMS_ACCESS_KEY` | Web3Forms key for `sales@kgstechway.com` |
+| `GROQ_API_KEY` | Groq API key (server-only, not exposed to browser) |
 
 ---
 
-## 12. FUTURE ENHANCEMENTS
+## 12. AI CHATBOT (GROQ)
+
+### Overview
+
+The KGS Assistant is a floating chat widget that uses Groq's inference API to answer questions about KGS Techway's services. It is always open when the page loads.
+
+### Architecture
+
+```
+ChatBot.tsx (React component)
+  ├─ State: messages[], input, isLoading, isOpen (default: true)
+  ├─ formatBotText() → renders markdown to JSX (bullet lists, bold)
+  └─ sendMessage() → POST /api/chat
+
+api/chat.js (Vercel Serverless Function)
+  ├─ Receives: { message: string, history: Message[] }
+  ├─ Builds messages array: [system prompt, ...history, user message]
+  ├─ Calls Groq SDK: groq.chat.completions.create(...)
+  ├─ Model: llama-3.3-70b-versatile
+  └─ Returns: { reply: string }
+```
+
+### System Prompt
+
+The chatbot is given a comprehensive system prompt covering:
+- All 8 KGS services with technologies
+- Full technology stack
+- Contact details (`sales@kgstechway.com`, `+91 8248718780`)
+- Engagement models
+- Response formatting rules (bullet points, bold text, 150-word limit)
+
+The bot is instructed **not** to answer questions unrelated to KGS Techway or technology.
+
+### Markdown Formatting
+
+The `formatBotText()` function in `ChatBot.tsx` parses the bot's plain-text response and renders:
+
+| Markdown | Rendered As |
+|----------|-------------|
+| `**bold**` | `<strong>` element |
+| `- item` or `• item` | `<ul><li>` bullet list |
+| `1. item` | `<ul><li>` list (styled) |
+| `# Heading` | `<p class="bot-heading">` |
+| Blank line | Paragraph break |
+
+### Design
+
+- **Color scheme:** Indigo-to-cyan gradient (`#6366f1` → `#0ea5e9`)
+- **Bubble:** Pulsing ring animation when closed
+- **Header:** Gradient with shimmer overlay, blinking green status dot
+- **Messages:** Rounded bubbles — bot uses light/dark background, user uses gradient
+- **Input:** Rounded pill input with focus ring
+
+### Groq Free Tier Limits
+
+| Metric | Limit |
+|--------|-------|
+| Requests per day | 14,400 |
+| Requests per minute | 30 |
+| Tokens per minute | 6,000 |
+| Max tokens per response | 500 (configured) |
+
+---
+
+## 13. SEO ARCHITECTURE
+
+### Meta Tags (`index.html`)
+
+| Tag | Purpose |
+|-----|---------|
+| `<title>` | Primary search engine title — includes location and services |
+| `meta description` | 160-char summary shown in Google results |
+| `meta keywords` | Long-tail keywords including location (Krishnagiri, Tamil Nadu) |
+| `meta robots` | `index, follow, max-snippet:-1, max-image-preview:large` |
+| Open Graph tags | Facebook/LinkedIn share cards |
+| Twitter Card tags | Twitter share cards |
+| Canonical URL | Prevents duplicate content issues |
+
+### Structured Data (JSON-LD Schemas)
+
+| Schema | What it tells Google |
+|--------|---------------------|
+| `Organization` + `LocalBusiness` | Company name, address, phone, hours, services, social links |
+| `ItemList` (8 items) | All 8 KGS services with descriptions |
+| `WebSite` | Site name, URL, search action |
+| `FAQPage` (7 questions) | Common questions about services, location, pricing |
+| `BreadcrumbList` | Site navigation structure |
+| `AggregateRating` + `Review` | Star rating and customer reviews for rich snippets |
+
+### Geographic SEO
+
+```html
+<meta name="geo.region" content="IN-TN" />
+<meta name="geo.placename" content="Krishnagiri" />
+<meta name="geo.position" content="12.5186;78.2137" />
+```
+
+### Sitemaps
+
+| File | Contents |
+|------|----------|
+| `public/sitemap.xml` | Master sitemap pointing to sub-sitemaps |
+| `public/sitemap-pages.xml` | Main pages (home, about, services, contact) |
+| `public/sitemap-services.xml` | All 8 service detail pages |
+
+### Content Security Policy
+
+```
+default-src 'self'
+connect-src 'self' https://api.web3forms.com https://api.groq.com
+img-src 'self' https: data:
+style-src 'self' 'unsafe-inline' https://fonts.googleapis.com
+font-src 'self' https://fonts.gstatic.com
+script-src 'self' 'unsafe-inline'
+```
+
+---
+
+## 14. DEPLOYMENT GUIDE
+
+### Vercel (Production)
+
+The project is deployed to Vercel. The Vercel project is named `kgstechway` under the `kgstechwayservices-7131s-projects` team.
+
+**Deploy via CLI:**
+```bash
+npx vercel --prod --token YOUR_VERCEL_TOKEN
+```
+
+**Auto-deploy:** Every push to `main` on GitHub triggers a new Vercel deployment automatically (if connected).
+
+### vercel.json
+
+```json
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```
+
+This is critical for Single Page Apps (SPAs). Without it, refreshing `/services/qa-testing` would return a 404 from Vercel because that file doesn't exist — only `index.html` does. The rewrite sends all requests to `index.html` and React Router handles the URL internally.
+
+### Serverless Functions
+
+Files in the `/api` directory are automatically deployed as Vercel Serverless Functions:
+
+| File | URL | Method |
+|------|-----|--------|
+| `api/chat.js` | `/api/chat` | POST |
+| `api/send-email.js` | `/api/send-email` | POST |
+
+These run as Node.js on Vercel's servers — the browser never sees the API keys.
+
+### Custom Domain
+
+To add `kgstechway.com` as the production domain:
+1. Go to vercel.com → Project → Settings → Domains
+2. Add `kgstechway.com`
+3. Update DNS at your domain registrar to point to Vercel's nameservers
+
+---
+
+## 15. FUTURE ENHANCEMENTS
 
 ### Priority 1 — Quality
 - [ ] Replace all remaining `any` types with proper interfaces from `src/types/`
 - [ ] Use `useTheme()` hook in all 25 components (currently only App.tsx updated)
-- [ ] Add `useAppNavigation()` hook in all service pages (replaces `goToContact`)
 - [ ] Add Vitest unit tests for Redux slices and utility functions
 - [ ] Add form validation library (React Hook Form) for cleaner validation logic
 
@@ -665,23 +792,24 @@ npm run dev
 - [ ] Blog section with markdown-based articles
 - [ ] Case studies / portfolio pages
 - [ ] Careers page with job listings
-- [ ] Live chat widget integration
+- [ ] Chatbot conversation history persistence (localStorage)
+- [ ] Chatbot escalation to human (link to contact form)
 
 ### Priority 3 — Performance & SEO
 - [ ] Image optimisation with WebP format
 - [ ] Service Worker for offline support (PWA)
-- [ ] Automated lighthouse CI check on every PR
-- [ ] Sitemap auto-generation on build
+- [ ] Automated Lighthouse CI check on every PR
+- [ ] Web3Forms upgrade to 250/month plan for higher email volume
 
 ### Priority 4 — Testing
 - [ ] Visual regression tests with Playwright screenshots
-- [ ] Cross-browser tests on Firefox and Safari (currently Chromium only in dev)
 - [ ] Accessibility (a11y) tests using axe-playwright
 - [ ] Performance budget tests (page load < 3s)
+- [ ] Chatbot response quality tests (mock Groq API)
 
 ---
 
-## 13. GLOSSARY FOR FRESHERS
+## 16. GLOSSARY FOR FRESHERS
 
 | Term | Plain English Explanation |
 |------|--------------------------|
@@ -693,16 +821,17 @@ npm run dev
 | **Route** | A URL path mapped to a component. `/about` → `AboutPage`. |
 | **Lazy loading** | Only downloading code when it's needed, not all at once. |
 | **TypeScript** | JavaScript with types. `let name: string = 'John'` — the compiler ensures `name` is always a string. |
-| **Interface** | A TypeScript blueprint. Defines what properties an object must have. |
+| **Serverless Function** | A small backend script that runs on a server (Vercel) without you managing the server. Lives in `/api/`. |
+| **LLM** | Large Language Model — an AI that generates human-like text. Groq runs Llama 3.3 70B for us. |
+| **Groq** | An AI inference API — extremely fast at running LLMs. Free tier: 14,400 requests/day. |
+| **Web3Forms** | A free service that receives form submissions and forwards them to your email. |
+| **JSON-LD** | A way to embed structured data in HTML so Google can understand your business better. |
 | **E2E test** | A test that opens a real browser, clicks buttons, and checks what the user sees. |
 | **Mock** | A fake replacement for a real API/service used during tests so tests don't need internet. |
-| **Build** | Compiling and bundling code into files a browser can load efficiently. |
-| **Hot reload** | When you save a file in dev mode, the browser updates instantly without manual refresh. |
-| **SEO** | Search Engine Optimisation — techniques that help Google find and rank your site. |
-| **Structured data** | JSON-LD code embedded in pages that tells Google exactly what your business is. |
-| **Web3Forms** | A free service that receives form submissions and forwards them to your email. |
+| **Vercel** | A hosting platform that deploys React apps with one command and auto-SSL. |
+| **CSP** | Content Security Policy — a browser security rule that controls which external URLs are allowed. |
 
 ---
 
-*This documentation was written to be readable by freshers and usable by senior engineers.
-Convert to PDF using: `pandoc ARCHITECTURE.md -o ARCHITECTURE.pdf --pdf-engine=wkhtmltopdf`*
+*Version 2.0 — Added AI Chatbot (Groq), advanced SEO schemas, serverless architecture, and updated environment variable docs.*
+*Convert to PDF: `pandoc ARCHITECTURE.md -o ARCHITECTURE.pdf --pdf-engine=wkhtmltopdf`*

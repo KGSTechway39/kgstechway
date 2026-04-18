@@ -17,6 +17,15 @@
 
 import { test, expect } from '@playwright/test';
 
+/** Close the AI chatbot window so it doesn't intercept pointer events */
+async function closeChatbot(page: import('@playwright/test').Page) {
+  const closeBtn = page.locator('.chatbot-close');
+  if (await closeBtn.isVisible()) {
+    await closeBtn.click();
+    await page.waitForTimeout(150);
+  }
+}
+
 /** Open hamburger menu on mobile if nav links are hidden */
 async function ensureNavOpen(page: import('@playwright/test').Page) {
   const hamburger = page.locator('[aria-label="Open navigation menu"]');
@@ -33,6 +42,8 @@ test.describe('Navigation', () => {
     await page.goto('/');
     // Wait until the page is fully loaded (no network activity)
     await page.waitForLoadState('networkidle');
+    // Close the chatbot so it doesn't block pointer events
+    await closeChatbot(page);
   });
 
   // ── Homepage ────────────────────────────────────────────
@@ -118,6 +129,8 @@ test.describe('Navigation', () => {
 
   test('"Back to Services" link works on service detail page', async ({ page }) => {
     await page.goto('/services/qa-testing');
+    await page.waitForLoadState('networkidle');
+    await closeChatbot(page);
     await page.click('a:has-text("Back to Services")');
     await expect(page).toHaveURL('/services');
   });

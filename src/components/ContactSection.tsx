@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '';
 import { 
   FaEnvelope, 
   FaPhone, 
@@ -101,10 +102,13 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/send-email', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New Enquiry from ${formData.name} — ${formData.service || 'KGS Techway Website'}`,
+          from_name: 'KGS Techway Website',
           name: formData.name,
           email: formData.email,
           phone: formData.phone || 'Not provided',
@@ -160,7 +164,7 @@ const ContactSection = () => {
     {
       icon: <FaEnvelope />,
       title: 'Email Us',
-      info: 'sales@kgstechwayservices.com',
+      info: 'sales@kgstechway.com',
       subInfo: 'We respond within 24 hours',
       color: '#0066cc'
     },
@@ -288,8 +292,8 @@ const ContactSection = () => {
                     >
                       <FaCheckCircle className="me-2" />
                       {alertType === 'success'
-                        ? 'Thank you! Your message has been sent successfully to sales@kgstechwayservices.com. We\'ll get back to you within 24 hours.'
-                        : 'Failed to send email. Please try again or contact us directly at sales@kgstechwayservices.com.'
+                        ? 'Thank you! Your message has been sent successfully to sales@kgstechway.com. We\'ll get back to you within 24 hours.'
+                        : 'Failed to send email. Please try again or contact us directly at sales@kgstechway.com.'
                       }
                     </Alert>
                   )}
