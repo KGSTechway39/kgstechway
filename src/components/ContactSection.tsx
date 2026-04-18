@@ -124,7 +124,7 @@ const ContactSection = () => {
             timeStyle: 'short',
           }),
         },
-        EMAILJS_PUBLIC_KEY
+        { publicKey: EMAILJS_PUBLIC_KEY }
       );
 
       setAlertType('success');
