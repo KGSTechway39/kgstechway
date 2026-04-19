@@ -142,11 +142,11 @@ const ContactSection = () => {
       setValidated(false);
       setErrors({ name: '', email: '', service: '', message: '' });
       setTimeout(() => setShowAlert(false), 5000);
-    } catch (error) {
+    } catch (error: any) {
       console.error('EmailJS Error:', error);
       setAlertType('danger');
       setShowAlert(true);
-      setTimeout(() => setShowAlert(false), 5000);
+      setTimeout(() => setShowAlert(false), 10000);
     } finally {
       setIsSubmitting(false);
     }
@@ -462,9 +462,6 @@ const ContactSection = () => {
                           </>
                         )}
                       </Button>
-                      <p className="form-note">
-                        By submitting this form, you agree to our privacy policy and terms of service.
-                      </p>
                     </div>
                   </Form>
                 </Card.Body>
