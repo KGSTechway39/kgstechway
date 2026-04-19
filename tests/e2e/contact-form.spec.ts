@@ -116,12 +116,12 @@ test.describe('Contact Form', () => {
   // ── Successful submission ─────────────────────────────────
 
   test('shows success alert after valid form submission', async ({ page }) => {
-    // Intercept the Web3Forms API call and return a mock success
-    await page.route('**/api.web3forms.com/submit', async (route) => {
+    // Intercept the EmailJS API call and return a mock success
+    await page.route('https://api.emailjs.com/**', async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
-        body: JSON.stringify({ success: true }),
+        body: JSON.stringify({ status: 200, text: 'OK' }),
       });
     });
 
@@ -136,11 +136,11 @@ test.describe('Contact Form', () => {
   // ── Form resets after success ─────────────────────────────
 
   test('form fields clear after successful submission', async ({ page }) => {
-    await page.route('**/api.web3forms.com/submit', async (route) => {
+    await page.route('https://api.emailjs.com/**', async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
-        body: JSON.stringify({ success: true }),
+        body: JSON.stringify({ status: 200, text: 'OK' }),
       });
     });
 
@@ -159,11 +159,11 @@ test.describe('Contact Form', () => {
   // ── API error handling ────────────────────────────────────
 
   test('shows error alert when API returns failure', async ({ page }) => {
-    await page.route('**/api.web3forms.com/submit', async (route) => {
+    await page.route('https://api.emailjs.com/**', async (route) => {
       await route.fulfill({
-        status: 200,
+        status: 400,
         contentType: 'application/json',
-        body: JSON.stringify({ success: false, message: 'Service unavailable' }),
+        body: JSON.stringify({ status: 400, text: 'Service unavailable' }),
       });
     });
 
@@ -177,12 +177,12 @@ test.describe('Contact Form', () => {
 
   test('submit button shows loading state during submission', async ({ page }) => {
     // Slow API response so we can catch the loading state
-    await page.route('**/api.web3forms.com/submit', async (route) => {
+    await page.route('https://api.emailjs.com/**', async (route) => {
       await new Promise((r) => setTimeout(r, 1500));
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
-        body: JSON.stringify({ success: true }),
+        body: JSON.stringify({ status: 200, text: 'OK' }),
       });
     });
 
