@@ -1,44 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="KGSTechway Services">
   <title>KGSTechway Services — Pathway Symbol</title>
-  <!--
-    KGSTechway Services — Pathway Icon
-    Three converging pathways representing Software Dev (red),
-    AI Solutions (orange), and CRM/ERP (gold), merging into one forward arrow.
-    Use at: 16×16 (favicon), 32×32, 64×64, 128×128, or any SVG scale.
-  -->
   <defs>
-    <!-- Arrow convergence gradient: warm red → orange -->
     <linearGradient id="kgt-arrow" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%"   stop-color="#E74C3C"/>
       <stop offset="100%" stop-color="#E67E22"/>
     </linearGradient>
-    <!-- Subtle drop shadow for depth at larger sizes -->
-    <filter id="kgt-shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="#00000026"/>
+    <filter id="kgt-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
   </defs>
 
-  <!-- ── Origin anchor dots (left side) ── -->
-  <!-- Top: Software Development — Warm Red -->
-  <circle cx="7" cy="13" r="5" fill="#E74C3C"/>
-  <!-- Middle: AI Solutions — Warm Orange -->
-  <circle cx="7" cy="32" r="5" fill="#E67E22"/>
-  <!-- Bottom: CRM/ERP Services — Gold -->
-  <circle cx="7" cy="51" r="5" fill="#F1C40F"/>
+  <!-- Dark circular background -->
+  <circle cx="32" cy="32" r="32" fill="#0D0D0D"/>
 
-  <!-- ── Converging pathway curves ── -->
-  <!-- Top path curves down-right toward the arrow -->
-  <path d="M 12,13 C 27,13 38,24 44,24"
+  <!-- Origin anchor dots -->
+  <circle cx="10" cy="16" r="4.5" fill="#E74C3C"/>
+  <circle cx="10" cy="32" r="4.5" fill="#E67E22"/>
+  <circle cx="10" cy="48" r="4.5" fill="#F1C40F"/>
+
+  <!-- Converging pathway curves -->
+  <path d="M 14.5,16 C 27,16 36,26 42,26"
         stroke="#E74C3C" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-  <!-- Middle path has a subtle S-curve for visual interest -->
-  <path d="M 12,32 C 23,30 35,34 44,32"
+  <path d="M 14.5,32 C 24,30 34,34 42,32"
         stroke="#E67E22" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-  <!-- Bottom path curves up-right toward the arrow -->
-  <path d="M 12,51 C 27,51 38,40 44,40"
+  <path d="M 14.5,48 C 27,48 36,38 42,38"
         stroke="#F1C40F" stroke-width="3.5" fill="none" stroke-linecap="round"/>
 
-  <!-- ── Convergence arrow ── -->
-  <!-- Back edge spans y=23 to y=41; tip at (57, 32) pointing right -->
-  <polygon points="44,23 57,32 44,41"
-           fill="url(#kgt-arrow)" filter="url(#kgt-shadow)"/>
+  <!-- Convergence arrow -->
+  <polygon points="42,25 54,32 42,39"
+           fill="url(#kgt-arrow)" filter="url(#kgt-glow)"/>
 </svg>

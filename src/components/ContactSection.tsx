@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import emailjs from '@emailjs/browser';
 
-const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID  || '';
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '';
-const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY  || '';
+const EMAILJS_SERVICE_ID  = 'service_4sqkw34';
+const EMAILJS_TEMPLATE_ID = 'template_2xyur1t';
+const EMAILJS_PUBLIC_KEY  = '-ByLMIkbG6ltvGCvY';
 import { 
   FaEnvelope, 
   FaPhone, 
