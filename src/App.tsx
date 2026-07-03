@@ -26,6 +26,8 @@ const SoftwareProductDevelopmentPage = lazy(() => import('./pages/SoftwareProduc
 const AISolutionsPage = lazy(() => import('./pages/AISolutionsPage'));
 const CRMERPServicesPage = lazy(() => import('./pages/CRMERPServicesPage'));
 const AgenticAIPage = lazy(() => import('./pages/AgenticAIPage'));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
+const TermsOfServicePage = lazy(() => import('./pages/TermsOfServicePage'));
 const Footer = lazy(() => import('./components/Footer'));
 
 // Theme wrapper component to apply theme data attribute
@@ -62,6 +64,10 @@ const ThemeWrapper = () => {
                   <Route path="/services/mobile-development" element={<MobileDevelopmentPage />} />
                   <Route path="/services/qa-testing" element={<QAServicesPage />} />
                   <Route path="/services/staff-augmentation" element={<StaffAugmentationPage />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+                  <Route path="/privacy-policy.html" element={<PrivacyPolicyPage />} />
+                  <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+                  <Route path="/terms-of-service.html" element={<TermsOfServicePage />} />
                 </Routes>
               </Suspense>
             </ErrorBoundary>

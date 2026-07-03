@@ -212,9 +212,25 @@ const Footer: React.FC = () => {
             </p>
           </Col>
           <Col md={6} className="text-md-end">
-            <small style={{ color: '#6e7681', fontSize: '0.82rem' }}>
-              Built with ❤️ using React &amp; TypeScript
-            </small>
+            <div className="d-flex align-items-center gap-2 justify-content-md-end mt-2 mt-md-0">
+              {[
+                { label: 'Privacy Policy', path: '/privacy-policy.html' },
+                { label: 'Terms of Service', path: '/terms-of-service.html' },
+              ].map(({ label, path }, index) => (
+                <React.Fragment key={label}>
+                  {index > 0 && (
+                    <span style={{ color: '#6e7681', fontSize: '0.82rem' }}>|</span>
+                  )}
+                  <Link to={path} onClick={() => handleNavClick(path)}
+                    style={{ color: '#6e7681', textDecoration: 'none', fontSize: '0.82rem', transition: 'color 0.2s' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#00C896')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#6e7681')}
+                  >
+                    {label}
+                  </Link>
+                </React.Fragment>
+              ))}
+            </div>
           </Col>
         </Row>
       </Container>

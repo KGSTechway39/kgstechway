@@ -55,4 +55,6 @@ export const ROUTES = {
   mobileDev: '/services/mobile-development',
   qaTesting: '/services/qa-testing',
   staffAugmentation: '/services/staff-augmentation',
+  privacyPolicy: '/privacy-policy',
+  termsOfService: '/terms-of-service',
 } as const;
