@@ -59,6 +59,12 @@ const Footer: React.FC = () => {
                 Leading provider of innovative technology solutions — software development,
                 AI, QA, and enterprise services that drive business growth.
               </p>
+              <address style={{ fontSize: '0.8rem', lineHeight: 1.65, color: '#6e7681', marginTop: '0.5rem', fontStyle: 'normal' }}>
+                <strong style={{ color: '#8b949e', fontWeight: 600 }}>KGS Techway Services Private Limited</strong><br />
+                CIN: U62013TZ2024PTC032111<br />
+                No 47/256, Govinda Chetty St, Kaveripattinam (Krishnagiri),<br />
+                Krishnagiri, Tamil Nadu 635112, India
+              </address>
               <div className="d-flex gap-3 mt-3">
                 {[
                   { Icon: FaLinkedin, url: 'https://linkedin.com/company/kgstechway', label: 'LinkedIn' },
@@ -155,7 +161,7 @@ const Footer: React.FC = () => {
                 </div>
                 <div className="d-flex align-items-start gap-2">
                   <FaMapMarkerAlt style={{ color: '#00C896', flexShrink: 0, marginTop: '3px' }} />
-                  <span>Krishnagiri, Tamil Nadu, India</span>
+                  <span>No 47/256, Govinda Chetty St, Kaveripattinam (Krishnagiri), Krishnagiri, Tamil Nadu 635112, India</span>
                 </div>
               </div>
             </motion.div>

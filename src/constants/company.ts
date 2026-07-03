@@ -14,7 +14,8 @@
 
 export const COMPANY = {
   name: 'KGS Techway',
-  legalName: 'KGSTechway Services',
+  legalName: 'KGS Techway Services Private Limited',
+  cin: 'U62013TZ2024PTC032111',
   tagline: 'The Intelligent Pathway to Business Success',
   description:
     'Leading provider of innovative technology solutions — software development, AI, QA & Testing, and enterprise services that drive business growth.',
@@ -22,7 +23,16 @@ export const COMPANY = {
   contact: {
     email: 'sales@kgstechway.com',
     phone: '+91 8248718780',
-    address: 'Krishnagiri, Tamil Nadu, India',
+    address: 'No 47/256, Govinda Chetty St, Kaveripattinam (Krishnagiri), Krishnagiri, Tamil Nadu 635112, India',
+  },
+
+  /** Registered office — broken into parts for structured data / PostalAddress */
+  registeredAddress: {
+    street: 'No 47/256, Govinda Chetty St, Kaveripattinam (Krishnagiri)',
+    locality: 'Krishnagiri',
+    region: 'Tamil Nadu',
+    postalCode: '635112',
+    country: 'India',
   },
 
   social: {
@@ -36,8 +46,8 @@ export const COMPANY = {
   /** Production domain — used for SEO canonical URLs and structured data */
   baseUrl: 'https://kgstechway.com',
 
-  /** Founding year — used in About section and legal copy */
-  foundedYear: 2020,
+  /** Founding year — matches MCA incorporation year encoded in the CIN */
+  foundedYear: 2024,
 } as const;
 
 /** Route paths — keeps navigation consistent across the app */

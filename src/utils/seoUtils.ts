@@ -111,8 +111,14 @@ export const generateCompanyStructuredData = () => {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "KGSTechway Services",
+    "name": "KGS Techway Services",
+    "legalName": "KGS Techway Services Private Limited",
     "alternateName": ["KGSTechway", "KGS Techway"],
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "CIN",
+      "value": "U62013TZ2024PTC032111"
+    },
     "url": "https://kgstechway.com",
     "logo": {
       "@type": "ImageObject",
@@ -121,16 +127,16 @@ export const generateCompanyStructuredData = () => {
       "height": 60
     },
     "description": "Leading technology solutions provider specializing in Software Product Development, AI Solutions, CRM/ERP Services, and Agentic AI Solutions",
-    "foundingDate": "2019",
+    "foundingDate": "2024",
     "numberOfEmployees": "10-50",
-    "slogan": "Transforming Ideas into Digital Reality",
+    "slogan": "The Intelligent Pathway to Business Success",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "123 Tech Street",
-      "addressLocality": "Digital City",
-      "addressRegion": "CA",
-      "postalCode": "90210",
-      "addressCountry": "US"
+      "streetAddress": "No 47/256, Govinda Chetty St, Kaveripattinam (Krishnagiri)",
+      "addressLocality": "Krishnagiri",
+      "addressRegion": "Tamil Nadu",
+      "postalCode": "635112",
+      "addressCountry": "IN"
     },
     "contactPoint": [
       {

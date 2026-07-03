@@ -170,7 +170,7 @@ const ContactSection = () => {
     {
       icon: <FaMapMarkerAlt />,
       title: 'Visit Us',
-      info: 'Krishnagiri, Tamil Nadu, India',
+      info: 'No 47/256, Govinda Chetty St, Kaveripattinam (Krishnagiri), Krishnagiri, Tamil Nadu 635112, India',
       subInfo: 'Schedule an appointment',
       color: '#ff6b35'
     },
@@ -543,6 +543,20 @@ const ContactSection = () => {
               </motion.div>
             </Col>
           ))}
+        </Row>
+
+        {/* Legal registration details — for business verification */}
+        <Row className="mt-4">
+          <Col xs={12}>
+            <p
+              className="text-center"
+              style={{ fontSize: '0.85rem', opacity: 0.75, lineHeight: 1.7, maxWidth: '760px', margin: '0 auto' }}
+            >
+              KGS Techway Services Private Limited is a registered private limited company
+              (CIN: U62013TZ2024PTC032111) headquartered at No 47/256, Govinda Chetty St,
+              Kaveripattinam (Krishnagiri), Krishnagiri, Tamil Nadu 635112, India.
+            </p>
+          </Col>
         </Row>
       </Container>
     </section>
