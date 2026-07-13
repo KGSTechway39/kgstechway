@@ -8,10 +8,10 @@ interface Message {
 }
 
 const SUGGESTED_QUESTIONS = [
+  'What products do you offer?',
+  'Tell me about WA Send',
   'What services do you offer?',
   'How can I contact KGS Techway?',
-  'Do you offer QA testing?',
-  'Tell me about AI solutions',
 ];
 
 /** Renders plain-text bot replies with basic markdown formatting */
@@ -151,7 +151,7 @@ const ChatBot = () => {
                 <div className="chatbot-name">KGS Assistant</div>
                 <div className="chatbot-status">
                   <span className="status-dot" />
-                  Powered by Groq AI · Online
+                  Online
                 </div>
               </div>
             </div>

@@ -41,6 +41,7 @@ const Header = memo(() => {
   const navItems = useMemo(() => [
     { id: 'home', label: 'Home', path: '/' },
     { id: 'services', label: 'Services', path: '/services' },
+    { id: 'products', label: 'Products', path: '/products' },
     { id: 'about', label: 'About', path: '/about' },
     { id: 'technology', label: 'Technology', path: '/technology' },
     { id: 'contact', label: 'Contact', path: '/contact' }
@@ -53,6 +54,8 @@ const Header = memo(() => {
       dispatch(setActiveSection('home'));
     } else if (currentPath === '/services') {
       dispatch(setActiveSection('services'));
+    } else if (currentPath === '/products') {
+      dispatch(setActiveSection('products'));
     } else if (currentPath === '/about') {
       dispatch(setActiveSection('about'));
     } else if (currentPath === '/technology') {

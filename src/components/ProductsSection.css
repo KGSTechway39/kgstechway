@@ -1,0 +1,348 @@
+/* Products Section Styles */
+.products-section {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.products-section.dark {
+  background: linear-gradient(135deg, #131a26 0%, #1f2a3a 100%);
+}
+
+.products-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 200, 150, 0.35), transparent);
+}
+
+/* Reuse shared section-header / badge / title styles but tune to brand teal */
+.products-section .section-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(0, 200, 150, 0.12);
+  color: #00a37b;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(0, 200, 150, 0.25);
+}
+
+.products-section.dark .section-badge {
+  color: #4dffd8;
+}
+
+.products-section .gradient-text {
+  background: linear-gradient(135deg, #00c896, #007a5e, #4dffd8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Dark-mode overrides for shared title/description (scoped to products section) */
+.products-section.dark .section-title {
+  color: #ffffff;
+}
+
+.products-section.dark .section-description {
+  color: #cbd5e0;
+}
+
+.products-grid {
+  margin: 4rem 0 2rem 0;
+}
+
+/* Product Card */
+.product-card {
+  border: none;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00c896, #4dffd8);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.product-card:hover::before {
+  transform: translateX(0);
+}
+
+.product-card.dark {
+  background: rgba(31, 42, 58, 0.85);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0, 200, 150, 0.18);
+}
+
+.product-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 2rem 2rem 0 2rem;
+}
+
+.product-icon-wrapper {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-icon {
+  font-size: 2.2rem;
+  color: white;
+  z-index: 1;
+  position: relative;
+}
+
+/* Status pill */
+.product-status {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.status-available {
+  background: rgba(0, 200, 150, 0.15);
+  color: #00a37b;
+  border: 1px solid rgba(0, 200, 150, 0.35);
+}
+
+.status-beta {
+  background: rgba(79, 172, 254, 0.15);
+  color: #2b8fe0;
+  border: 1px solid rgba(79, 172, 254, 0.35);
+}
+
+.status-coming-soon {
+  background: rgba(241, 196, 15, 0.15);
+  color: #c99a06;
+  border: 1px solid rgba(241, 196, 15, 0.35);
+}
+
+.product-card.dark .status-available {
+  color: #4dffd8;
+}
+
+.product-card.dark .status-beta {
+  color: #7cc4ff;
+}
+
+.product-card.dark .status-coming-soon {
+  color: #f5d968;
+}
+
+.product-content {
+  padding: 1.5rem 2rem 1rem 2rem;
+}
+
+.product-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+  color: #1a1a1a;
+}
+
+.product-card.dark .product-name {
+  color: #ffffff;
+}
+
+.product-tagline {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #00a37b;
+  margin-bottom: 1rem;
+}
+
+.product-card.dark .product-tagline {
+  color: #4dffd8;
+}
+
+.product-description {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.98rem;
+}
+
+.product-card.dark .product-description {
+  color: #cbd5e0;
+}
+
+.product-features {
+  margin-bottom: 0.5rem;
+}
+
+.product-features .feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.product-card.dark .product-features .feature-item {
+  color: #e2e8f0;
+}
+
+.product-features .feature-icon {
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.product-footer {
+  padding: 0.5rem 2rem 2rem 2rem;
+}
+
+.product-btn {
+  width: 100%;
+  padding: 0.7rem 1.5rem;
+  border-radius: 12px;
+  border: 2px solid;
+  background: transparent;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.product-btn:hover {
+  background-color: rgba(0, 200, 150, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Products CTA */
+.products-cta {
+  margin: 4rem 0 0 0;
+  text-align: center;
+  background: rgba(0, 200, 150, 0.04);
+  border-radius: 24px;
+  padding: 3.5rem 2rem;
+  border: 1px solid rgba(0, 200, 150, 0.12);
+}
+
+.products-section.dark .products-cta {
+  background: rgba(31, 42, 58, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.products-cta-content h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.products-section.dark .products-cta-content h3 {
+  color: #ffffff;
+}
+
+.products-cta-content p {
+  font-size: 1.15rem;
+  color: #666;
+  margin-bottom: 2rem;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.products-section.dark .products-cta-content p {
+  color: #cbd5e0;
+}
+
+.products-primary-cta {
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: none;
+  box-shadow: 0 8px 25px rgba(0, 200, 150, 0.3);
+  transition: all 0.3s ease;
+}
+
+.products-primary-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0, 200, 150, 0.4);
+}
+
+/* Mobile Responsive */
+@media (max-width: 767.98px) {
+  .products-section {
+    padding: 80px 0;
+  }
+
+  .products-grid {
+    margin: 3rem 0 1rem 0;
+  }
+
+  .product-card {
+    margin-bottom: 1rem;
+  }
+
+  .product-card-top {
+    padding: 1.5rem 1.5rem 0 1.5rem;
+  }
+
+  .product-icon-wrapper {
+    width: 64px;
+    height: 64px;
+  }
+
+  .product-icon {
+    font-size: 1.9rem;
+  }
+
+  .product-content {
+    padding: 1.25rem 1.5rem 0.75rem 1.5rem;
+  }
+
+  .product-footer {
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+  }
+
+  .products-cta {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .products-cta-content h3 {
+    font-size: 1.75rem;
+  }
+
+  .products-cta-content p {
+    font-size: 1.05rem;
+  }
+
+  .products-primary-cta {
+    width: 100%;
+    max-width: 280px;
+  }
+}
