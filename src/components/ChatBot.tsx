@@ -8,8 +8,9 @@ interface Message {
 }
 
 const SUGGESTED_QUESTIONS = [
+  'Tell me about the internship program',
+  'Which internship track should I choose?',
   'What products do you offer?',
-  'Tell me about WA Send',
   'What services do you offer?',
   'How can I contact KGS Techway?',
 ];
@@ -35,12 +36,37 @@ function formatBotText(text: string) {
   };
 
   const renderInline = (s: string): ReactNode => {
-    const parts = s.split(/(\*\*[^*]+\*\*)/g);
-    return parts.map((part, i) =>
-      part.startsWith('**') && part.endsWith('**')
-        ? <strong key={i}>{part.slice(2, -2)}</strong>
-        : part
-    );
+    // The model emits markdown links, bare URLs and emails — render them clickable
+    // instead of leaking the raw "[text](url)" syntax into the bubble.
+    const pattern =
+      /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s)]*[^\s).,])|([\w.+-]+@[\w-]+(?:\.[\w-]+)+)|\*\*([^*]+)\*\*/g;
+    const out: ReactNode[] = [];
+    let last = 0;
+    let key = 0;
+    let m: RegExpExecArray | null;
+
+    while ((m = pattern.exec(s)) !== null) {
+      if (m.index > last) out.push(s.slice(last, m.index));
+
+      if (m[1] && m[2]) {
+        out.push(
+          <a key={key++} href={m[2]} target="_blank" rel="noopener noreferrer">{m[1]}</a>
+        );
+      } else if (m[3]) {
+        out.push(
+          <a key={key++} href={m[3]} target="_blank" rel="noopener noreferrer">{m[3]}</a>
+        );
+      } else if (m[4]) {
+        out.push(<a key={key++} href={`mailto:${m[4]}`}>{m[4]}</a>);
+      } else if (m[5]) {
+        out.push(<strong key={key++}>{m[5]}</strong>);
+      }
+
+      last = m.index + m[0].length;
+    }
+
+    if (last < s.length) out.push(s.slice(last));
+    return out;
   };
 
   for (const line of lines) {

@@ -42,6 +42,7 @@ const Header = memo(() => {
     { id: 'home', label: 'Home', path: '/' },
     { id: 'services', label: 'Services', path: '/services' },
     { id: 'products', label: 'Products', path: '/products' },
+    { id: 'internship', label: 'Internship', path: '/internship' },
     { id: 'about', label: 'About', path: '/about' },
     { id: 'technology', label: 'Technology', path: '/technology' },
     { id: 'contact', label: 'Contact', path: '/contact' }

@@ -20,6 +20,7 @@ import StaffAugmentationPage from './pages/StaffAugmentationPage';
 const HomePage = lazy(() => import('./pages/HomePage'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const InternshipPage = lazy(() => import('./pages/InternshipPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const TechnologyPage = lazy(() => import('./pages/TechnologyPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
@@ -55,6 +56,7 @@ const ThemeWrapper = () => {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/services" element={<ServicesPage />} />
                   <Route path="/products" element={<ProductsPage />} />
+                  <Route path="/internship" element={<InternshipPage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/technology" element={<TechnologyPage />} />
                   <Route path="/contact" element={<ContactPage />} />

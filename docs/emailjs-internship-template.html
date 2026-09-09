@@ -1,0 +1,83 @@
+<!--
+  KGS Techway — EmailJS template for Internship Applications
+  ==========================================================
+  HOW TO USE
+  1. EmailJS dashboard -> Email Templates -> Create New Template
+  2. Subject:  New Internship Application — {{from_name}} ({{experience_level}})
+  3. To email: sales@kgstechway.com
+  4. Reply-To: {{from_email}}          <-- lets you reply straight to the student
+  5. Paste everything below into the template's Content (HTML) tab
+  6. Save, copy the new Template ID, and set EMAILJS_INTERNSHIP_TEMPLATE_ID
+     in src/constants/emailjs.ts to that id.
+
+  Variables sent by src/components/InternshipForm.tsx:
+    from_name, from_email, phone, college, branch, experience_level, track, message, date
+-->
+<div style="margin:0;padding:24px;background:#f4f6f8;font-family:Arial,Helvetica,sans-serif;">
+  <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e3e8ee;">
+
+    <div style="background:#0d1117;padding:22px 28px;">
+      <div style="color:#00C896;font-size:12px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;">
+        KGS Techway &middot; Internship Program
+      </div>
+      <div style="color:#ffffff;font-size:21px;font-weight:bold;padding-top:6px;">
+        New Internship Application
+      </div>
+    </div>
+
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
+      <tr>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;width:180px;color:#5b6672;font-size:13px;">Student Name</td>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;color:#11161d;font-size:14px;font-weight:bold;">{{from_name}}</td>
+      </tr>
+      <tr>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;color:#5b6672;font-size:13px;">Email</td>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;font-size:14px;">
+          <a href="mailto:{{from_email}}" style="color:#00996f;">{{from_email}}</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;color:#5b6672;font-size:13px;">Phone / WhatsApp</td>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;font-size:14px;">
+          <a href="tel:{{phone}}" style="color:#00996f;">{{phone}}</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;color:#5b6672;font-size:13px;">College</td>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;color:#11161d;font-size:14px;">{{college}}</td>
+      </tr>
+      <tr>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;color:#5b6672;font-size:13px;">Degree &amp; Branch</td>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;color:#11161d;font-size:14px;">{{branch}}</td>
+      </tr>
+      <tr>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;color:#5b6672;font-size:13px;">Experience Level</td>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;color:#11161d;font-size:14px;font-weight:bold;">{{experience_level}}</td>
+      </tr>
+      <tr>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;color:#5b6672;font-size:13px;">Course / Track Interest</td>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;color:#11161d;font-size:14px;font-weight:bold;">{{track}}</td>
+      </tr>
+      <tr>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;color:#5b6672;font-size:13px;">Submitted</td>
+        <td style="padding:14px 28px;border-bottom:1px solid #eef1f5;color:#5b6672;font-size:13px;">{{date}}</td>
+      </tr>
+    </table>
+
+    <div style="padding:20px 28px;">
+      <div style="color:#5b6672;font-size:13px;padding-bottom:8px;">Message from the student</div>
+      <div style="background:#f7f9fb;border-left:3px solid #00C896;border-radius:6px;padding:14px 16px;color:#11161d;font-size:14px;line-height:1.6;white-space:pre-line;">{{message}}</div>
+    </div>
+
+    <div style="padding:0 28px 24px;">
+      <a href="https://wa.me/91{{phone}}"
+         style="display:inline-block;background:#00C896;color:#05261c;font-weight:bold;font-size:14px;text-decoration:none;padding:12px 26px;border-radius:40px;">
+        Reply on WhatsApp
+      </a>
+    </div>
+
+    <div style="background:#f7f9fb;padding:14px 28px;color:#8b949e;font-size:11px;border-top:1px solid #eef1f5;">
+      Sent automatically from the internship enquiry form on kgstechway.com
+    </div>
+  </div>
+</div>

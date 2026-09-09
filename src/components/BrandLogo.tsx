@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import './BrandLogo.css';
 
 interface BrandLogoProps {
@@ -16,6 +16,8 @@ const BrandLogo: React.FC<BrandLogoProps> = ({
   onDark = false,
 }) => {
   const markPx = size === 'sm' ? 30 : size === 'lg' ? 54 : 40;
+  // Header and Footer both render a BrandLogo, so the gradient id must be unique per instance
+  const arrowId = `bl-arrow-${useId()}`;
 
   // Scale the 64-unit icon viewBox to markPx
   return (
@@ -32,41 +34,30 @@ const BrandLogo: React.FC<BrandLogoProps> = ({
         style={{ flexShrink: 0 }}
       >
         <defs>
-          <linearGradient id="bl-arrow" x1="0" y1="0" x2="1" y2="0">
+          <linearGradient id={arrowId} x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%"   stopColor="#E74C3C"/>
-            <stop offset="100%" stopColor="#E67E22"/>
+            <stop offset="100%" stopColor="#E2622A"/>
           </linearGradient>
-          <filter id="bl-glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="1.8" result="blur"/>
-            <feMerge>
-              <feMergeNode in="blur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
         </defs>
 
         {/* Dark circular background */}
         <circle cx="32" cy="32" r="32" fill="#0D0D0D"/>
 
-        {/* Origin dots */}
-        <circle cx="10" cy="16" r="4.5" fill="#E74C3C"/>
-        <circle cx="10" cy="32" r="4.5" fill="#E67E22"/>
-        <circle cx="10" cy="48" r="4.5" fill="#F1C40F"/>
+        {/* Converging pathways: top and bottom curve in, middle runs straight */}
+        <path d="M 17,17.5 C 30,17.5 34,26 44.5,26.5"
+              stroke="#E74C3C" strokeWidth="4.4" strokeLinecap="round"/>
+        <path d="M 17,32 L 45,32"
+              stroke="#E67E22" strokeWidth="4.4" strokeLinecap="round"/>
+        <path d="M 17,46.5 C 30,46.5 34,38 44.5,37.5"
+              stroke="#F1C40F" strokeWidth="4.4" strokeLinecap="round"/>
 
-        {/* Converging pathway curves */}
-        <path d="M 14.5,16 C 27,16 36,26 42,26"
-              stroke="#E74C3C" strokeWidth="3.5" strokeLinecap="round"/>
-        <path d="M 14.5,32 C 24,30 34,34 42,32"
-              stroke="#E67E22" strokeWidth="3.5" strokeLinecap="round"/>
-        <path d="M 14.5,48 C 27,48 36,38 42,38"
-              stroke="#F1C40F" strokeWidth="3.5" strokeLinecap="round"/>
+        {/* Origin anchor dots */}
+        <circle cx="17" cy="17.5" r="5.2" fill="#E74C3C"/>
+        <circle cx="17" cy="32"   r="5.2" fill="#E67E22"/>
+        <circle cx="17" cy="46.5" r="5.2" fill="#F1C40F"/>
 
         {/* Convergence arrow */}
-        <polygon
-          points="42,25 54,32 42,39"
-          fill="url(#bl-arrow)"
-          filter="url(#bl-glow)"
-        />
+        <polygon points="43.5,22.5 57,32 43.5,41.5" fill={`url(#${arrowId})`}/>
       </svg>
 
       {/* ── Wordmark + optional tagline ── */}

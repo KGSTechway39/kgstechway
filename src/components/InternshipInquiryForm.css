@@ -1,0 +1,348 @@
+/* ──────────────────────────────────────────────
+   KGS Techway — Internship Enquiry Form
+   Dark + teal brand style
+   ────────────────────────────────────────────── */
+
+.internship-apply {
+  padding: 20px 0 100px;
+  position: relative;
+}
+
+.internship-apply.dark {
+  background: #0d1117;
+}
+
+.internship-apply.light {
+  background: #eef2f6;
+}
+
+/* ── Header ── */
+.apply-header {
+  max-width: 720px;
+  margin: 0 auto 40px;
+}
+
+.apply-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  background: rgba(0, 200, 150, 0.12);
+  color: #00C896;
+  border: 1px solid rgba(0, 200, 150, 0.35);
+}
+
+.apply-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 14px;
+  color: #1a202c;
+}
+
+.internship-apply.dark .apply-title {
+  color: #ffffff;
+}
+
+.apply-gradient {
+  background: linear-gradient(135deg, #00C896 0%, #34d399 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.apply-subtitle {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0;
+  color: #4a5568;
+}
+
+.internship-apply.dark .apply-subtitle {
+  color: #9aa5b1;
+}
+
+/* ── Card ── */
+.apply-card {
+  padding: 38px 36px 32px;
+  border-radius: 22px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+}
+
+.internship-apply.dark .apply-card {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+}
+
+.apply-alert {
+  border-radius: 12px;
+  font-size: 0.92rem;
+}
+
+/* ── Fields ── */
+.apply-card .form-label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #2d3748;
+}
+
+.internship-apply.dark .apply-card .form-label {
+  color: #cbd5e0;
+}
+
+.apply-card .form-control,
+.apply-card .form-select {
+  padding: 11px 14px;
+  border-radius: 11px;
+  font-size: 0.94rem;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  color: #1a202c;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.internship-apply.dark .apply-card .form-control,
+.internship-apply.dark .apply-card .form-select {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #e6edf3;
+}
+
+.apply-card .form-control::placeholder {
+  color: #a0aec0;
+}
+
+.internship-apply.dark .apply-card .form-control::placeholder {
+  color: #6e7681;
+}
+
+.apply-card .form-control:focus,
+.apply-card .form-select:focus {
+  border-color: #00C896;
+  box-shadow: 0 0 0 3px rgba(0, 200, 150, 0.18);
+  outline: none;
+}
+
+/* Keep native select options readable in dark mode */
+.internship-apply.dark .apply-card .form-select option {
+  background: #161b22;
+  color: #e6edf3;
+}
+
+.apply-card .form-control.is-invalid,
+.apply-card .form-select.is-invalid {
+  border-color: #E74C3C;
+}
+
+.apply-card .invalid-feedback {
+  font-size: 0.8rem;
+}
+
+/* ── Submit ── */
+.apply-submit {
+  width: 100%;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #05261c;
+  background: linear-gradient(135deg, #00C896 0%, #34d399 100%);
+  box-shadow: 0 8px 24px rgba(0, 200, 150, 0.28);
+  transition: box-shadow 0.25s ease, opacity 0.2s ease;
+}
+
+.apply-submit:hover:not(:disabled),
+.apply-submit:focus-visible {
+  color: #05261c;
+  background: linear-gradient(135deg, #00C896 0%, #34d399 100%);
+  box-shadow: 0 12px 32px rgba(0, 200, 150, 0.42);
+}
+
+.apply-submit:disabled {
+  opacity: 0.7;
+  color: #05261c;
+  background: linear-gradient(135deg, #00C896 0%, #34d399 100%);
+}
+
+.apply-note {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #718096;
+}
+
+.internship-apply.dark .apply-note {
+  color: #6e7681;
+}
+
+/* ── Direct contact row ── */
+.apply-direct {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 22px;
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 0.88rem;
+  color: #718096;
+}
+
+.internship-apply.dark .apply-direct,
+.apply-modal-content.dark .apply-direct {
+  border-top-color: rgba(255, 255, 255, 0.08);
+  color: #8b949e;
+}
+
+.apply-direct a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #00C896;
+}
+
+.apply-direct a:hover {
+  text-decoration: underline;
+}
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+  .internship-apply {
+    padding: 10px 0 70px;
+  }
+
+  .apply-title {
+    font-size: 1.7rem;
+  }
+
+  .apply-card {
+    padding: 26px 20px 24px;
+  }
+
+  .apply-direct {
+    gap: 10px 16px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apply-card .form-control,
+  .apply-card .form-select,
+  .apply-submit {
+    transition: none;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Popup (modal) variant — reuses the field styles above
+   ────────────────────────────────────────────── */
+
+.apply-modal-content {
+  border: none;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.apply-modal-content.light {
+  background: #ffffff;
+}
+
+.apply-modal-content.dark {
+  background: #11161d;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.apply-modal-content .modal-header {
+  align-items: flex-start;
+  padding: 24px 28px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.apply-modal-content.dark .modal-header {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.apply-modal-title {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.apply-badge--modal {
+  align-self: flex-start;
+  margin-bottom: 0;
+}
+
+.apply-modal-heading {
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #1a202c;
+}
+
+.apply-modal-content.dark .apply-modal-heading {
+  color: #ffffff;
+}
+
+/* The body reuses .apply-card field styling but drops its own frame */
+.apply-card--modal {
+  padding: 24px 28px 28px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.apply-modal-content.dark .apply-card--modal .form-label {
+  color: #cbd5e0;
+}
+
+.apply-modal-content.dark .apply-card--modal .form-control,
+.apply-modal-content.dark .apply-card--modal .form-select {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #e6edf3;
+}
+
+.apply-modal-content.dark .apply-card--modal .form-control::placeholder {
+  color: #6e7681;
+}
+
+.apply-modal-content.dark .apply-card--modal .form-select option {
+  background: #161b22;
+  color: #e6edf3;
+}
+
+.apply-modal-content .modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.apply-modal-content.dark .modal-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+}
+
+@media (max-width: 575px) {
+  .apply-modal-content .modal-header {
+    padding: 18px 18px 12px;
+  }
+
+  .apply-modal-heading {
+    font-size: 1.12rem;
+  }
+
+  .apply-card--modal {
+    padding: 18px 18px 22px;
+  }
+}

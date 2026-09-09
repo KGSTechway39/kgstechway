@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { FaArrowRight, FaPlay } from 'react-icons/fa';
 import './HeroSection.css';
 
@@ -12,8 +13,21 @@ type RootState = {
   };
 };
 
+const TECH_CARDS = [
+  { title: 'Agentic AI Solutions', subtitle: 'Intelligent Autonomous Systems', path: '/services/agentic-ai' },
+  { title: 'AI Solutions',         subtitle: 'Advanced AI & Machine Learning', path: '/services/ai-solutions' },
+  { title: 'QA & Testing Services', subtitle: 'End-to-End Quality Assurance',  path: '/services/qa-testing' },
+  { title: 'Internship Program',   subtitle: 'Learn the Tools. Build Real Projects.', path: '/internship' }
+];
+
 const HeroSection = () => {
   const { isDarkMode, primaryColor } = useSelector((state: RootState) => state.theme);
+  const navigate = useNavigate();
+
+  const goTo = (path: string) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   const [typedText, setTypedText] = useState('');
   
   const services = [
@@ -207,49 +221,29 @@ const HeroSection = () => {
               transition={{ duration: 1, delay: 0.3 }}
             >
               <div className="tech-showcase">
-                <motion.div
-                  className="tech-card"
-                  whileHover={{ scale: 1.05, rotateY: 15 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="tech-card-content">
-                    <h3>AI Solutions</h3>
-                    <p>Advanced AI & Machine Learning</p>
-                  </div>
-                </motion.div>
-                
-                <motion.div
-                  className="tech-card"
-                  whileHover={{ scale: 1.05, rotateY: -15 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="tech-card-content">
-                    <h3>CRM/ERP Services</h3>
-                    <p>Business Management Solutions</p>
-                  </div>
-                </motion.div>
-                
-                <motion.div
-                  className="tech-card"
-                  whileHover={{ scale: 1.05, rotateY: 15 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="tech-card-content">
-                    <h3>Agentic AI Solutions</h3>
-                    <p>Intelligent Autonomous Systems</p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="tech-card"
-                  whileHover={{ scale: 1.05, rotateY: -15 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="tech-card-content">
-                    <h3>QA & Testing Services</h3>
-                    <p>End-to-End Quality Assurance</p>
-                  </div>
-                </motion.div>
+                {TECH_CARDS.map((card, i) => (
+                  <motion.div
+                    key={card.path}
+                    className="tech-card tech-card--link"
+                    role="link"
+                    tabIndex={0}
+                    aria-label={`${card.title} — ${card.subtitle}`}
+                    onClick={() => goTo(card.path)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        goTo(card.path);
+                      }
+                    }}
+                    whileHover={{ scale: 1.05, rotateY: i % 2 === 0 ? 15 : -15 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="tech-card-content">
+                      <h3>{card.title}</h3>
+                      <p>{card.subtitle}</p>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           </Col>

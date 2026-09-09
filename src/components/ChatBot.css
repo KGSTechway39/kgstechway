@@ -463,3 +463,16 @@
     height: 54px;
   }
 }
+
+/* Links inside bot replies (markdown links, bare URLs, emails) */
+.bot-formatted a {
+  color: #00C896;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  word-break: break-word;
+}
+
+.bot-formatted a:hover {
+  opacity: 0.85;
+}

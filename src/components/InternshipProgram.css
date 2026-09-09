@@ -1,0 +1,502 @@
+/* ──────────────────────────────────────────────
+   KGS Techway — Internship Program
+   Dark + teal brand style, matches TechnologySection
+   ────────────────────────────────────────────── */
+
+.internship-program {
+  padding: 100px 0 90px;
+  position: relative;
+  overflow: hidden;
+}
+
+.internship-program.dark {
+  background: linear-gradient(180deg, #0b0f14 0%, #0d1117 100%);
+}
+
+.internship-program.light {
+  background: linear-gradient(180deg, #f7fafc 0%, #eef2f6 100%);
+}
+
+/* Soft teal glow behind the band */
+.internship-program::before {
+  content: '';
+  position: absolute;
+  top: -180px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 720px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(0, 200, 150, 0.16) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+/* ── Header ── */
+.internship-header {
+  position: relative;
+  max-width: 820px;
+  margin: 0 auto 48px;
+}
+
+.internship-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin-bottom: 20px;
+  background: rgba(0, 200, 150, 0.12);
+  color: #00C896;
+  border: 1px solid rgba(0, 200, 150, 0.35);
+}
+
+.internship-title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 18px;
+  color: #1a202c;
+}
+
+.internship-program.dark .internship-title {
+  color: #ffffff;
+}
+
+.internship-gradient {
+  background: linear-gradient(135deg, #00C896 0%, #34d399 55%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.internship-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #4a5568;
+  margin-bottom: 24px;
+}
+
+.internship-program.dark .internship-subtitle {
+  color: #9aa5b1;
+}
+
+.internship-eligibility {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  text-align: left;
+  background: rgba(0, 200, 150, 0.08);
+  border: 1px solid rgba(0, 200, 150, 0.22);
+  color: #2d3748;
+}
+
+.internship-program.dark .internship-eligibility {
+  color: #cbd5e0;
+}
+
+.internship-eligibility svg {
+  color: #00C896;
+  flex-shrink: 0;
+}
+
+.internship-eligibility strong {
+  color: #00C896;
+}
+
+/* ── Highlights strip ── */
+.internship-highlights {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 56px;
+}
+
+.highlight-item {
+  text-align: center;
+  padding: 24px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.internship-program.dark .highlight-item {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.highlight-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 200, 150, 0.4);
+}
+
+.highlight-icon {
+  font-size: 1.5rem;
+  color: #00C896;
+  margin-bottom: 10px;
+}
+
+.highlight-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #1a202c;
+}
+
+.internship-program.dark .highlight-value {
+  color: #ffffff;
+}
+
+.highlight-label {
+  font-size: 0.85rem;
+  margin-top: 6px;
+  color: #718096;
+}
+
+.internship-program.dark .highlight-label {
+  color: #8b949e;
+}
+
+/* ── Track cards ── */
+.track-card {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 28px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-top: 3px solid var(--track-color, #00C896);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.internship-program.dark .track-card {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.08);
+  border-top-color: var(--track-color, #00C896);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.track-card:hover {
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.12);
+}
+
+.internship-program.dark .track-card:hover {
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+}
+
+.track-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.track-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  color: var(--track-color, #00C896);
+  background: color-mix(in srgb, var(--track-color, #00C896) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--track-color, #00C896) 30%, transparent);
+}
+
+.track-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.track-name {
+  font-size: 1.22rem;
+  font-weight: 700;
+  margin: 0;
+  color: #1a202c;
+}
+
+.internship-program.dark .track-name {
+  color: #ffffff;
+}
+
+.track-duration {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--track-color, #00C896);
+}
+
+/* Tool chips */
+.track-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.track-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #2d3748;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.internship-program.dark .track-tool {
+  color: #cbd5e0;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.09);
+}
+
+.track-tool-icon {
+  display: inline-flex;
+  font-size: 0.95rem;
+  color: var(--track-color, #00C896);
+}
+
+/* Skills list */
+.track-skills {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+  flex-grow: 1;
+}
+
+.track-skills li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  color: #4a5568;
+}
+
+.internship-program.dark .track-skills li {
+  color: #a5b0bd;
+}
+
+.track-tick {
+  flex-shrink: 0;
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: var(--track-color, #00C896);
+}
+
+/* Project block */
+.track-project {
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.035);
+  border-left: 3px solid var(--track-color, #00C896);
+}
+
+.internship-program.dark .track-project {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.track-project-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+  color: var(--track-color, #00C896);
+}
+
+.track-project-title {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #1a202c;
+}
+
+.internship-program.dark .track-project-title {
+  color: #ffffff;
+}
+
+.track-project-detail {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  margin: 0;
+  color: #718096;
+}
+
+.internship-program.dark .track-project-detail {
+  color: #8b949e;
+}
+
+/* ── Outcomes + CTA ── */
+.internship-outcome-card {
+  margin-top: 28px;
+  padding: 44px 40px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(0, 200, 150, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+  border: 1px solid rgba(0, 200, 150, 0.2);
+}
+
+.outcome-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin-bottom: 22px;
+  color: #1a202c;
+}
+
+.internship-program.dark .outcome-title {
+  color: #ffffff;
+}
+
+.outcome-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 22px;
+}
+
+.outcome-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: #4a5568;
+}
+
+.internship-program.dark .outcome-list li {
+  color: #b8c2cc;
+}
+
+.outcome-tick {
+  flex-shrink: 0;
+  margin-top: 4px;
+  color: #00C896;
+}
+
+.internship-cta {
+  text-align: center;
+  padding: 30px 26px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.internship-program.dark .internship-cta {
+  background: rgba(13, 17, 23, 0.75);
+  border-color: rgba(255, 255, 255, 0.09);
+}
+
+.internship-cta h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #1a202c;
+}
+
+.internship-program.dark .internship-cta h4 {
+  color: #ffffff;
+}
+
+.internship-cta p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #718096;
+}
+
+.internship-program.dark .internship-cta p {
+  color: #8b949e;
+}
+
+.internship-cta-button {
+  width: 100%;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #05261c;
+  cursor: pointer;
+  background: linear-gradient(135deg, #00C896 0%, #34d399 100%);
+  box-shadow: 0 8px 24px rgba(0, 200, 150, 0.3);
+  transition: box-shadow 0.25s ease;
+}
+
+.internship-cta-button:hover {
+  box-shadow: 0 12px 32px rgba(0, 200, 150, 0.45);
+}
+
+.internship-cta-note {
+  display: block;
+  margin-top: 14px;
+  font-size: 0.78rem;
+  color: #718096;
+}
+
+.internship-program.dark .internship-cta-note {
+  color: #6e7681;
+}
+
+/* ── Responsive ── */
+@media (max-width: 991px) {
+  .internship-title {
+    font-size: 2.1rem;
+  }
+
+  .internship-highlights {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .internship-outcome-card {
+    padding: 34px 26px;
+  }
+}
+
+@media (max-width: 575px) {
+  .internship-program {
+    padding: 70px 0 60px;
+  }
+
+  .internship-title {
+    font-size: 1.75rem;
+  }
+
+  .internship-highlights {
+    gap: 12px;
+  }
+
+  .track-card {
+    padding: 24px 20px;
+  }
+
+  .outcome-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .highlight-item,
+  .track-card,
+  .internship-cta-button {
+    transition: none;
+  }
+}
