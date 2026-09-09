@@ -57,6 +57,8 @@ const Header = memo(() => {
       dispatch(setActiveSection('services'));
     } else if (currentPath === '/products') {
       dispatch(setActiveSection('products'));
+    } else if (currentPath === '/internship') {
+      dispatch(setActiveSection('internship'));
     } else if (currentPath === '/about') {
       dispatch(setActiveSection('about'));
     } else if (currentPath === '/technology') {
