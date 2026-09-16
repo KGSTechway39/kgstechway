@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
@@ -18,15 +19,26 @@ const ProductsSection = () => {
   const { isDarkMode, primaryColor } = useSelector((state: any) => state.theme);
   const navigate = useNavigate();
 
-  const products = [
+  const products: Array<{
+    icon: ReactNode;
+    name: string;
+    tagline: string;
+    description: string;
+    features: string[];
+    gradient: string;
+    status: string;
+    url?: string;
+    delay: number;
+  }> = [
     {
       icon: <FaWhatsapp />,
-      name: 'WA Send',
+      name: 'SendAnjal',
       tagline: 'WhatsApp Business Platform',
-      description: 'WA Send lets any business connect their own WhatsApp Business Account to run campaigns, automate replies, and manage customer conversations — all on the official WhatsApp Business API, while we handle the technical integration on their behalf.',
+      description: 'SendAnjal lets any business connect their own WhatsApp Business Account to run campaigns, automate replies, and manage customer conversations — all on the official WhatsApp Business API, while we handle the technical integration on their behalf.',
       features: ['Connect Your Own WhatsApp Business Account', 'Run Campaigns & Broadcasts', 'Automate Replies', 'Manage Customer Conversations'],
       gradient: 'linear-gradient(135deg, #25d366 0%, #128c7e 100%)',
       status: 'Available',
+      url: 'https://sendanjal.com/',
       delay: 0.1
     },
     {
@@ -37,6 +49,7 @@ const ProductsSection = () => {
       features: ['ATS-Optimized Resumes', 'Ready-to-Use Templates', 'Built-in Professional Formatting', 'Create in Minutes'],
       gradient: 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)',
       status: 'Available',
+      url: 'https://www.workspacecv.com/',
       delay: 0.2
     },
     {
@@ -74,6 +87,10 @@ const ProductsSection = () => {
   const handleCtaClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(() => navigate('/contact'), 300);
+  };
+
+  const openProduct = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   const containerVariants = {
@@ -133,7 +150,20 @@ const ProductsSection = () => {
             {products.map((product, index) => (
               <Col lg={4} md={6} key={index} className="mb-4">
                 <motion.div variants={cardVariants} className="h-100">
-                  <Card className={`product-card h-100 ${isDarkMode ? 'dark' : 'light'}`}>
+                  <Card
+                    className={`product-card h-100 ${isDarkMode ? 'dark' : 'light'}${product.url ? ' clickable' : ''}`}
+                    onClick={product.url ? () => openProduct(product.url!) : undefined}
+                    role={product.url ? 'link' : undefined}
+                    tabIndex={product.url ? 0 : undefined}
+                    onKeyDown={
+                      product.url
+                        ? (e) => {
+                            if (e.key === 'Enter') openProduct(product.url!);
+                          }
+                        : undefined
+                    }
+                    aria-label={product.url ? `Visit ${product.name} website` : undefined}
+                  >
                     <div className="product-card-top">
                       <div
                         className="product-icon-wrapper"
@@ -173,9 +203,13 @@ const ProductsSection = () => {
                         variant="outline-primary"
                         className="product-btn"
                         style={{ borderColor: primaryColor, color: primaryColor }}
-                        onClick={handleCtaClick}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (product.url) openProduct(product.url);
+                          else handleCtaClick();
+                        }}
                       >
-                        Request Demo
+                        {product.url ? 'Visit Website' : 'Request Demo'}
                         <FaArrowRight className="ms-2" />
                       </Button>
                     </div>

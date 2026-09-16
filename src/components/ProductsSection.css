@@ -96,6 +96,15 @@
   box-shadow: 0 30px 60px rgba(0, 200, 150, 0.18);
 }
 
+.product-card.clickable {
+  cursor: pointer;
+}
+
+.product-card.clickable:focus-visible {
+  outline: 2px solid #00c896;
+  outline-offset: 4px;
+}
+
 .product-card-top {
   display: flex;
   align-items: flex-start;

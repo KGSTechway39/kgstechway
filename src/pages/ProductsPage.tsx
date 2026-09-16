@@ -12,7 +12,7 @@ const ProductsPage: React.FC = () => {
   const structuredData = [
     generateWebPageStructuredData({
       name: 'Our Products | KGSTechway',
-      description: 'Ready-to-deploy products from KGSTechway including WA Send (WhatsApp Business platform), business intelligence, agentic AI, and test automation.',
+      description: 'Ready-to-deploy products from KGSTechway including SendAnjal (WhatsApp Business platform), WorkspaceCV (ATS-ready resume builder), business intelligence, agentic AI, and test automation.',
       url: 'https://kgstechway.com/products',
       breadcrumbs: [
         { name: 'Home', url: 'https://kgstechway.com' },
@@ -25,12 +25,12 @@ const ProductsPage: React.FC = () => {
   return (
     <div className={isDarkMode ? 'dark-theme' : 'light-theme'} style={{ minHeight: '100vh', paddingTop: '80px' }}>
       <SEO
-        title="Our Products - WA Send & More | KGSTechway"
-        description="Explore KGSTechway products including WA Send, our WhatsApp Business platform for bulk campaigns and automation, plus business intelligence, agentic AI, and test automation."
-        keywords="WA Send, WhatsApp Business API, bulk WhatsApp, WhatsApp marketing, business intelligence, agentic AI, test automation"
+        title="Our Products - SendAnjal, WorkspaceCV & More | KGSTechway"
+        description="Explore KGSTechway products including SendAnjal, our WhatsApp Business platform for bulk campaigns and automation, plus business intelligence, agentic AI, and test automation."
+        keywords="SendAnjal, WorkspaceCV, WhatsApp Business API, ATS resume builder, bulk WhatsApp, WhatsApp marketing, business intelligence, agentic AI, test automation"
         canonicalUrl="https://kgstechway.com/products"
         ogTitle="Products - KGSTechway"
-        ogDescription="Ready-to-deploy platforms including WA Send for WhatsApp Business marketing and automation."
+        ogDescription="Ready-to-deploy platforms including SendAnjal for WhatsApp Business marketing and automation."
         structuredData={structuredData}
       />
 
@@ -48,7 +48,7 @@ const ProductsPage: React.FC = () => {
                   Our <span style={{ color: '#00C896' }}>Products</span>
                 </h1>
                 <p className="lead mb-0" style={{ fontSize: '1.2rem', opacity: 0.8 }}>
-                  Battle-tested platforms built by KGSTechway — from WA Send, our WhatsApp Business
+                  Battle-tested platforms built by KGSTechway — from SendAnjal, our WhatsApp Business
                   engine, to intelligent automation tools that help you launch faster and grow smarter.
                 </p>
               </motion.div>
