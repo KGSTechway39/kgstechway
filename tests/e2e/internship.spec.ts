@@ -3,8 +3,8 @@
  * @description End-to-end coverage for the Internship Program page and its
  * application popup.
  *
- * IMPORTANT: every test that submits the form stubs the EmailJS endpoint, so a
- * test run never sends a real application to the KGS inbox.
+ * IMPORTANT: every test that submits the form stubs /api/apply and the EmailJS
+ * endpoint, so a test run never writes to the Google Sheet or sends real email.
  */
 
 import { test, expect, type Page } from '@playwright/test';
@@ -28,6 +28,36 @@ async function stubEmailJs(page: Page, sent: string[]) {
     sent.push(route.request().postData() ?? '');
     await route.fulfill({ status: 200, body: 'OK' });
   });
+}
+
+/** Intercept /api/apply so no row is written and no greeting email is sent */
+async function stubApplyApi(
+  page: Page,
+  applied: Record<string, string>[],
+  response: { status: number; body: object } = {
+    status: 200,
+    body: { ok: true, applicationId: 'KGS-INT-20260930-TEST23' },
+  }
+) {
+  await page.route('**/api/apply', async (route) => {
+    applied.push(JSON.parse(route.request().postData() ?? '{}'));
+    await route.fulfill({
+      status: response.status,
+      contentType: 'application/json',
+      body: JSON.stringify(response.body),
+    });
+  });
+}
+
+async function fillValidApplication(page: Page) {
+  await page.fill('#ip-name', 'Priya R');
+  await page.fill('#ip-email', 'priya@example.com');
+  await page.fill('#ip-phone', '9876543210');
+  await page.fill('#ip-college', 'Government College of Engineering');
+  await page.fill('#ip-branch', 'B.E. CSE');
+  await page.selectOption('#ip-experience', 'Final Year');
+  await page.selectOption('#ip-track', 'Gen AI & Agentic AI');
+  await page.fill('#ip-message', 'Interested in the AI track.');
 }
 
 async function openApplyPopup(page: Page) {
@@ -179,13 +209,16 @@ test.describe('Internship application popup', () => {
 
   test('blocks an empty submit and sends no email', async ({ page }) => {
     const sent: string[] = [];
+    const applied: Record<string, string>[] = [];
     await stubEmailJs(page, sent);
+    await stubApplyApi(page, applied);
     await openApplyPopup(page);
 
     await page.locator('.apply-modal-content .apply-submit').click();
 
     await expect(page.locator('.apply-modal-content .invalid-feedback:visible')).toHaveCount(6);
     expect(sent).toHaveLength(0);
+    expect(applied).toHaveLength(0);
   });
 
   test('rejects a malformed email and a short phone number', async ({ page }) => {
@@ -202,36 +235,74 @@ test.describe('Internship application popup', () => {
     expect(sent).toHaveLength(0);
   });
 
-  test('submits a valid application and reports success', async ({ page }) => {
+  test('submits a valid application to /api/apply and reports success', async ({ page }) => {
     const sent: string[] = [];
+    const applied: Record<string, string>[] = [];
     await stubEmailJs(page, sent);
+    await stubApplyApi(page, applied);
     await openApplyPopup(page);
 
-    await page.fill('#ip-name', 'Priya R');
-    await page.fill('#ip-email', 'priya@example.com');
-    await page.fill('#ip-phone', '9876543210');
-    await page.fill('#ip-college', 'Government College of Engineering');
-    await page.fill('#ip-branch', 'B.E. CSE');
-    await page.selectOption('#ip-experience', 'Final Year');
-    await page.selectOption('#ip-track', 'Gen AI & Agentic AI');
-    await page.fill('#ip-message', 'Interested in the AI track.');
+    await fillValidApplication(page);
     await page.locator('.apply-modal-content .apply-submit').click();
 
-    await expect(page.locator('.apply-modal-content .alert-success')).toBeVisible();
-    expect(sent).toHaveLength(1);
+    const success = page.locator('.apply-modal-content .alert-success');
+    await expect(success).toBeVisible();
+    await expect(success).toContainText('KGS-INT-20260930-TEST23');
+    await expect(success).toContainText('spam');
 
-    // the payload must carry correctly-named fields, not just legacy slots
+    expect(applied).toHaveLength(1);
+    expect(applied[0]).toMatchObject({
+      name: 'Priya R',
+      email: 'priya@example.com',
+      phone: '9876543210',
+      college: 'Government College of Engineering',
+      branch: 'B.E. CSE',
+      experience: 'Final Year',
+      track: 'Gen AI & Agentic AI',
+      website: '',
+    });
+
+    // the team still gets its EmailJS heads-up, with correctly-named fields
+    await expect.poll(() => sent.length).toBe(1);
     const params = JSON.parse(sent[0]).template_params;
     expect(params.from_name).toBe('Priya R');
-    expect(params.college).toBe('Government College of Engineering');
     expect(params.experience_level).toBe('Final Year');
-    expect(params.track).toBe('Gen AI & Agentic AI');
     expect(params.message).not.toContain('Preferred Mode');
+  });
+
+  test('shows an error with a working retry when the API fails', async ({ page }) => {
+    const sent: string[] = [];
+    const applied: Record<string, string>[] = [];
+    await stubEmailJs(page, sent);
+    await stubApplyApi(page, applied, { status: 500, body: { ok: false, error: 'x' } });
+    await openApplyPopup(page);
+
+    await fillValidApplication(page);
+    await page.locator('.apply-modal-content .apply-submit').click();
+
+    const error = page.locator('.apply-modal-content .alert-danger');
+    await expect(error).toBeVisible();
+    await expect(error).toContainText('could not submit');
+    // the student's answers are kept for the retry
+    await expect(page.locator('#ip-name')).toHaveValue('Priya R');
+    expect(sent).toHaveLength(0);
+
+    await error.getByRole('button', { name: 'Try again' }).click();
+    await expect.poll(() => applied.length).toBe(2);
+  });
+
+  test('keeps the honeypot out of sight and out of the tab order', async ({ page }) => {
+    await openApplyPopup(page);
+    const hp = page.locator('#ip-website');
+    await expect(hp).toHaveAttribute('tabindex', '-1');
+    const box = await hp.boundingBox();
+    expect(box === null || box.x < 0).toBe(true);
   });
 
   test('clears the form after a successful submit', async ({ page }) => {
     const sent: string[] = [];
     await stubEmailJs(page, sent);
+    await stubApplyApi(page, []);
     await openApplyPopup(page);
 
     await page.fill('#ip-name', 'Priya R');

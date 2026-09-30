@@ -11,6 +11,12 @@ A high-performance, accessible, and SEO-optimized website for KGSTechway Service
 - ⚡ **Fast Loading**: Lazy loading, image optimization, and performance monitoring
 - 🛡️ **Secure**: Error boundaries, input validation, and security headers
 
+## 🎓 Internship applications
+
+The `/internship` form posts to `api/apply.js`, which saves each application to a Google Sheet and emails the student a greeting with a fee survey (`api/fee-preference.js`). Setup, env vars and testing: [docs/internship-setup.md](docs/internship-setup.md).
+
+> The greeting is sent from a free Gmail account, which is limited to about **500 emails per day**. That is fine for launch; if volume grows, move to a transactional provider (Resend, SES) or Google Workspace.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh

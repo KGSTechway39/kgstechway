@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "api/apply.js": {
+      "includeFiles": "email-templates/**"
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",

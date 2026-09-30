@@ -16,7 +16,7 @@ const InternshipApplyModal = ({ show, onHide }: InternshipApplyModalProps) => {
 
   // Let the success message be read, then close on its own
   const handleSuccess = () => {
-    closeTimer.current = window.setTimeout(onHide, 3500);
+    closeTimer.current = window.setTimeout(onHide, 9000);
   };
 
   useEffect(() => () => window.clearTimeout(closeTimer.current), []);

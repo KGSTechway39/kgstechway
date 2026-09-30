@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import emailjs from '@emailjs/browser';
 import { FaPaperPlane, FaCheckCircle, FaWhatsapp, FaPhone, FaEnvelope } from 'react-icons/fa';
@@ -26,6 +26,8 @@ export const EXPERIENCE_LEVELS = [
 ];
 
 const initialForm = {
+  // honeypot — hidden from people, bots tend to fill it
+  website: '',
   name: '',
   email: '',
   phone: '',
@@ -36,6 +38,51 @@ const initialForm = {
   message: ''
 };
 
+/**
+ * Heads-up to the team inbox via EmailJS. The Google Sheet (written by
+ * /api/apply) is the record of truth; this is best-effort and never blocks
+ * or fails the student's submission.
+ */
+function notifyTeam(formData: typeof initialForm) {
+  emailjs
+    .send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_INTERNSHIP_TEMPLATE_ID,
+      {
+        // Correctly named fields — used by the dedicated internship template
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        college: formData.college,
+        branch: formData.branch || 'Not provided',
+        experience_level: formData.experience,
+        track: formData.track,
+        // Legacy slots so the shared contact template still renders until the
+        // dedicated one is created. Harmlessly ignored by the new template.
+        company: formData.college,
+        service: `Internship Application — ${formData.track}`,
+        budget: formData.experience,
+        timeline: 'Not specified',
+        message:
+          `INTERNSHIP APPLICATION\n` +
+          `College: ${formData.college}\n` +
+          `Degree / Branch: ${formData.branch || 'Not provided'}\n` +
+          `Current Experience Level: ${formData.experience}\n` +
+          `Course / Track Interest: ${formData.track}\n\n` +
+          `Message: ${formData.message || 'Not provided'}`,
+        date: new Date().toLocaleString('en-IN', {
+          timeZone: 'Asia/Kolkata',
+          dateStyle: 'full',
+          timeStyle: 'short'
+        })
+      },
+      { publicKey: EMAILJS_PUBLIC_KEY }
+    )
+    .catch(() => {
+      /* the sheet already has the application */
+    });
+}
+
 interface InternshipFormProps {
   /** Called after a successful submission — used by the popup to auto-close */
   onSuccess?: () => void;
@@ -43,10 +90,13 @@ interface InternshipFormProps {
 
 const InternshipForm = ({ onSuccess }: InternshipFormProps) => {
   const [formData, setFormData] = useState(initialForm);
+  const formRef = useRef<HTMLFormElement>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertType, setAlertType] = useState<'success' | 'danger'>('success');
+  const [applicationId, setApplicationId] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const validateField = (name: string, value: string): string => {
     switch (name) {
@@ -103,47 +153,35 @@ const InternshipForm = ({ onSuccess }: InternshipFormProps) => {
     if (Object.keys(nextErrors).length > 0) return;
 
     setIsSubmitting(true);
+    setShowAlert(false);
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_INTERNSHIP_TEMPLATE_ID,
-        {
-          // Correctly named fields — used by the dedicated internship template
-          from_name: formData.name,
-          from_email: formData.email,
-          phone: formData.phone,
-          college: formData.college,
-          branch: formData.branch || 'Not provided',
-          experience_level: formData.experience,
-          track: formData.track,
-          // Legacy slots so the shared contact template still renders until the
-          // dedicated one is created. Harmlessly ignored by the new template.
-          company: formData.college,
-          service: `Internship Application — ${formData.track}`,
-          budget: formData.experience,
-          timeline: 'Not specified',
-          message:
-            `INTERNSHIP APPLICATION\n` +
-            `College: ${formData.college}\n` +
-            `Degree / Branch: ${formData.branch || 'Not provided'}\n` +
-            `Current Experience Level: ${formData.experience}\n` +
-            `Course / Track Interest: ${formData.track}\n\n` +
-            `Message: ${formData.message || 'Not provided'}`,
-          date: new Date().toLocaleString('en-IN', {
-            timeZone: 'Asia/Kolkata',
-            dateStyle: 'full',
-            timeStyle: 'short'
-          })
-        },
-        { publicKey: EMAILJS_PUBLIC_KEY }
-      );
+      const response = await fetch('/api/apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const result = await response.json().catch(() => ({}));
 
+      if (!response.ok || !result.ok) {
+        if (response.status === 400 && result.fields) setErrors(result.fields);
+        throw new Error(
+          response.status === 429
+            ? result.error
+            : response.status === 400
+              ? 'Please check the highlighted fields and try again.'
+              : 'We could not submit your application.'
+        );
+      }
+
+      notifyTeam(formData);
+      setApplicationId(result.applicationId);
       setAlertType('success');
       setShowAlert(true);
       setFormData(initialForm);
       setErrors({});
       onSuccess?.();
-    } catch {
+    } catch (err) {
+      setErrorMessage(err instanceof Error && err.message ? err.message : '');
       setAlertType('danger');
       setShowAlert(true);
     } finally {
@@ -163,16 +201,40 @@ const InternshipForm = ({ onSuccess }: InternshipFormProps) => {
           {alertType === 'success' ? (
             <>
               <FaCheckCircle className="me-2" />
-              Application received. Our team will contact you within 24 hours with the
-              batch details.
+              Application received{applicationId ? <> (ID <strong>{applicationId}</strong>)</> : null}.
+              Check your email for the confirmation, including the spam and promotions
+              folders. Our team will contact you within 24 hours with the batch details.
             </>
           ) : (
-            <>Something went wrong. Please WhatsApp us on +91 8248718780 instead.</>
+            <>
+              {errorMessage || 'We could not submit your application.'}{' '}
+              <Button
+                variant="link"
+                className="apply-retry p-0 align-baseline"
+                onClick={() => formRef.current?.requestSubmit()}
+                disabled={isSubmitting}
+              >
+                Try again
+              </Button>{' '}
+              or WhatsApp us on +91 8248718780.
+            </>
           )}
         </Alert>
       )}
 
-      <Form onSubmit={handleSubmit} noValidate>
+      <Form ref={formRef} onSubmit={handleSubmit} noValidate>
+        <div className="apply-hp" aria-hidden="true">
+          <label htmlFor="ip-website">Leave this field empty</label>
+          <input
+            id="ip-website"
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={formData.website}
+            onChange={handleChange}
+          />
+        </div>
         <Row>
           <Col md={6}>
             <Form.Group className="mb-3">
