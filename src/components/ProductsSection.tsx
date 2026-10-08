@@ -7,6 +7,7 @@ import {
   FaBoxOpen,
   FaWhatsapp,
   FaFileAlt,
+  FaHotel,
   FaChartPie,
   FaRobot,
   FaVial,
@@ -51,6 +52,17 @@ const ProductsSection = () => {
       status: 'Available',
       url: 'https://www.workspacecv.com/',
       delay: 0.2
+    },
+    {
+      icon: <FaHotel />,
+      name: 'Kudilam',
+      tagline: 'Multi-Tenant Hostel Management SaaS',
+      description: 'Kudilam is a cloud-based hostel management platform that helps colleges, universities, institutions, and hostel operators manage students, rooms, fees, mess operations, leave requests, parents, staff, and daily hostel activities from one connected platform.',
+      features: ['Student & Parent Management', 'Hostel, Room & Bed Allocation', 'Fees, Payments & Reports', 'Mess, Leave & Grievance Management'],
+      gradient: 'linear-gradient(135deg, #f7971e 0%, #ff5e62 100%)',
+      status: 'Available',
+      url: 'https://kudilam.com/',
+      delay: 0.3
     },
     {
       icon: <FaChartPie />,
