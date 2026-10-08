@@ -245,8 +245,9 @@ test.describe('Internship application popup', () => {
     await fillValidApplication(page);
     await page.locator('.apply-modal-content .apply-submit').click();
 
-    const success = page.locator('.apply-modal-content .alert-success');
+    const success = page.locator('.apply-modal-content .apply-success');
     await expect(success).toBeVisible();
+    await expect(success).toBeInViewport();
     await expect(success).toContainText('KGS-INT-20260930-TEST23');
     await expect(success).toContainText('spam');
 
@@ -299,7 +300,7 @@ test.describe('Internship application popup', () => {
     expect(box === null || box.x < 0).toBe(true);
   });
 
-  test('clears the form after a successful submit', async ({ page }) => {
+  test('replaces the form with the success panel and Close dismisses the popup', async ({ page }) => {
     const sent: string[] = [];
     await stubEmailJs(page, sent);
     await stubApplyApi(page, []);
@@ -311,9 +312,14 @@ test.describe('Internship application popup', () => {
     await page.fill('#ip-college', 'ABC College');
     await page.selectOption('#ip-experience', '3rd Year');
     await page.selectOption('#ip-track', 'Test Automation (Selenium, Playwright)');
-    await page.locator('.apply-modal-content .apply-submit').click();
+    await page.locator('.apply-modal-content .apply-submit').first().click();
 
-    await expect(page.locator('.apply-modal-content .alert-success')).toBeVisible();
-    await expect(page.locator('#ip-name')).toHaveValue('');
+    const success = page.locator('.apply-modal-content .apply-success');
+    await expect(success).toBeVisible();
+    await expect(success).toBeInViewport();
+    await expect(page.locator('#ip-name')).toHaveCount(0);
+
+    await success.getByRole('button', { name: 'Close' }).click();
+    await expect(page.locator('.apply-modal-content')).toHaveCount(0);
   });
 });

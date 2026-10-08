@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import emailjs from '@emailjs/browser';
 import { FaPaperPlane, FaCheckCircle, FaWhatsapp, FaPhone, FaEnvelope } from 'react-icons/fa';
@@ -86,17 +86,27 @@ function notifyTeam(formData: typeof initialForm) {
 interface InternshipFormProps {
   /** Called after a successful submission — used by the popup to auto-close */
   onSuccess?: () => void;
+  /** Lets the success panel offer a Close button when shown in the popup */
+  onClose?: () => void;
 }
 
-const InternshipForm = ({ onSuccess }: InternshipFormProps) => {
+const InternshipForm = ({ onSuccess, onClose }: InternshipFormProps) => {
   const [formData, setFormData] = useState(initialForm);
   const formRef = useRef<HTMLFormElement>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const [alertType, setAlertType] = useState<'success' | 'danger'>('success');
-  const [applicationId, setApplicationId] = useState('');
+    const [applicationId, setApplicationId] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const topRef = useRef<HTMLDivElement>(null);
+
+  // The popup body scrolls, so bring the success / error message into view
+  useEffect(() => {
+    if (showAlert || submitted) {
+      topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [showAlert, submitted]);
 
   const validateField = (name: string, value: string): string => {
     switch (name) {
@@ -175,50 +185,62 @@ const InternshipForm = ({ onSuccess }: InternshipFormProps) => {
 
       notifyTeam(formData);
       setApplicationId(result.applicationId);
-      setAlertType('success');
-      setShowAlert(true);
+      setShowAlert(false);
+      setSubmitted(true);
       setFormData(initialForm);
       setErrors({});
       onSuccess?.();
     } catch (err) {
       setErrorMessage(err instanceof Error && err.message ? err.message : '');
-      setAlertType('danger');
       setShowAlert(true);
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  if (submitted) {
+    return (
+      <div ref={topRef} className="apply-success" role="status" aria-live="polite">
+        <FaCheckCircle className="apply-success-icon" />
+        <h3>Application received</h3>
+        {applicationId && (
+          <p>
+            Your application ID: <strong>{applicationId}</strong>
+          </p>
+        )}
+        <p>
+          Check your email for the confirmation, including the spam and promotions folders.
+          Our team will contact you within 24 hours with the batch details.
+        </p>
+        {onClose && (
+          <Button className="apply-submit" onClick={onClose}>
+            Close
+          </Button>
+        )}
+      </div>
+    );
+  }
+
   return (
     <>
+      <div ref={topRef} />
       {showAlert && (
         <Alert
-          variant={alertType}
+          variant="danger"
           onClose={() => setShowAlert(false)}
           dismissible
           className="apply-alert"
         >
-          {alertType === 'success' ? (
-            <>
-              <FaCheckCircle className="me-2" />
-              Application received{applicationId ? <> (ID <strong>{applicationId}</strong>)</> : null}.
-              Check your email for the confirmation, including the spam and promotions
-              folders. Our team will contact you within 24 hours with the batch details.
-            </>
-          ) : (
-            <>
-              {errorMessage || 'We could not submit your application.'}{' '}
-              <Button
-                variant="link"
-                className="apply-retry p-0 align-baseline"
-                onClick={() => formRef.current?.requestSubmit()}
-                disabled={isSubmitting}
-              >
-                Try again
-              </Button>{' '}
-              or WhatsApp us on +91 8248718780.
-            </>
-          )}
+          {errorMessage || 'We could not submit your application.'}{' '}
+          <Button
+            variant="link"
+            className="apply-retry p-0 align-baseline"
+            onClick={() => formRef.current?.requestSubmit()}
+            disabled={isSubmitting}
+          >
+            Try again
+          </Button>{' '}
+          or WhatsApp us on +91 8248718780.
         </Alert>
       )}
 

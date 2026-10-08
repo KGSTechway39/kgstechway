@@ -2,7 +2,8 @@
  * POST /api/apply — internship application.
  *
  * Flow: validate → dedupe by email → append sheet row → send greeting email →
- * record Email Status / Email Sent At on the row.
+ * record Email Status / Email Sent At on the row. The email step runs after the
+ * response (waitUntil) so the student isn't kept waiting on SMTP.
  *
  * Duplicate rule: one row per email address (case-insensitive).
  *   - If the email already has a row, no new row is created and the student
@@ -26,6 +27,7 @@ import {
   appendRow,
   updateEmailStatus,
 } from './_lib/sheets.js';
+import { waitUntil } from '@vercel/functions';
 import { sendGreetingEmail } from './_lib/mailer.js';
 
 // In-memory per-IP limit. Each serverless instance keeps its own map and it
@@ -130,7 +132,7 @@ export default async function handler(req, res) {
           siteUrl,
           secret,
         });
-        await sendAndRecord(existing.applicationId, data.email, fields);
+        waitUntil(sendAndRecord(existing.applicationId, data.email, fields));
       }
       return res.status(200).json({ ok: true, applicationId: existing.applicationId });
     }
@@ -143,7 +145,8 @@ export default async function handler(req, res) {
     await appendRow(buildSheetRow({ applicationId, submittedAt, data }));
 
     const fields = buildEmailFields({ applicationId, submittedAt, data, siteUrl, secret });
-    await sendAndRecord(applicationId, data.email, fields);
+    // Reply as soon as the row is saved; the email finishes after the response
+    waitUntil(sendAndRecord(applicationId, data.email, fields));
 
     return res.status(200).json({ ok: true, applicationId });
   } catch (err) {

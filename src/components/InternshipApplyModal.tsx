@@ -16,15 +16,20 @@ const InternshipApplyModal = ({ show, onHide }: InternshipApplyModalProps) => {
 
   // Let the success message be read, then close on its own
   const handleSuccess = () => {
-    closeTimer.current = window.setTimeout(onHide, 9000);
+    closeTimer.current = window.setTimeout(onHide, 5000);
   };
 
   useEffect(() => () => window.clearTimeout(closeTimer.current), []);
 
+  const handleHide = () => {
+    window.clearTimeout(closeTimer.current);
+    onHide();
+  };
+
   return (
     <Modal
       show={show}
-      onHide={onHide}
+      onHide={handleHide}
       size="lg"
       centered
       scrollable
@@ -43,7 +48,7 @@ const InternshipApplyModal = ({ show, onHide }: InternshipApplyModalProps) => {
       </Modal.Header>
 
       <Modal.Body className="apply-card apply-card--modal">
-        <InternshipForm onSuccess={handleSuccess} />
+        <InternshipForm onSuccess={handleSuccess} onClose={handleHide} />
       </Modal.Body>
     </Modal>
   );
