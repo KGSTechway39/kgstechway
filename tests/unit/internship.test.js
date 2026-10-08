@@ -18,6 +18,10 @@ import {
   validateApplication,
   buildSheetRow,
   buildEmailFields,
+  formatIST,
+  parseIST,
+  shouldResendGreeting,
+  RESEND_COOLDOWN_MS,
   buildPlainTextEmail,
   feeLink,
   columnLetter,
@@ -262,5 +266,36 @@ describe('misc', () => {
     assert.ok(html.includes('&lt;b&gt;x&lt;/b&gt;'));
     assert.ok(html.includes('&quot;m&quot;'));
     assert.ok(html.includes('href="https://kgstechway.com/internship"'));
+  });
+});
+
+describe('repeat applications', () => {
+  const now = new Date('2026-10-08T07:00:00Z'); // 12:30 pm IST
+
+  test('parseIST reads what formatIST writes', () => {
+    const d = new Date('2026-10-08T06:42:21Z');
+    assert.equal(parseIST(formatIST(d)).getTime(), d.getTime());
+    assert.equal(parseIST('08 Oct 2026, 12:12:21 PM').toISOString(), '2026-10-08T06:42:21.000Z');
+    assert.equal(parseIST('30 Sept 2026, 10:01:47 pm').toISOString(), '2026-09-30T16:31:47.000Z');
+    assert.equal(parseIST('12:00:00 AM'), null);
+    assert.equal(parseIST(''), null);
+  });
+
+  test('midnight and noon convert correctly', () => {
+    assert.equal(parseIST('01 Jan 2026, 12:00:00 AM').toISOString(), '2025-12-31T18:30:00.000Z');
+    assert.equal(parseIST('01 Jan 2026, 12:00:00 PM').toISOString(), '2026-01-01T06:30:00.000Z');
+  });
+
+  test('resends when the first send failed or is unreadable', () => {
+    assert.equal(shouldResendGreeting({ emailStatus: 'Failed', emailSentAt: '' }, now), true);
+    assert.equal(shouldResendGreeting({ emailStatus: 'Pending', emailSentAt: '' }, now), true);
+    assert.equal(shouldResendGreeting({ emailStatus: 'Sent', emailSentAt: 'garbage' }, now), true);
+  });
+
+  test('does not resend within the hour, does after it', () => {
+    const recent = formatIST(new Date(now.getTime() - 10 * 60 * 1000));
+    const old = formatIST(new Date(now.getTime() - RESEND_COOLDOWN_MS - 1000));
+    assert.equal(shouldResendGreeting({ emailStatus: 'Sent', emailSentAt: recent }, now), false);
+    assert.equal(shouldResendGreeting({ emailStatus: 'Sent', emailSentAt: old }, now), true);
   });
 });

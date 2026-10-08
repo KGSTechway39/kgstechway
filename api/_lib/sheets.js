@@ -79,7 +79,9 @@ function toRecord(values, rowNumber) {
     rowNumber,
     applicationId: cell('Application ID'),
     email: cell('Email'),
+    submittedAt: cell('Submitted At (IST)'),
     emailStatus: cell('Email Status'),
+    emailSentAt: cell('Email Sent At'),
     feePreference: cell('Fee Preference (₹)'),
     feeChangeCount: Number(cell('Fee Survey Change Count')) || 0,
   };

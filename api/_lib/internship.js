@@ -195,6 +195,33 @@ export function formatIST(date = new Date()) {
   }).format(date);
 }
 
+const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+/** Parse a timestamp written by formatIST() ("08 Oct 2026, 12:12:21 pm"); null if unreadable */
+export function parseIST(text) {
+  const m = String(text || '')
+    .trim()
+    .match(/^(\d{1,2})\s+([A-Za-z]{3})[a-z]*\.?\s+(\d{4}),?\s+(\d{1,2}):(\d{2}):(\d{2})\s*([ap])m$/i);
+  if (!m) return null;
+  const month = MONTHS.indexOf(m[2].toLowerCase());
+  if (month < 0) return null;
+  let hour = Number(m[4]) % 12;
+  if (m[7].toLowerCase() === 'p') hour += 12;
+  // IST is UTC+05:30 with no daylight saving
+  const ms = Date.UTC(Number(m[3]), month, Number(m[1]), hour, Number(m[5]), Number(m[6]));
+  return new Date(ms - (5 * 60 + 30) * 60 * 1000);
+}
+
+/** A repeat applicant gets the greeting again, but at most once per hour */
+export const RESEND_COOLDOWN_MS = 60 * 60 * 1000;
+
+export function shouldResendGreeting({ emailStatus, emailSentAt }, now = new Date()) {
+  if (emailStatus !== 'Sent') return true;
+  const sent = parseIST(emailSentAt);
+  if (!sent) return true;
+  return now.getTime() - sent.getTime() >= RESEND_COOLDOWN_MS;
+}
+
 export function formatISTDate(date = new Date()) {
   return new Intl.DateTimeFormat('en-IN', {
     timeZone: 'Asia/Kolkata',

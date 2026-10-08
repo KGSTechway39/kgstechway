@@ -8,8 +8,9 @@
  * Duplicate rule: one row per email address (case-insensitive).
  *   - If the email already has a row, no new row is created and the student
  *     still gets { ok: true } with their ORIGINAL Application ID.
- *   - The greeting email is re-sent only if that row's Email Status is not
- *     "Sent" (i.e. the first send failed or never happened).
+ *   - The greeting email is re-sent if the first send failed or never happened,
+ *     or if the last send was over an hour ago (so a student who lost the
+ *     email can get it again, without the form being usable to flood an inbox).
  *   Two submissions racing within the same second could both append; that is
  *   rare enough to clean up by hand at this volume.
  */
@@ -20,6 +21,8 @@ import {
   buildSheetRow,
   buildEmailFields,
   formatIST,
+  parseIST,
+  shouldResendGreeting,
 } from './_lib/internship.js';
 import {
   ensureSheet,
@@ -124,10 +127,10 @@ export default async function handler(req, res) {
     const records = await listRecords();
     const existing = records.find((r) => r.email.trim().toLowerCase() === data.email);
     if (existing) {
-      if (existing.emailStatus !== 'Sent') {
+      if (shouldResendGreeting(existing)) {
         const fields = buildEmailFields({
           applicationId: existing.applicationId,
-          submittedAt: new Date(),
+          submittedAt: parseIST(existing.submittedAt) || new Date(),
           data,
           siteUrl,
           secret,
